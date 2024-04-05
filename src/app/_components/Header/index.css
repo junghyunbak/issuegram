@@ -1,0 +1,20 @@
+.counter {
+  @apply mb-[20px] flex w-full gap-10 max-md:my-[12px] max-md:gap-0 max-md:text-sm;
+
+  li {
+    @apply flex justify-center max-md:flex-1 max-md:text-[#737373];
+
+    p,
+    a {
+      @apply text-center [&_*]:max-md:block;
+
+      span {
+        @apply font-semibold text-black;
+      }
+    }
+
+    a {
+      @apply cursor-pointer;
+    }
+  }
+}

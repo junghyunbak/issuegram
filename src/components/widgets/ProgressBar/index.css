@@ -1,0 +1,76 @@
+.progress-bar {
+  position: fixed;
+  left: 0;
+  right: 0;
+  top: 0;
+  z-index: 12;
+
+  animation-duration: 0.3s;
+  animation-iteration-count: 1;
+  animation-timing-function: steps(1, end);
+
+  & > div {
+    width: 100%;
+    height: 3px;
+
+    position: fixed;
+    top: 0;
+    right: 0;
+    left: 0;
+    z-index: 12;
+
+    transform-origin: right;
+    will-change: transform;
+
+    animation-name: one;
+    animation-delay: 0s;
+    animation-duration: 2s;
+    animation-iteration-count: 1;
+    animation-timing-function: ease-out;
+
+    & > div {
+      height: 3px;
+      width: 100%;
+
+      transform-origin: right;
+      will-change: transform;
+
+      animation-name: two;
+      animation-iteration-count: infinite;
+      animation-delay: 0s;
+      animation-timing-function: linear;
+      animation-duration: 2s;
+
+      background-image: linear-gradient(
+        to right,
+        rgb(118, 56, 250),
+        rgb(255, 214, 0),
+        rgb(255, 122, 0),
+        rgb(255, 1, 105),
+        rgb(211, 0, 197),
+        rgb(118, 56, 250),
+        rgb(255, 214, 0)
+      );
+    }
+  }
+}
+
+@keyframes one {
+  0% {
+    transform: translateX(-100%);
+  }
+
+  100% {
+    transform: translateX(0);
+  }
+}
+
+@keyframes two {
+  0% {
+    transform: translateX(0) scaleX(6);
+  }
+
+  100% {
+    transform: translateX(500%) scaleX(6);
+  }
+}

@@ -1,0 +1,90 @@
+.markdown {
+  width: calc(100% - 46px);
+
+  @apply relative;
+
+  & > * {
+    @apply mb-[32px] mr-[16px] mt-[5px];
+
+    &::before {
+      content: "";
+
+      background-image: url("https://avatars.githubusercontent.com/u/44913775?v=4");
+      background-size: cover;
+
+      @apply absolute -left-[46px] inline-block h-[32px] w-[32px] rounded-full bg-slate-500;
+    }
+  }
+
+  img {
+    @apply inline;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    @apply font-semibold;
+  }
+
+  h1,
+  h2 {
+    &::after {
+      content: "";
+
+      @apply ml-[8px] mt-[16px] block w-[24px] border-b border-black;
+    }
+  }
+
+  code {
+    &:not(pre *) {
+      background: linear-gradient(to right, #833ab4, #fd1d1d, #fcb045);
+
+      @apply rounded-sm px-[2px] py-[1px] text-xs text-white;
+    }
+  }
+
+  a {
+    @apply text-[#00376B];
+
+    &[href^="#user-content-fn-"] {
+      @apply before:content-["["] after:content-["]"];
+    }
+
+    &[href^="#user-content-fnref-"] {
+      @apply no-underline;
+    }
+  }
+
+  ol,
+  ul {
+    @apply list-[revert] pl-8;
+  }
+
+  li {
+    @apply mt-1;
+  }
+
+  summary {
+    @apply cursor-pointer;
+  }
+
+  table {
+    tr,
+    th,
+    td {
+      @apply border border-gray-300;
+    }
+
+    th,
+    td {
+      @apply px-3 py-1.5;
+    }
+  }
+
+  blockquote {
+    @apply border-l-4 border-gray-300 px-4 text-gray-500;
+  }
+}
