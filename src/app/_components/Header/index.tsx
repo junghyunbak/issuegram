@@ -68,16 +68,10 @@ export function Introduce({ name, content }: IntroduceProps) {
 
 export async function Header() {
   const userInfo = await server.useFetchUserInfo();
-
-  const readme = await fetch(
-    `https://api.github.com/repos/${config.github.owner}/${config.github.repo}/readme`,
-  ).then((value) => value.json());
+  const readme = await server.useFetchReadme();
+  const issues = await server.useFetchIssues();
 
   const readmeContent = utf8.decode(base64.decode(readme.content));
-
-  const issues = await fetch(
-    `https://api.github.com/repos/${config.github.owner}/${config.github.repo}/issues?state=open&per_page=100`,
-  ).then((value) => value.json());
 
   return (
     <header>

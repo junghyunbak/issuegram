@@ -37,3 +37,11 @@ export const useFetchUserInfo = async (): Promise<User> => {
 
   return user;
 };
+
+export const useFetchReadme = async () => {
+  const readme = await fetch(
+    `https://api.github.com/repos/${config.github.owner}/${config.github.repo}/readme`,
+  ).then((value) => value.json());
+
+  return readme;
+};
