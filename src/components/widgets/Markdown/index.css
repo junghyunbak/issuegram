@@ -4,7 +4,7 @@
   @apply relative;
 
   & > * {
-    @apply mb-[32px] mr-[16px] mt-[5px];
+    @apply mb-[46px] mr-[16px] mt-[5px];
 
     &::before {
       content: "";
