@@ -29,7 +29,9 @@ export function IssueBanner({ issue }: IssueBannerProps) {
   } = file;
 
   return (
-    <div className={`flex h-full w-[300px] max-md:aspect-square max-md:w-full`}>
+    <div
+      className={`flex h-full w-[300px] overflow-hidden max-md:aspect-square max-md:w-full`}
+    >
       {typeof thumbnail === "string" ? (
         <div className="flex size-full items-center justify-center bg-black">
           <img className="object-contain" src={thumbnail} />
