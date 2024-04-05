@@ -85,7 +85,7 @@ export default async function IssueModal({
 
         <IssueModalLayout>
           <HiddenMobileLayout>
-            <IssueBanner title={issue.title} />
+            <IssueBanner issue={issue} />
           </HiddenMobileLayout>
 
           <div className="flex aspect-square w-[45dvw] flex-col max-md:aspect-auto max-md:w-[320px]">
@@ -93,7 +93,7 @@ export default async function IssueModal({
 
             <div className="flex-1 overflow-x-hidden overflow-y-scroll scrollbar-hide max-md:h-[50dvh] max-md:flex-none">
               <ShowMobileLayout>
-                <IssueBanner title={issue.title} />
+                <IssueBanner issue={issue} />
               </ShowMobileLayout>
 
               <CommentListLayout>

@@ -68,13 +68,13 @@ export default async function Issue({
     <div>
       <ShowMobileLayout>
         <div className="flex h-11 w-full items-center justify-center border-b">
-          <p className="text-primaryText font-semibold">게시물</p>
+          <p className="font-semibold text-primaryText">게시물</p>
         </div>
       </ShowMobileLayout>
 
       <div className="mx-auto flex w-full max-w-[815px] border max-md:border-0">
         <HiddenMobileLayout>
-          <IssueBanner title={issue.title} />
+          <IssueBanner issue={issue} />
         </HiddenMobileLayout>
 
         <div className="flex aspect-square w-full flex-col overflow-x-hidden max-md:overflow-x-visible">
@@ -82,7 +82,7 @@ export default async function Issue({
 
           <div className="w-full flex-1 overflow-x-hidden overflow-y-scroll max-md:flex-none max-md:scrollbar-hide">
             <ShowMobileLayout>
-              <IssueBanner title={issue.title} />
+              <IssueBanner issue={issue} />
             </ShowMobileLayout>
 
             <CommentListLayout>
@@ -97,7 +97,7 @@ export default async function Issue({
       <div className="mt-[48px] w-full border-b" />
 
       <div className="pt-[42px]">
-        <p className="text-secondaryText mb-[20px] text-sm font-semibold">
+        <p className="mb-[20px] text-sm font-semibold text-secondaryText">
           <Link href="/" className="text-secondaryButton hover:opacity-50">
             {userInfo.login}
           </Link>

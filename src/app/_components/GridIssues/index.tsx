@@ -78,7 +78,7 @@ export function GridIssues({ issues }: GridIssuesProps) {
 
                   <div className="aspect-square w-full overflow-hidden">
                     {typeof thumbnail === "string" ? (
-                      <img src={thumbnail} />
+                      <img className="size-full object-cover" src={thumbnail} />
                     ) : (
                       <div
                         className="flex size-full items-center justify-center"
