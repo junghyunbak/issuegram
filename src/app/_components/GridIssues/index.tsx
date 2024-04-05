@@ -3,6 +3,12 @@ import Comment from "@/assets/svgs/comment.svg";
 import Link from "next/link";
 import Pin from "@/assets/svgs/pin.svg";
 import randomGradient from "random-gradient";
+import remarkFrontmatter from "remark-frontmatter";
+import remarkParse from "remark-parse";
+import remarkExtractFrontmatter from "remark-extract-frontmatter";
+import remarkStringify from "remark-stringify";
+import { unified } from "unified";
+const toml = require("toml").parse;
 
 interface GridIssuesProps {
   issues: Issues;
@@ -26,6 +32,17 @@ export function GridIssues({ issues }: GridIssuesProps) {
               if (!issue) {
                 return <div className="flex-1" key={i} />;
               }
+
+              const file = unified()
+                .use(remarkParse)
+                .use(remarkFrontmatter, ["toml"])
+                .use(remarkExtractFrontmatter, { toml })
+                .use(remarkStringify)
+                .processSync(issue.body || "");
+
+              const {
+                data: { thumbnail },
+              } = file;
 
               const bgGradient = {
                 background: randomGradient(issue.title, "horizontal"),
@@ -59,13 +76,19 @@ export function GridIssues({ issues }: GridIssuesProps) {
                     </div>
                   </div>
 
-                  <div
-                    className="flex aspect-square w-full items-center justify-center overflow-hidden"
-                    style={bgGradient}
-                  >
-                    <p className="break-all p-4 text-xl font-semibold text-white max-md:text-lg">
-                      {issue.title}
-                    </p>
+                  <div className="aspect-square w-full overflow-hidden">
+                    {typeof thumbnail === "string" ? (
+                      <img src={thumbnail} />
+                    ) : (
+                      <div
+                        className="flex size-full items-center justify-center"
+                        style={bgGradient}
+                      >
+                        <p className="break-all p-4 text-xl font-semibold text-white max-md:text-lg">
+                          {issue.title}
+                        </p>
+                      </div>
+                    )}
                   </div>
                 </Link>
               );
