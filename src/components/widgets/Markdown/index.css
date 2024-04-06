@@ -17,7 +17,7 @@
   }
 
   img {
-    @apply inline;
+    @apply inline border;
   }
 
   h1,
