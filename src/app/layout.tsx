@@ -1,8 +1,9 @@
 import type { Metadata } from "next";
-import "./globals.css";
 import { Footer } from "./_components/Footer";
 import React from "react";
 import { Nav } from "./_components/Nav";
+import "./globals.css";
+import "@/assets/fonts/stylesheet.css";
 
 export const metadata: Metadata = {
   title: "Issuegram",

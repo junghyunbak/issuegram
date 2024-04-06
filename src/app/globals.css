@@ -2,8 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
-@import "../assets/fonts/stylesheets.css";
-
 body {
   font-family: "Segoe UI", "Segoe UI Emoji";
 }
