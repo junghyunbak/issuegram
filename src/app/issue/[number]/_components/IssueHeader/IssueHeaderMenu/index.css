@@ -1,0 +1,36 @@
+.issue-header-modal {
+  @apply fixed inset-0 z-50 flex items-center justify-center;
+
+  animation-name: fade-out-and-scale-down;
+  animation-timing-function: ease-out;
+  animation-iteration-count: 1;
+  animation-duration: 0.1s;
+}
+
+.issue-header-modal-list {
+  li {
+    @apply h-[48px] cursor-pointer border-b border-[#dbdbdb] text-[14px];
+
+    &:last-child {
+      @apply border-b-0;
+    }
+
+    &:active {
+      @apply bg-black/[.1];
+    }
+  }
+}
+
+@keyframes fade-out-and-scale-down {
+  0% {
+    opacity: 0;
+    transform: scale(1.2);
+    transform-origin: center;
+  }
+
+  100% {
+    opacity: 1;
+    transform: scale(1);
+    transform-origin: center;
+  }
+}
