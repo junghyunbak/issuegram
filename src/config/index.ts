@@ -5,6 +5,7 @@ const config = {
     issues: {
       portfolioLabel: "Portfolio",
     },
+    accessToken: process.env.GITHUB_ACCESS_TOKEN,
   },
 };
 

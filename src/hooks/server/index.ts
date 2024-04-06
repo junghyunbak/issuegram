@@ -5,6 +5,9 @@ import config from "@/config";
 export const useFetchIssues = async (): Promise<Issues> => {
   const issues = (await fetch(
     `https://api.github.com/repos/${config.github.owner}/${config.github.repo}/issues?state=open&per_page=100`,
+    {
+      headers: { Authorization: `Bearer ${config.github.accessToken}` },
+    },
   ).then((value) => value.json())) as Issues;
 
   issues.sort((a: Issues[number], b: Issues[number]) => {
@@ -25,6 +28,9 @@ export const useFetchAnIssue = async (
 ): Promise<Issues[number]> => {
   const issue = (await fetch(
     `https://api.github.com/repos/${config.github.owner}/${config.github.repo}/issues/${issueNumber}`,
+    {
+      headers: { Authorization: `Bearer ${config.github.accessToken}` },
+    },
   ).then((value) => value.json())) as Issues[number];
 
   return issue;
@@ -33,6 +39,9 @@ export const useFetchAnIssue = async (
 export const useFetchUserInfo = async (): Promise<User> => {
   const user = (await fetch(
     `https://api.github.com/users/${config.github.owner}`,
+    {
+      headers: { Authorization: `Bearer ${config.github.accessToken}` },
+    },
   ).then((value) => value.json())) as User;
 
   return user;
@@ -41,6 +50,9 @@ export const useFetchUserInfo = async (): Promise<User> => {
 export const useFetchReadme = async () => {
   const readme = await fetch(
     `https://api.github.com/repos/${config.github.owner}/${config.github.repo}/readme`,
+    {
+      headers: { Authorization: `Bearer ${config.github.accessToken}` },
+    },
   ).then((value) => value.json());
 
   return readme;
