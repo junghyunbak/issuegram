@@ -106,9 +106,9 @@ export default async function Issue({
                 );
               })}
             </CommentListLayout>
-
-            <IssueFooter issue={issue} />
           </div>
+
+          <IssueFooter issue={issue} />
         </div>
       </div>
 
