@@ -16,6 +16,10 @@
     }
   }
 
+  & > details {
+    @apply mb-0;
+  }
+
   img {
     @apply inline border;
   }
@@ -27,15 +31,6 @@
   h5,
   h6 {
     @apply font-semibold;
-  }
-
-  h1,
-  h2 {
-    &::after {
-      content: "";
-
-      @apply ml-[8px] mt-[16px] block w-[24px] border-b border-black;
-    }
   }
 
   code {
@@ -67,8 +62,62 @@
     @apply mt-1;
   }
 
-  summary {
-    @apply cursor-pointer;
+  > details {
+    & > *:not(summary) {
+      @apply mb-[46px] ml-[46px] mt-[5px];
+
+      &::before {
+        content: "";
+
+        background-image: url("https://avatars.githubusercontent.com/u/44913775?v=4");
+        background-size: cover;
+
+        @apply absolute -left-[46px] ml-[46px] inline-block h-[32px] w-[32px] rounded-full bg-slate-500;
+      }
+    }
+
+    & > details > *:not(summary) {
+      @apply mb-[46px] ml-[46px] mt-[5px];
+
+      &::before {
+        content: "";
+
+        background-image: url("https://avatars.githubusercontent.com/u/44913775?v=4");
+        background-size: cover;
+
+        @apply absolute -left-[46px] ml-[92px] inline-block h-[32px] w-[32px] rounded-full bg-slate-500;
+      }
+    }
+
+    &[open] {
+      & > summary {
+        &::after {
+          content: " ――ㅤ답글 숨기기";
+        }
+      }
+
+      & > details[open] {
+        & > summary {
+          &::after {
+            content: " ――ㅤ답글 숨기기";
+          }
+        }
+      }
+    }
+
+    summary {
+      @apply mb-[32px] cursor-pointer list-none;
+
+      &::after {
+        content: " ――ㅤ답글 보기";
+
+        @apply ml-[8px] mt-[16px] block w-full text-xs font-semibold text-secondaryText;
+      }
+
+      &::-webkit-details-marker {
+        @apply hidden;
+      }
+    }
   }
 
   table {
