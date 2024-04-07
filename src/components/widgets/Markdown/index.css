@@ -87,4 +87,8 @@
   blockquote {
     @apply border-l-4 border-gray-300 px-4 text-gray-500;
   }
+
+  iframe {
+    @apply w-full;
+  }
 }
