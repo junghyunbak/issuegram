@@ -1,7 +1,5 @@
 import { server } from "@/hooks";
 import { RouteModal } from "@/components/layouts/RouteModal";
-import { RouteButton } from "@/components/core/buttons/RouteButton";
-import ArrowUp from "@/assets/svgs/arrow-up.svg";
 import { Markdown } from "@/components/widgets/Markdown";
 import { hasSpecificLabelToIssue } from "@/utils";
 import config from "@/config";
@@ -14,7 +12,7 @@ import { IssueFooter } from "@/app/issue/[number]/_components/IssueFooter";
 import { IssueModalRouteButton } from "./_components/IssueModalRouteButton";
 import { IssueModalLayout } from "./_components/IssueModalLayout";
 
-export default async function IssueModal({
+export default async function ModalIssue({
   params: { number },
 }: {
   params: { number: string };
