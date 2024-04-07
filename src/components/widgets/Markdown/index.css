@@ -1,30 +1,10 @@
 :root {
   --profile-image: url("https://avatars.githubusercontent.com/u/44913775?v=4");
+  --user-name: "junghyunbak ";
 }
 
 .markdown {
   @apply relative ml-[46px] w-[calc(100%-46px)];
-
-  & > * {
-    @apply mb-[46px] mr-[16px] mt-[5px];
-
-    &::before {
-      content: "";
-
-      background-image: var(--profile-image);
-      background-size: cover;
-
-      @apply absolute -left-[46px] inline-block h-[32px] w-[32px] rounded-full border bg-slate-500;
-    }
-  }
-
-  & > details {
-    @apply mb-0;
-  }
-
-  img {
-    @apply inline border;
-  }
 
   h1,
   h2,
@@ -57,37 +37,62 @@
 
   ol,
   ul {
-    @apply list-[revert] pl-8;
+    @apply list-inside list-[revert];
   }
 
   li {
     @apply mt-1;
   }
 
-  > details {
-    & > *:not(summary) {
-      @apply mb-[46px] ml-[46px] mt-[5px];
+  & > * {
+    @apply relative mb-[46px] mr-[16px] mt-[5px];
 
-      &::before {
+    &::before {
+      content: var(--user-name);
+
+      @apply font-segoe inline font-semibold text-secondaryButton;
+    }
+
+    &::after {
+      content: "";
+
+      background-image: var(--profile-image);
+      background-size: cover;
+
+      @apply absolute -left-[46px] top-0 inline-block h-[32px] w-[32px] rounded-full border;
+    }
+  }
+
+  details {
+    @apply mb-0;
+  }
+
+  > details {
+    @apply relative;
+
+    & > *:not(summary) {
+      @apply relative mb-[46px] ml-[46px] mt-[5px];
+
+      &::after {
         content: "";
 
         background-image: var(--profile-image);
         background-size: cover;
 
-        @apply absolute -left-[46px] ml-[46px] inline-block h-[32px] w-[32px] rounded-full border bg-slate-500;
+        @apply absolute -left-[46px] top-0 inline-block h-[32px] w-[32px] rounded-full border;
       }
     }
 
     & > details > *:not(summary) {
-      @apply mb-[46px] ml-[46px] mt-[5px];
+      @apply relative mb-[46px] ml-[46px] mt-[5px];
 
-      &::before {
+      &::after {
         content: "";
 
         background-image: var(--profile-image);
         background-size: cover;
 
-        @apply absolute -left-[46px] ml-[92px] inline-block h-[32px] w-[32px] rounded-full border bg-slate-500;
+        @apply absolute -left-[46px] top-0 inline-block h-[32px] w-[32px] rounded-full border;
       }
     }
 
@@ -122,6 +127,18 @@
     }
   }
 
+  blockquote {
+    @apply text-secondaryText;
+
+    &::before {
+      content: "quotation ";
+    }
+
+    &::after {
+      background-image: url("./user.jpg");
+    }
+  }
+
   table {
     tr,
     th,
@@ -132,14 +149,6 @@
     th,
     td {
       @apply px-3 py-1.5;
-    }
-  }
-
-  blockquote {
-    @apply text-secondaryText;
-
-    &::before {
-      background-image: url("./user.jpg");
     }
   }
 

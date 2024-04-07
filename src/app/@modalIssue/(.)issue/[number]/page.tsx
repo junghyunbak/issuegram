@@ -106,6 +106,7 @@ export default async function ModalIssue({
                       style={
                         {
                           "--profile-image": `url("${comment.user?.avatar_url}")`,
+                          "--user-name": `"${comment.user?.login} "`,
                         } as React.CSSProperties
                       }
                     >

@@ -8,7 +8,7 @@ const config: Config = {
   ],
   theme: {
     fontFamily: {
-      test: "Segoe UI",
+      segoe: "Segoe UI",
     },
     extend: {
       colors: {
