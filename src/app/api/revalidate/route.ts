@@ -3,9 +3,10 @@ import { type NextRequest } from "next/server";
 import type { IssueCommentEvent, IssuesEvent } from "@octokit/webhooks-types";
 
 export async function POST(request: NextRequest) {
-  const secretToken = (/\?secret=([a-z0-9]+)/.exec(request.url) || [])[1];
-
-  if (process.env.REVALIDATE_SECRET_TOKEN !== secretToken) {
+  if (
+    process.env.REVALIDATE_SECRET_TOKEN ===
+    request.nextUrl.searchParams.get("secret")
+  ) {
     return Response.json(
       { message: "유효하지 않은 토큰입니다." },
       { status: 401 },
