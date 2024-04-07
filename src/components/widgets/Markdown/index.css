@@ -1,7 +1,5 @@
 .markdown {
-  width: calc(100% - 46px);
-
-  @apply relative;
+  @apply relative ml-[46px] w-[calc(100%-46px)];
 
   & > * {
     @apply mb-[46px] mr-[16px] mt-[5px];

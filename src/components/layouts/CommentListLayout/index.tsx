@@ -5,10 +5,5 @@ interface CommentListLayoutProps {
 }
 
 export function CommentListLayout({ children }: CommentListLayoutProps) {
-  return (
-    <div className="flex p-4 text-sm">
-      <div className="mr-[46px]" />
-      {children}
-    </div>
-  );
+  return <div className="p-4 text-sm">{children}</div>;
 }
