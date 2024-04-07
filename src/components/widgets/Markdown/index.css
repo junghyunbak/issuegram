@@ -73,6 +73,12 @@
     & > *:not(summary) {
       @apply relative mb-[46px] ml-[46px] mt-[5px];
 
+      &::before {
+        content: var(--user-name);
+
+        @apply font-segoe inline font-semibold text-secondaryButton;
+      }
+
       &::after {
         content: "";
 
@@ -85,6 +91,12 @@
 
     & > details > *:not(summary) {
       @apply relative mb-[46px] ml-[46px] mt-[5px];
+
+      &::before {
+        content: var(--user-name);
+
+        @apply font-segoe inline font-semibold text-secondaryButton;
+      }
 
       &::after {
         content: "";
