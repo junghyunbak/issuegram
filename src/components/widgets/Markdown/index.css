@@ -69,7 +69,7 @@
       &::before {
         content: "";
 
-        background-image: url("https://avatars.githubusercontent.com/u/44913775?v=4");
+        background-image: url("./profile.jpg");
         background-size: cover;
 
         @apply absolute -left-[46px] ml-[46px] inline-block h-[32px] w-[32px] rounded-full bg-slate-500;
@@ -82,7 +82,7 @@
       &::before {
         content: "";
 
-        background-image: url("https://avatars.githubusercontent.com/u/44913775?v=4");
+        background-image: url("./profile.jpg");
         background-size: cover;
 
         @apply absolute -left-[46px] ml-[92px] inline-block h-[32px] w-[32px] rounded-full bg-slate-500;
@@ -134,7 +134,11 @@
   }
 
   blockquote {
-    @apply border-l-4 border-gray-300 px-4 text-gray-500;
+    @apply text-secondaryText;
+
+    &::before {
+      background-image: url("./user.jpg");
+    }
   }
 
   iframe {
