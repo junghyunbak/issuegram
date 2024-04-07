@@ -8,6 +8,9 @@ export const useFetchIssues = async (): Promise<Issues> => {
     `https://api.github.com/repos/${config.github.owner}/${config.github.repo}/issues?state=open&per_page=100`,
     {
       headers: { Authorization: `Bearer ${config.github.accessToken}` },
+      next: {
+        tags: ["issues"],
+      },
     },
   ).then((value) => value.json())) as Issues;
 
@@ -31,6 +34,9 @@ export const useFetchAnIssue = async (
     `https://api.github.com/repos/${config.github.owner}/${config.github.repo}/issues/${issueNumber}`,
     {
       headers: { Authorization: `Bearer ${config.github.accessToken}` },
+      next: {
+        tags: [`issue-${issueNumber}`],
+      },
     },
   ).then((value) => value.json())) as Issues[number];
 
@@ -66,6 +72,9 @@ export const useFetchIssueComments = async (
     `https://api.github.com/repos/${config.github.owner}/${config.github.repo}/issues/${issueNumber}/comments?per_page=100`,
     {
       headers: { Authorization: `Bearer ${config.github.accessToken}` },
+      next: {
+        tags: [`issue-${issueNumber}-comments`],
+      },
     },
   ).then((value) => value.json())) as Comments;
 
