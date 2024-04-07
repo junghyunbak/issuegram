@@ -11,6 +11,7 @@ import { ShowMobileLayout } from "@/components/layouts/ShowMobileLayout";
 import { HiddenMobileLayout } from "@/components/layouts/HiddenMobileLayout";
 import { CommentListLayout } from "@/components/layouts/CommentListLayout";
 import { IssueFooter } from "@/app/issue/[number]/_components/IssueFooter";
+import { IssueModalRouteButton } from "./_components/IssueModalRouteButton";
 import { IssueModalLayout } from "./_components/IssueModalLayout";
 
 export default async function IssueModal({
@@ -72,16 +73,15 @@ export default async function IssueModal({
 
   return (
     <RouteModal>
-      <div className="flex w-screen items-center justify-between p-[10px]">
-        {prevIdx !== -1 ? (
-          <RouteButton path={`/issue/${issues[prevIdx].number}`}>
-            <div className="flex items-center justify-center rounded-full bg-white p-[8px] transition-opacity duration-200 hover:opacity-[0.7]">
-              <ArrowUp className="-rotate-90 transform" />
-            </div>
-          </RouteButton>
-        ) : (
-          <div className="w-[32px]" />
-        )}
+      <>
+        <div className="absolute left-[10px]">
+          <IssueModalRouteButton
+            href={
+              prevIdx === -1 ? undefined : `/issue/${issues[prevIdx].number}`
+            }
+            direction="left"
+          />
+        </div>
 
         <IssueModalLayout>
           <HiddenMobileLayout>
@@ -105,16 +105,15 @@ export default async function IssueModal({
           </div>
         </IssueModalLayout>
 
-        {nextIdx !== -1 ? (
-          <RouteButton path={`/issue/${issues[nextIdx].number}`}>
-            <div className="flex items-center justify-center rounded-full bg-white p-[8px] transition-opacity duration-200 hover:opacity-[0.7]">
-              <ArrowUp className="rotate-90 transform" />
-            </div>
-          </RouteButton>
-        ) : (
-          <div className="w-[32px]" />
-        )}
-      </div>
+        <div className="absolute right-[10px]">
+          <IssueModalRouteButton
+            href={
+              nextIdx === -1 ? undefined : `/issue/${issues[nextIdx].number}`
+            }
+            direction="right"
+          />
+        </div>
+      </>
     </RouteModal>
   );
 }

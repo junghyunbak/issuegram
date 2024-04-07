@@ -45,10 +45,11 @@ export function RouteModal({ children }: { children: React.ReactNode }) {
   };
 
   return (
-    <div className="fixed inset-0 flex items-center justify-center">
-      <div className="absolute size-full bg-black/65" />
-
-      <div className="absolute">{children}</div>
+    <div
+      className="fixed inset-0 flex items-center justify-center bg-black/65"
+      onClick={handleCloseModal}
+    >
+      {children}
 
       <div
         className="absolute right-[10px] top-[10px] cursor-pointer p-[8px] active:opacity-50"
