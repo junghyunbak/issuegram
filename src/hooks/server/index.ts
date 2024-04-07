@@ -1,6 +1,7 @@
 import config from "@/config";
 
 // TODO: api 에러 예외처리
+// TODO: 100 이상의 데이터를 가져오도록 수정
 
 export const useFetchIssues = async (): Promise<Issues> => {
   const issues = (await fetch(
@@ -56,4 +57,28 @@ export const useFetchReadme = async () => {
   ).then((value) => value.json());
 
   return readme;
+};
+
+// TODO: 팔로워가 변할경우 반영되지 못할 경우를 대비 (예 - 캐시 사용하지 않도록 처리)
+
+export const useFetchFollowers = async () => {
+  const followers = await fetch(
+    `https://api.github.com/users/${config.github.owner}/followers?per_page=100`,
+    {
+      headers: { Authorization: `Bearer ${config.github.accessToken}` },
+    },
+  ).then((value) => value.json());
+
+  return followers;
+};
+
+export const useFetchFollowing = async () => {
+  const following = await fetch(
+    `https://api.github.com/users/${config.github.owner}/following?per_page=100`,
+    {
+      headers: { Authorization: `Bearer ${config.github.accessToken}` },
+    },
+  ).then((value) => value.json());
+
+  return following;
 };

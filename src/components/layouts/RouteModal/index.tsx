@@ -4,8 +4,17 @@ import React, { MouseEventHandler, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import X from "@/assets/svgs/x.svg";
 
-// TODO: dimmed 클릭 시 모달 닫히도록 구현 (contents 요소가 위에 올라와있는 상태에서도 동작하도록)
-export function RouteModal({ children }: { children: React.ReactNode }) {
+interface RouteModalProps {
+  children: React.ReactNode;
+  hiddenCloseButton?: boolean;
+  disableEsc?: boolean;
+}
+
+export function RouteModal({
+  children,
+  hiddenCloseButton = false,
+  disableEsc = false,
+}: RouteModalProps) {
   const router = useRouter();
 
   useEffect(() => {
@@ -28,6 +37,10 @@ export function RouteModal({ children }: { children: React.ReactNode }) {
 
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
+      if (disableEsc) {
+        return;
+      }
+
       if (e.key === "Escape") {
         router.back();
       }
@@ -38,7 +51,7 @@ export function RouteModal({ children }: { children: React.ReactNode }) {
     return () => {
       window.removeEventListener("keydown", handleKeyDown);
     };
-  });
+  }, [disableEsc, router]);
 
   const handleCloseModal: MouseEventHandler<HTMLDivElement> = () => {
     router.back();
@@ -51,12 +64,14 @@ export function RouteModal({ children }: { children: React.ReactNode }) {
     >
       {children}
 
-      <div
-        className="absolute right-[10px] top-[10px] cursor-pointer p-[8px] active:opacity-50"
-        onClick={handleCloseModal}
-      >
-        <X />
-      </div>
+      {!hiddenCloseButton && (
+        <div
+          className="absolute right-[10px] top-[10px] cursor-pointer p-[8px] active:opacity-50"
+          onClick={handleCloseModal}
+        >
+          <X />
+        </div>
+      )}
     </div>
   );
 }

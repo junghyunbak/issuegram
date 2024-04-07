@@ -13,9 +13,13 @@ export const metadata: Metadata = {
 export default function RootLayout({
   children,
   modalIssue,
+  modalFollowers,
+  modalFollowing,
 }: Readonly<{
   children: React.ReactNode;
   modalIssue: React.ReactNode;
+  modalFollowers: React.ReactNode;
+  modalFollowing: React.ReactNode;
 }>) {
   return (
     <html className="size-full">
@@ -30,6 +34,8 @@ export default function RootLayout({
           </div>
 
           {modalIssue}
+          {modalFollowers}
+          {modalFollowing}
         </div>
       </body>
     </html>

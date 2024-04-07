@@ -10,6 +10,7 @@ import remarkFrontmatter from "remark-frontmatter";
 import rehypeRaw from "rehype-raw";
 import rehypeSlug from "rehype-slug";
 import rehypeKatex from "rehype-katex";
+import Link from "next/link";
 
 interface CounterProps {
   post: number;
@@ -27,15 +28,15 @@ function Counter({ post, followers, following }: CounterProps) {
       </li>
 
       <li>
-        <a className="active:opacity-50">
+        <Link className="active:opacity-50" href="/followers">
           팔로워 <span>{followers}</span>
-        </a>
+        </Link>
       </li>
 
       <li>
-        <a className="active:opacity-50">
+        <Link className="active:opacity-50" href="/following">
           팔로우 <span>{following}</span>
-        </a>
+        </Link>
       </li>
     </ul>
   );
