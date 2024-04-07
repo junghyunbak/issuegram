@@ -14,7 +14,7 @@
       background-image: var(--profile-image);
       background-size: cover;
 
-      @apply absolute -left-[46px] inline-block h-[32px] w-[32px] rounded-full bg-slate-500;
+      @apply absolute -left-[46px] inline-block h-[32px] w-[32px] rounded-full border bg-slate-500;
     }
   }
 
@@ -74,7 +74,7 @@
         background-image: var(--profile-image);
         background-size: cover;
 
-        @apply absolute -left-[46px] ml-[46px] inline-block h-[32px] w-[32px] rounded-full bg-slate-500;
+        @apply absolute -left-[46px] ml-[46px] inline-block h-[32px] w-[32px] rounded-full border bg-slate-500;
       }
     }
 
@@ -87,7 +87,7 @@
         background-image: var(--profile-image);
         background-size: cover;
 
-        @apply absolute -left-[46px] ml-[92px] inline-block h-[32px] w-[32px] rounded-full bg-slate-500;
+        @apply absolute -left-[46px] ml-[92px] inline-block h-[32px] w-[32px] rounded-full border bg-slate-500;
       }
     }
 
