@@ -29,6 +29,8 @@ export default async function ModalIssue({
     return null;
   }
 
+  const comments = await server.useFetchIssueComments(number);
+
   const curIssueType: MenuType = hasSpecificLabelToIssue(
     issue,
     config.github.issues.portfolioLabel,
@@ -96,6 +98,21 @@ export default async function ModalIssue({
 
               <CommentListLayout>
                 <Markdown markdown={issue.body || ""} />
+
+                {comments.map((comment) => {
+                  return (
+                    <div
+                      key={comment.id}
+                      style={
+                        {
+                          "--profile-image": `url("${comment.user?.avatar_url}")`,
+                        } as React.CSSProperties
+                      }
+                    >
+                      <Markdown markdown={comment.body || ""} />
+                    </div>
+                  );
+                })}
               </CommentListLayout>
             </div>
 

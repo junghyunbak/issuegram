@@ -10,4 +10,7 @@ declare global {
     Endpoints["GET /users/{username}/followers"]["response"]["data"];
   type Following =
     Endpoints["GET /users/{username}/following"]["response"]["data"];
+
+  type Comments =
+    Endpoints["GET /repos/{owner}/{repo}/issues/{issue_number}/comments"]["response"]["data"];
 }

@@ -12,6 +12,7 @@ import { HiddenMobileLayout } from "@/components/layouts/HiddenMobileLayout";
 import { hasSpecificLabelToIssue } from "@/utils";
 import config from "@/config";
 import { Metadata } from "next";
+import React from "react";
 
 export async function generateMetadata({
   params: { number },
@@ -30,8 +31,6 @@ export default async function Issue({
 }: {
   params: { number: string };
 }) {
-  const userInfo = await server.useFetchUserInfo();
-
   const issues = await server.useFetchIssues();
 
   const issue = issues.find((issue) => issue.number === parseInt(number, 10));
@@ -39,6 +38,10 @@ export default async function Issue({
   if (!issue) {
     return <Error />;
   }
+
+  const userInfo = await server.useFetchUserInfo();
+
+  const comments = await server.useFetchIssueComments(number);
 
   const curIssueType: MenuType = hasSpecificLabelToIssue(
     issue,
@@ -87,10 +90,25 @@ export default async function Issue({
 
             <CommentListLayout>
               <Markdown markdown={issue.body || ""} />
-            </CommentListLayout>
-          </div>
 
-          <IssueFooter issue={issue} />
+              {comments.map((comment) => {
+                return (
+                  <div
+                    key={comment.id}
+                    style={
+                      {
+                        "--profile-image": `url("${comment.user?.avatar_url}")`,
+                      } as React.CSSProperties
+                    }
+                  >
+                    <Markdown markdown={comment.body || ""} />
+                  </div>
+                );
+              })}
+            </CommentListLayout>
+
+            <IssueFooter issue={issue} />
+          </div>
         </div>
       </div>
 

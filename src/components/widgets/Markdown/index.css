@@ -1,3 +1,7 @@
+:root {
+  --profile-image: url("https://avatars.githubusercontent.com/u/44913775?v=4");
+}
+
 .markdown {
   @apply relative ml-[46px] w-[calc(100%-46px)];
 
@@ -7,7 +11,7 @@
     &::before {
       content: "";
 
-      background-image: url("./profile.jpg");
+      background-image: var(--profile-image);
       background-size: cover;
 
       @apply absolute -left-[46px] inline-block h-[32px] w-[32px] rounded-full bg-slate-500;
@@ -67,7 +71,7 @@
       &::before {
         content: "";
 
-        background-image: url("./profile.jpg");
+        background-image: var(--profile-image);
         background-size: cover;
 
         @apply absolute -left-[46px] ml-[46px] inline-block h-[32px] w-[32px] rounded-full bg-slate-500;
@@ -80,7 +84,7 @@
       &::before {
         content: "";
 
-        background-image: url("./profile.jpg");
+        background-image: var(--profile-image);
         background-size: cover;
 
         @apply absolute -left-[46px] ml-[92px] inline-block h-[32px] w-[32px] rounded-full bg-slate-500;

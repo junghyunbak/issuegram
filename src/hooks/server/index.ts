@@ -59,6 +59,19 @@ export const useFetchReadme = async () => {
   return readme;
 };
 
+export const useFetchIssueComments = async (
+  issueNumber: string,
+): Promise<Comments> => {
+  const comments = (await fetch(
+    `https://api.github.com/repos/${config.github.owner}/${config.github.repo}/issues/${issueNumber}/comments?per_page=100`,
+    {
+      headers: { Authorization: `Bearer ${config.github.accessToken}` },
+    },
+  ).then((value) => value.json())) as Comments;
+
+  return comments;
+};
+
 // TODO: 팔로워가 변할경우 반영되지 못할 경우를 대비 (예 - 캐시 사용하지 않도록 처리)
 
 export const useFetchFollowers = async () => {
