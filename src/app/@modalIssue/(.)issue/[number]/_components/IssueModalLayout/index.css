@@ -1,0 +1,6 @@
+.issue-modal {
+  animation-name: fade-out-and-scale-down;
+  animation-timing-function: ease-out;
+  animation-iteration-count: 1;
+  animation-duration: 0.1s;
+}
