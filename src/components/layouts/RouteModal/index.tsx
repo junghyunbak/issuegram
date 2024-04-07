@@ -53,7 +53,9 @@ export function RouteModal({
     };
   }, [disableEsc, router]);
 
-  const handleCloseModal: MouseEventHandler<HTMLDivElement> = () => {
+  const handleCloseModal: MouseEventHandler<HTMLDivElement> = (e) => {
+    e.stopPropagation();
+
     router.back();
   };
 
