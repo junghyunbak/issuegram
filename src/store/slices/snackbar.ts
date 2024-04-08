@@ -1,24 +1,18 @@
 import { type StateCreator } from "zustand";
 
 type SnackbarSlice = {
-  copied: {
-    isOpen: boolean;
-  };
-  setCopiedSnackbarIsOpen: (copiedSnackbarIsOpen: boolean) => void;
+  copiedSnackbar: symbol;
+  fireCopiedSnackbar: () => void;
 };
 
 export const createSnackbarSlice: StateCreator<SnackbarSlice> = (
   set,
 ): SnackbarSlice => ({
-  copied: {
-    isOpen: false,
-  },
-  setCopiedSnackbarIsOpen: (isOpen: boolean) => {
+  copiedSnackbar: Symbol(),
+  fireCopiedSnackbar: () => {
     set((state) => ({
       ...state,
-      copied: {
-        isOpen,
-      },
+      copiedSnackbar: Symbol(),
     }));
   },
 });

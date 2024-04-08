@@ -15,9 +15,7 @@ interface IssueHeaderMenuProps {
 export function IssueHeaderMenu({ issue }: IssueHeaderMenuProps) {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
-  const [setCopiedSnackbarIsOpen] = useStore((state) => [
-    state.setCopiedSnackbarIsOpen,
-  ]);
+  const fireCopiedSnackbar = useStore((state) => state.fireCopiedSnackbar);
 
   return (
     <>
@@ -67,7 +65,7 @@ export function IssueHeaderMenu({ issue }: IssueHeaderMenuProps) {
                     className="flex size-full items-center justify-center"
                     onClick={() => {
                       setIsModalOpen(false);
-                      setCopiedSnackbarIsOpen(true);
+                      fireCopiedSnackbar();
                     }}
                   >
                     <p>링크 복사</p>
