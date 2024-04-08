@@ -2,7 +2,7 @@
 
 import { useRouter } from "next/navigation";
 import ArrowUp from "@/assets/svgs/arrow-up.svg";
-import { MouseEventHandler } from "react";
+import { MouseEventHandler, useEffect } from "react";
 
 interface IssueModalRouteButtonProps {
   direction?: "left" | "right";
@@ -15,15 +15,45 @@ export function IssueModalRouteButton({
 }: IssueModalRouteButtonProps) {
   const router = useRouter();
 
-  if (!href) {
-    return <div className="w-[32px]" />;
-  }
+  useEffect(() => {
+    const handleLeftArrowKeydown = (e: KeyboardEvent) => {
+      if (e.key === "ArrowLeft" && href) {
+        router.replace(href, { scroll: false });
+      }
+    };
+
+    const handleRightArrowKeydown = (e: KeyboardEvent) => {
+      if (e.key === "ArrowRight" && href) {
+        router.replace(href, { scroll: false });
+      }
+    };
+
+    if (direction === "left") {
+      window.addEventListener("keydown", handleLeftArrowKeydown);
+    } else {
+      window.addEventListener("keydown", handleRightArrowKeydown);
+    }
+
+    return () => {
+      if (direction === "left") {
+        window.removeEventListener("keydown", handleLeftArrowKeydown);
+      } else {
+        window.removeEventListener("keydown", handleRightArrowKeydown);
+      }
+    };
+  }, [direction, href, router]);
 
   const handleButtonClick: MouseEventHandler<HTMLDivElement> = (e) => {
     e.stopPropagation();
 
-    router.replace(href, { scroll: false });
+    if (href) {
+      router.replace(href, { scroll: false });
+    }
   };
+
+  if (!href) {
+    return <div className="w-[32px]" />;
+  }
 
   return (
     <div
