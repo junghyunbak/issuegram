@@ -5,7 +5,7 @@ import config from "@/config";
 
 export const useFetchIssues = async (): Promise<Issues> => {
   const issues = (await fetch(
-    `https://api.github.com/repos/${config.github.owner}/${config.github.repo}/issues?state=open&per_page=100`,
+    `https://api.github.com/repos/${config.github.owner}/${config.github.repo}/issues?state=open&per_page=100&creator=${config.github.owner}`,
     {
       headers: { Authorization: `Bearer ${config.github.accessToken}` },
       next: {
