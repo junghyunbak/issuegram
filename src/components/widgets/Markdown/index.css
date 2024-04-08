@@ -30,7 +30,7 @@
   }
 
   a {
-    @apply text-[#00376B];
+    @apply text-clickable;
 
     &[href^="#user-content-fn-"] {
       @apply before:content-["["] after:content-["]"];
@@ -146,7 +146,7 @@
   }
 
   blockquote {
-    @apply text-secondaryText;
+    @apply relative text-secondaryText;
 
     &::before {
       content: "quotation ";
@@ -154,6 +154,25 @@
 
     &::after {
       background-image: url("./user.jpg");
+    }
+
+    blockquote {
+      @apply mb-[46px] ml-[46px] mt-[12px];
+
+      &::before {
+        content: "quotation ";
+
+        @apply font-semibold text-secondaryButton;
+      }
+
+      &::after {
+        content: "";
+
+        background-image: var("./user.jpg");
+        background-size: cover;
+
+        @apply absolute -left-[46px] top-0 inline-block h-[32px] w-[32px] rounded-full border;
+      }
     }
   }
 
