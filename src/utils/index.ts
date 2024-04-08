@@ -15,9 +15,7 @@ export const filterIssues = (
   };
 
   for (const issue of issues) {
-    const issueLabels = issue.labels.map((label) =>
-      typeof label === "string" ? label : label.name,
-    );
+    const issueLabels = getIssueLabels(issue);
 
     if (issueLabels.includes(labelTypes.saved)) {
       group[labelTypes.saved].push(issue);
@@ -42,9 +40,7 @@ export const filterIssues = (
 };
 
 export const getIssueLabelType = (issue: Issues[number]): LabelType => {
-  const issueLabels = issue.labels.map((label) =>
-    typeof label === "string" ? label : label.name,
-  );
+  const issueLabels = getIssueLabels(issue);
 
   if (issueLabels.includes(labelTypes.saved)) {
     return labelTypes.saved;
@@ -55,4 +51,13 @@ export const getIssueLabelType = (issue: Issues[number]): LabelType => {
   }
 
   return labelTypes.normal;
+};
+
+/**
+ * issue.labels가 { string | object } 타입이기 때문에 편의를 위해 만든 유틸함수
+ */
+export const getIssueLabels = (issue: Issues[number]): string[] => {
+  return issue.labels
+    .map((label) => (typeof label === "string" ? label : label.name || ""))
+    .filter((label) => label !== "");
 };

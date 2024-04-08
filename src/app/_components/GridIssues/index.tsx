@@ -8,6 +8,7 @@ import remarkParse from "remark-parse";
 import remarkExtractFrontmatter from "remark-extract-frontmatter";
 import remarkStringify from "remark-stringify";
 import { unified } from "unified";
+import { getIssueLabels } from "@/utils";
 const toml = require("toml").parse;
 
 interface GridIssuesProps {
@@ -44,9 +45,7 @@ export function GridIssues({ issues }: GridIssuesProps) {
                 data: { thumbnail },
               } = file;
 
-              const issueLabels = issue.labels.map((label) =>
-                typeof label === "string" ? label : label.name || "",
-              );
+              const issueLabels = getIssueLabels(issue);
 
               issueLabels.sort((a, b) => (a < b ? -1 : 1));
 

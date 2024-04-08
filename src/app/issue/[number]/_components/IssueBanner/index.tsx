@@ -4,6 +4,7 @@ import remarkParse from "remark-parse";
 import remarkExtractFrontmatter from "remark-extract-frontmatter";
 import remarkStringify from "remark-stringify";
 import { unified } from "unified";
+import { getIssueLabels } from "@/utils";
 const toml = require("toml").parse;
 
 interface IssueBannerProps {
@@ -13,8 +14,15 @@ interface IssueBannerProps {
 export function IssueBanner({ issue }: IssueBannerProps) {
   const { title } = issue;
 
+  const issueLabels = getIssueLabels(issue);
+
+  issueLabels.sort((a, b) => (a < b ? -1 : 1));
+
   const bgGradient = {
-    background: randomGradient(title, "horizontal"),
+    background: randomGradient(
+      issueLabels.join("") || issue.title,
+      "horizontal",
+    ),
   };
 
   const file = unified()
