@@ -33,6 +33,13 @@ export function Markdown({ markdown }: MarkdownProps) {
               return <code>{text}</code>;
             }
 
+            /**
+             * hljs lanugae에서 js 축약어를 지원하지 않기 때문에 작성한 코드
+             */
+            if (match[1] === "js") {
+              match[1] = "javascript";
+            }
+
             return (
               <SyntaxHighlighter
                 PreTag="div"
