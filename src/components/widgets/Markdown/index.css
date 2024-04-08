@@ -177,6 +177,10 @@
   }
 
   table {
+    &::before {
+      @apply table-header-group;
+    }
+
     tr,
     th,
     td {
