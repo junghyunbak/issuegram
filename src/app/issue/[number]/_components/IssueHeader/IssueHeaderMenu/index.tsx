@@ -32,7 +32,12 @@ export function IssueHeaderMenu({ issue }: IssueHeaderMenuProps) {
 
       {isModalOpen && (
         <div className="issue-header-modal">
-          <div className="absolute size-full bg-black/65" />
+          <div
+            className="absolute size-full bg-black/65"
+            onClick={() => {
+              setIsModalOpen(false);
+            }}
+          />
 
           <div className="absolute w-[calc(100dvw-88px)] max-w-[400px] overflow-hidden rounded-xl bg-white">
             <ul className="issue-header-modal-list">
