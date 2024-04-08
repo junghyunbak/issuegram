@@ -38,7 +38,9 @@ export default async function ModalIssue({
         <div className="absolute left-[10px]">
           <IssueModalRouteButton
             href={
-              prevIdx === -1 ? undefined : `/issue/${issues[prevIdx].number}`
+              prevIdx === -1
+                ? undefined
+                : `/issue/${filteredIssues[prevIdx].number}`
             }
             direction="left"
           />
@@ -85,7 +87,9 @@ export default async function ModalIssue({
         <div className="absolute right-[10px]">
           <IssueModalRouteButton
             href={
-              nextIdx === -1 ? undefined : `/issue/${issues[nextIdx].number}`
+              nextIdx === -1
+                ? undefined
+                : `/issue/${filteredIssues[nextIdx].number}`
             }
             direction="right"
           />
