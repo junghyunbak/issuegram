@@ -11,6 +11,7 @@ import { ShowMobileLayout } from "@/components/layouts/ShowMobileLayout";
 import { HiddenMobileLayout } from "@/components/layouts/HiddenMobileLayout";
 import { filterIssues, getIssueLabelType } from "@/utils";
 import { Metadata } from "next";
+import ArrowUpLarge from "@/assets/svgs/arrow-up-large.svg";
 import React from "react";
 
 export async function generateMetadata({
@@ -48,8 +49,12 @@ export default async function Issue({
   return (
     <div>
       <ShowMobileLayout>
-        <div className="flex h-11 w-full items-center justify-center border-b">
+        <div className="flex h-11 w-full items-center justify-between border-b px-[16px]">
+          <Link href="/">
+            <ArrowUpLarge className="-rotate-90 transform" />
+          </Link>
           <p className="font-semibold text-primaryText">게시물</p>
+          <div className="w-[24px]" />
         </div>
       </ShowMobileLayout>
 
