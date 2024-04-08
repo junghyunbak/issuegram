@@ -50,7 +50,7 @@ export function CopiedSnackbar() {
 
     timer.current = setTimeout(() => {
       setIsOpen(false);
-    }, 5000);
+    }, 4000);
   }, [copiedSnackbar, isOpen]);
 
   return (
