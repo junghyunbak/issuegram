@@ -47,7 +47,7 @@ export function MenuItem({ type, selectType, href }: MenuItemProps) {
       />
 
       <p
-        className={`text-secondaryText ${isActive ? "font-semibold text-black" : ""}`}
+        className={`${isActive ? "font-semibold text-black" : "text-secondaryText"}`}
       >
         {itemTitle}
       </p>
