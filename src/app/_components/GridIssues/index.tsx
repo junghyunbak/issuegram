@@ -44,8 +44,17 @@ export function GridIssues({ issues }: GridIssuesProps) {
                 data: { thumbnail },
               } = file;
 
+              const issueLabels = issue.labels.map((label) =>
+                typeof label === "string" ? label : label.name || "",
+              );
+
+              issueLabels.sort((a, b) => (a < b ? -1 : 1));
+
               const bgGradient = {
-                background: randomGradient(issue.title, "horizontal"),
+                background: randomGradient(
+                  issueLabels.join("") || issue.title,
+                  "horizontal",
+                ),
               };
 
               return (
