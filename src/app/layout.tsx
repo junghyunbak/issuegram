@@ -4,6 +4,7 @@ import React from "react";
 import { Nav } from "./_components/Nav";
 import "./globals.css";
 import "@/assets/fonts/stylesheet.css";
+import { CopiedSnackbar } from "@/components/widgets/CopiedSnackbar";
 
 export const metadata: Metadata = {
   title: "Issuegram",
@@ -37,6 +38,8 @@ export default function RootLayout({
           {modalFollowers}
           {modalFollowing}
         </div>
+
+        <CopiedSnackbar />
       </body>
     </html>
   );

@@ -4,6 +4,7 @@ import Kebab from "@/assets/svgs/kebab.svg";
 import { useState } from "react";
 import { CopyToClipboard } from "react-copy-to-clipboard";
 import "./index.css";
+import useStore from "@/store";
 
 interface IssueHeaderMenuProps {
   issue: Issues[number];
@@ -13,6 +14,10 @@ interface IssueHeaderMenuProps {
 
 export function IssueHeaderMenu({ issue }: IssueHeaderMenuProps) {
   const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const [setCopiedSnackbarIsOpen] = useStore((state) => [
+    state.setCopiedSnackbarIsOpen,
+  ]);
 
   return (
     <>
@@ -55,7 +60,10 @@ export function IssueHeaderMenu({ issue }: IssueHeaderMenuProps) {
                 >
                   <div
                     className="flex size-full items-center justify-center"
-                    onClick={() => setIsModalOpen(false)}
+                    onClick={() => {
+                      setIsModalOpen(false);
+                      setCopiedSnackbarIsOpen(true);
+                    }}
                   >
                     <p>링크 복사</p>
                   </div>
