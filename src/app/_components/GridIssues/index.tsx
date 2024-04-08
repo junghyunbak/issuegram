@@ -92,7 +92,7 @@ export function GridIssues({ issues }: GridIssuesProps) {
                         className="flex size-full items-center justify-center"
                         style={bgGradient}
                       >
-                        <p className="break-all p-4 text-xl font-semibold text-white max-md:text-lg">
+                        <p className="break-all p-4 text-xl font-semibold text-white max-md:text-base">
                           {issue.title}
                         </p>
                       </div>
