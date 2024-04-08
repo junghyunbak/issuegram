@@ -1,8 +1,7 @@
 import { server } from "@/hooks";
 import { RouteModal } from "@/components/layouts/RouteModal";
 import { Markdown } from "@/components/widgets/Markdown";
-import { hasSpecificLabelToIssue } from "@/utils";
-import config from "@/config";
+import { filterIssues, getIssueLabelType } from "@/utils";
 import { IssueBanner } from "@/app/issue/[number]/_components/IssueBanner";
 import { IssueHeader } from "@/app/issue/[number]/_components/IssueHeader";
 import { ShowMobileLayout } from "@/components/layouts/ShowMobileLayout";
@@ -18,58 +17,20 @@ export default async function ModalIssue({
   params: { number: string };
 }) {
   const issues = await server.useFetchIssues();
+  const comments = await server.useFetchIssueComments(number);
 
-  const curIdx = issues.findIndex(
-    (issue) => issue.number === parseInt(number, 10),
-  );
-
-  const issue = issues[curIdx];
+  const issue = issues.find((issue) => issue.number === parseInt(number, 10));
 
   if (!issue) {
     return null;
   }
 
-  const comments = await server.useFetchIssueComments(number);
+  const filteredIssues = filterIssues(issues, getIssueLabelType(issue));
 
-  const curIssueType: MenuType = hasSpecificLabelToIssue(
-    issue,
-    config.github.issues.portfolioLabel,
-  )
-    ? "포트폴리오"
-    : "게시물";
+  const curIdx = filteredIssues.findIndex((_issue) => _issue === issue);
 
-  let prevIdx = -1;
-  let nextIdx = -1;
-
-  for (let i = curIdx - 1; i >= 0; i--) {
-    const prevIssueType: MenuType = hasSpecificLabelToIssue(
-      issues[i],
-      config.github.issues.portfolioLabel,
-    )
-      ? "포트폴리오"
-      : "게시물";
-
-    if (prevIssueType === curIssueType) {
-      prevIdx = i;
-
-      break;
-    }
-  }
-
-  for (let i = curIdx + 1; i < issues.length; i++) {
-    const prevIssueType: MenuType = hasSpecificLabelToIssue(
-      issues[i],
-      config.github.issues.portfolioLabel,
-    )
-      ? "포트폴리오"
-      : "게시물";
-
-    if (prevIssueType === curIssueType) {
-      nextIdx = i;
-
-      break;
-    }
-  }
+  const prevIdx = curIdx - 1 < 0 ? -1 : curIdx - 1;
+  const nextIdx = curIdx + 1 > filteredIssues.length - 1 ? -1 : curIdx + 1;
 
   return (
     <RouteModal>

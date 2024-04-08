@@ -2,8 +2,7 @@ import { Menu } from "../_components/Menu";
 import { Header } from "../_components/Header";
 import { GridIssues } from "../_components/GridIssues";
 import { server } from "@/hooks";
-import config from "@/config";
-import { pickIssuesWithLabel } from "@/utils";
+import { filterIssues } from "@/utils";
 import { Metadata } from "next";
 
 export async function generateMetadata(): Promise<Metadata> {
@@ -23,12 +22,7 @@ export default async function Portfolio() {
 
       <Menu type="포트폴리오" />
 
-      <GridIssues
-        issues={pickIssuesWithLabel(
-          issues,
-          config.github.issues.portfolioLabel,
-        )}
-      />
+      <GridIssues issues={filterIssues(issues, "portfolio")} />
     </div>
   );
 }

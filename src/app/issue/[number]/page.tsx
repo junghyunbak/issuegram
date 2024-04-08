@@ -9,8 +9,7 @@ import Link from "next/link";
 import { GridIssues } from "@/app/_components/GridIssues";
 import { ShowMobileLayout } from "@/components/layouts/ShowMobileLayout";
 import { HiddenMobileLayout } from "@/components/layouts/HiddenMobileLayout";
-import { hasSpecificLabelToIssue } from "@/utils";
-import config from "@/config";
+import { filterIssues, getIssueLabelType } from "@/utils";
 import { Metadata } from "next";
 import React from "react";
 
@@ -32,6 +31,8 @@ export default async function Issue({
   params: { number: string };
 }) {
   const issues = await server.useFetchIssues();
+  const comments = await server.useFetchIssueComments(number);
+  const userInfo = await server.useFetchUserInfo();
 
   const issue = issues.find((issue) => issue.number === parseInt(number, 10));
 
@@ -39,32 +40,9 @@ export default async function Issue({
     return <Error />;
   }
 
-  const userInfo = await server.useFetchUserInfo();
+  const filteredIssues = filterIssues(issues, getIssueLabelType(issue));
 
-  const comments = await server.useFetchIssueComments(number);
-
-  const curIssueType: MenuType = hasSpecificLabelToIssue(
-    issue,
-    config.github.issues.portfolioLabel,
-  )
-    ? "포트폴리오"
-    : "게시물";
-
-  const moreIssues = issues.filter((issue) => {
-    const issueType: MenuType = hasSpecificLabelToIssue(
-      issue,
-      config.github.issues.portfolioLabel,
-    )
-      ? "포트폴리오"
-      : "게시물";
-
-    return issueType === curIssueType;
-  });
-
-  const curIdx = moreIssues.findIndex(
-    (issue) => issue.number === parseInt(number, 10),
-  );
-
+  const curIdx = filteredIssues.findIndex((_issue) => _issue === issue);
   const startIdx = curIdx - 3 <= 0 ? 0 : curIdx - 3;
 
   return (
@@ -123,7 +101,7 @@ export default async function Issue({
           님의 게시글 더보기
         </p>
 
-        <GridIssues issues={moreIssues.slice(startIdx, startIdx + 6)} />
+        <GridIssues issues={filteredIssues.slice(startIdx, startIdx + 6)} />
       </div>
     </div>
   );
