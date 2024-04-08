@@ -20,7 +20,7 @@ export default async function Portfolio() {
     <div>
       <Header />
 
-      <Menu type="포트폴리오" />
+      <Menu type="portfolio" />
 
       <GridIssues issues={filterIssues(issues, "portfolio")} />
     </div>

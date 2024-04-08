@@ -1,1 +1,1 @@
-type MenuType = "게시물" | "포트폴리오";
+type LabelType = "normal" | "saved" | "portfolio";

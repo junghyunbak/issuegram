@@ -1,5 +1,3 @@
-type LabelType = "normal" | "saved" | "portfolio";
-
 const labelTypes: { [P in LabelType]: P } = {
   normal: "normal",
   saved: "saved",

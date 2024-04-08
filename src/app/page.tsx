@@ -20,7 +20,7 @@ export default async function Home() {
     <div>
       <Header />
 
-      <Menu type="게시물" />
+      <Menu type="normal" />
 
       <GridIssues issues={filterIssues(issues, "normal")} />
     </div>
