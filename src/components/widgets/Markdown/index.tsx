@@ -8,6 +8,7 @@ import rehypeKatex from "rehype-katex";
 import { gradientDark } from "react-syntax-highlighter/dist/esm/styles/hljs";
 import SyntaxHighlighter from "react-syntax-highlighter";
 import "./index.css";
+import { ClipboardCopyButton } from "@/components/core/buttons/ClipboardCopyButton";
 
 interface MarkdownProps {
   markdown: string;
@@ -42,7 +43,23 @@ export function Markdown({ markdown }: MarkdownProps) {
 
             return (
               <SyntaxHighlighter
-                PreTag="div"
+                PreTag={({ children, ...props }) => {
+                  return (
+                    <div>
+                      <div className="mt-[8px]" {...props}>
+                        {children}
+                      </div>
+                      <p className="mt-[8px] font-segoe text-xs text-secondaryText">
+                        {match[1]}{" "}
+                        <ClipboardCopyButton text={String(text)}>
+                          <span className="ml-[10px] cursor-pointer font-semibold">
+                            코드 복사
+                          </span>
+                        </ClipboardCopyButton>
+                      </p>
+                    </div>
+                  );
+                }}
                 language={match[1]}
                 style={gradientDark}
               >
