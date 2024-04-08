@@ -17,10 +17,16 @@
 
   code {
     &:not(pre *) {
-      background: linear-gradient(to right, #833ab4, #fd1d1d, #fcb045);
+      @apply font-segoe text-clickable;
 
-      @apply rounded-sm px-[2px] py-[1px] text-xs text-white;
+      &::before {
+        content: "#";
+      }
     }
+  }
+
+  strong {
+    @apply font-semibold;
   }
 
   a {
@@ -37,11 +43,11 @@
 
   ol,
   ul {
-    @apply list-inside list-[revert];
+    @apply list-[revert];
   }
 
   li {
-    @apply mt-1;
+    @apply ml-7 mt-1;
   }
 
   & > * {
@@ -50,7 +56,7 @@
     &::before {
       content: var(--user-name);
 
-      @apply font-segoe inline font-semibold text-secondaryButton;
+      @apply inline font-segoe font-semibold text-secondaryButton;
     }
 
     &::after {
@@ -76,7 +82,7 @@
       &::before {
         content: var(--user-name);
 
-        @apply font-segoe inline font-semibold text-secondaryButton;
+        @apply inline font-segoe font-semibold text-secondaryButton;
       }
 
       &::after {
@@ -95,7 +101,7 @@
       &::before {
         content: var(--user-name);
 
-        @apply font-segoe inline font-semibold text-secondaryButton;
+        @apply inline font-segoe font-semibold text-secondaryButton;
       }
 
       &::after {
