@@ -8,7 +8,7 @@ interface IssueHeaderProps {
 
 export function IssueHeader({ issue }: IssueHeaderProps) {
   return (
-    <div className="flex justify-between border-b p-[14px]">
+    <div className="flex justify-between border-b p-[14px] pr-[8px]">
       <div className="flex flex-1 items-center overflow-hidden">
         <img
           className="h-[32px] w-[32px] rounded-full border"
