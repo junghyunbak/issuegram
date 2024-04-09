@@ -83,7 +83,8 @@ export function Markdown({ markdown }: MarkdownProps) {
                   };
 
                   if (lineNumbers.has(lineNumber)) {
-                    style.backgroundColor = "rgba(0, 0, 0, 0.1)";
+                    style.background =
+                      "linear-gradient(to right, rgb(0 0 0 / 10%) 80%, transparent)";
                   }
 
                   return { style };

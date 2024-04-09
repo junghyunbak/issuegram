@@ -4,7 +4,7 @@
 }
 
 .markdown {
-  @apply relative ml-[46px] w-[calc(100%-46px)];
+  @apply relative ml-[46px] w-[calc(100%-46px)] text-sm;
 
   h1,
   h2,
@@ -17,9 +17,7 @@
 
   code {
     &:not(pre *) {
-      @apply rounded-sm px-[2px] py-[1px] font-segoe text-xs text-white;
-
-      background: linear-gradient(145deg, #833ab4, #fd1d1d, #fcb045);
+      @apply border border-[#dddddd] px-[3px] py-[2px] text-xs;
     }
   }
 
@@ -29,6 +27,10 @@
 
   a {
     @apply text-clickable;
+
+    &::before {
+      content: "@";
+    }
 
     &[href^="#user-content-fn-"] {
       @apply before:content-["["] after:content-["]"];
@@ -182,7 +184,7 @@
     tr,
     th,
     td {
-      @apply border border-gray-300;
+      @apply border;
     }
 
     th,
