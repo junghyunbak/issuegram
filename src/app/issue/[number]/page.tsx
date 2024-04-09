@@ -14,6 +14,12 @@ import { Metadata } from "next";
 import ArrowUpLarge from "@/assets/svgs/arrow-up-large.svg";
 import React from "react";
 
+export async function generateStaticParams() {
+  const issues = await server.useFetchIssues();
+
+  return issues.map((issue) => ({ number: issue.number.toString() }));
+}
+
 export async function generateMetadata({
   params: { number },
 }: {

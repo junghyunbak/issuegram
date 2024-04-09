@@ -3,14 +3,13 @@
 import Kebab from "@/assets/svgs/kebab.svg";
 import { useState } from "react";
 import { CopyToClipboard } from "react-copy-to-clipboard";
-import "./index.css";
 import useStore from "@/store";
+import config from "@/config";
+import "./index.css";
 
 interface IssueHeaderMenuProps {
   issue: Issues[number];
 }
-
-// TODO: 블로그 주소 하드코딩 된 부분 개선
 
 export function IssueHeaderMenu({ issue }: IssueHeaderMenuProps) {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -59,7 +58,7 @@ export function IssueHeaderMenu({ issue }: IssueHeaderMenuProps) {
 
               <li>
                 <CopyToClipboard
-                  text={`https://lightpavilion.site/issue/${issue.number}`}
+                  text={`https://${config.domain}/issue/${issue.number}`}
                 >
                   <div
                     className="flex size-full items-center justify-center"

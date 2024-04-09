@@ -1,4 +1,5 @@
 const config = {
+  domain: "lightpavilion.site",
   github: {
     owner: "junghyunbak",
     repo: "junghyunbak",
