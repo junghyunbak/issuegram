@@ -62,7 +62,7 @@ export function CopiedSnackbar() {
           exit={{ transform: "translateY(100%)" }}
           className="fixed bottom-0 left-0 right-0 bg-[#262626] px-[16px] py-[12px]"
         >
-          <p className="text-sm text-white">링크를 클립보드에 복사했습니다.</p>
+          <p className="text-sm text-white">클립보드에 복사했습니다.</p>
         </motion.div>
       )}
     </AnimatePresence>
