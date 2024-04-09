@@ -90,14 +90,10 @@ export function Markdown({ markdown }: MarkdownProps) {
                 }}
                 PreTag={({ children, ...props }) => {
                   return (
-                    <div>
-                      <div
-                        className="mt-[8px] [&>code]:block [&>code]:w-full [&>code]:min-w-fit"
-                        {...props}
-                      >
-                        {children}
-                      </div>
-                      <p className="mt-[8px] font-segoe text-xs text-secondaryText">
+                    <div className="code-block">
+                      <div {...props}>{children}</div>
+
+                      <p>
                         {lang}{" "}
                         <ClipboardCopyButton text={String(text)}>
                           <span className="ml-[10px] cursor-pointer font-semibold">
