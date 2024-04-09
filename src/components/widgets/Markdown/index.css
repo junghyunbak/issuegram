@@ -38,6 +38,10 @@
 
     &[href^="#user-content-fnref-"] {
       @apply no-underline;
+
+      &::before {
+        content: "";
+      }
     }
   }
 
