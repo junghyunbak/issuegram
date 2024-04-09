@@ -5,8 +5,8 @@ import remarkFrontmatter from "remark-frontmatter";
 import rehypeRaw from "rehype-raw";
 import rehypeSlug from "rehype-slug";
 import rehypeKatex from "rehype-katex";
-import { gradientDark } from "react-syntax-highlighter/dist/esm/styles/hljs";
-import SyntaxHighlighter from "react-syntax-highlighter";
+import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
+import { vs } from "react-syntax-highlighter/dist/esm/styles/prism";
 import "./index.css";
 import { ClipboardCopyButton } from "@/components/core/buttons/ClipboardCopyButton";
 
@@ -34,16 +34,6 @@ export function Markdown({ markdown }: MarkdownProps) {
               return <code>{text}</code>;
             }
 
-            /**
-             * hljs lanugae에서 js 축약어를 지원하지 않기 때문에 작성한 코드
-             */
-            switch (match[1]) {
-              case "js":
-                match[1] = "javascript";
-              case "ts":
-                match[1] = "typescript";
-            }
-
             return (
               <SyntaxHighlighter
                 PreTag={({ children, ...props }) => {
@@ -64,7 +54,7 @@ export function Markdown({ markdown }: MarkdownProps) {
                   );
                 }}
                 language={match[1]}
-                style={gradientDark}
+                style={vs}
               >
                 {String(text).replace(/\n$/, "")}
               </SyntaxHighlighter>
