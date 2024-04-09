@@ -17,11 +17,9 @@
 
   code {
     &:not(pre *) {
-      @apply font-segoe text-clickable;
+      @apply rounded-sm px-[2px] py-[1px] font-segoe text-xs text-white;
 
-      &::before {
-        content: "#";
-      }
+      background: linear-gradient(145deg, #833ab4, #fd1d1d, #fcb045);
     }
   }
 
