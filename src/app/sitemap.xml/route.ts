@@ -26,12 +26,12 @@ export async function GET() {
 
   const issues = await server.useFetchIssues();
 
-  const postSitemaps: string[] = [];
+  const issueSitemaps: string[] = [];
 
   issues.forEach((issue) => {
-    postSitemaps.push(
+    issueSitemaps.push(
       createUrlInfomation({
-        location: `https://${config.domain}/post/${issue.number}`,
+        location: `https://${config.domain}/issue/${issue.number}`,
         changeFrequency: "weekly",
         lastModify: new Date(issue.updated_at),
         priority: 1.0,
@@ -45,7 +45,7 @@ export async function GET() {
       ${mainSitemap}
       ${portfolioSitemap}
       ${savedSitemap}
-      ${postSitemaps.join("\n")}
+      ${issueSitemaps.join("\n")}
     </urlset>
   `,
     {
