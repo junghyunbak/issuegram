@@ -13,15 +13,16 @@ const toml = require("toml").parse;
 
 interface GridIssuesProps {
   issues: Issues;
+  lineCount?: 3 | 4;
 }
 
-export function GridIssues({ issues }: GridIssuesProps) {
+export function GridIssues({ issues, lineCount = 3 }: GridIssuesProps) {
   const tmp: (Issues[number] | null)[][] = [];
 
-  for (let i = 0; i < issues.length; i += 3) {
-    const slices = issues.slice(i, i + 3);
+  for (let i = 0; i < issues.length; i += lineCount) {
+    const slices = issues.slice(i, i + lineCount);
 
-    tmp.push([...slices, ...Array(3 - slices.length).fill(null)]);
+    tmp.push([...slices, ...Array(lineCount - slices.length).fill(null)]);
   }
 
   return (
@@ -84,7 +85,9 @@ export function GridIssues({ issues }: GridIssuesProps) {
                     </div>
                   </div>
 
-                  <div className="aspect-square w-full overflow-hidden bg-[#efefef]">
+                  <div
+                    className={`w-full overflow-hidden bg-[#efefef] ${lineCount === 3 ? "aspect-square" : "aspect-[65/100]"}`}
+                  >
                     {typeof thumbnail === "string" ? (
                       <img className="size-full object-cover" src={thumbnail} />
                     ) : (
@@ -92,7 +95,7 @@ export function GridIssues({ issues }: GridIssuesProps) {
                         className="flex size-full items-center justify-center"
                         style={bgGradient}
                       >
-                        <p className="break-all p-4 text-xl font-semibold text-white max-md:text-base">
+                        <p className={`break-all p-4 ${lineCount === 3 ? "text-xl" : "text-lg"} font-semibold text-white max-md:text-base`}>
                           {issue.title}
                         </p>
                       </div>
