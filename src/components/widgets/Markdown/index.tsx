@@ -34,16 +34,71 @@ export function Markdown({ markdown }: MarkdownProps) {
               return <code>{text}</code>;
             }
 
+            const [_, lang] = match;
+
+            const [__, lines] = /language-\w+{([0-9-,]*)}/.exec(className) || [
+              undefined,
+              "",
+            ];
+
+            const lineNumbers = new Set();
+
+            lines.split(",").forEach((v) => {
+              if (v.includes("-")) {
+                const [s, e] = v.split("-").map((v) => parseInt(v, 10));
+
+                if (isNaN(s) || isNaN(e)) {
+                  return;
+                }
+
+                if (s > e) {
+                  return;
+                }
+
+                for (let i = s; i <= e; i++) {
+                  lineNumbers.add(i);
+                }
+
+                return;
+              }
+
+              if (isNaN(parseInt(v, 10))) {
+                return;
+              }
+
+              lineNumbers.add(parseInt(v, 10));
+            });
+
             return (
               <SyntaxHighlighter
+                showLineNumbers
+                wrapLines
+                lineProps={(lineNumber) => {
+                  // TODO: 스타일 타입 설정
+
+                  const style: any = {
+                    display: "block",
+                    paddingLeft: "12.6px",
+                    paddingRight: "12.6px",
+                  };
+
+                  if (lineNumbers.has(lineNumber)) {
+                    style.backgroundColor = "rgba(0, 0, 0, 0.1)";
+                  }
+
+                  return { style };
+                }}
                 PreTag={({ children, ...props }) => {
                   return (
                     <div>
-                      <div className="mt-[8px]" {...props}>
+                      <div
+                        className="mt-[8px] [&>code]:block [&>code]:w-full [&>code]:min-w-fit"
+                        {...props}
+                      >
                         {children}
                       </div>
                       <p className="mt-[8px] font-segoe text-xs text-secondaryText">
-                        {match[1]}{" "}
+                        {lang}{" "}
                         <ClipboardCopyButton text={String(text)}>
                           <span className="ml-[10px] cursor-pointer font-semibold">
                             코드 복사
@@ -53,8 +108,9 @@ export function Markdown({ markdown }: MarkdownProps) {
                     </div>
                   );
                 }}
-                language={match[1]}
+                language={lang}
                 style={vs}
+                customStyle={{ paddingLeft: 0, paddingRight: 0 }}
               >
                 {String(text).replace(/\n$/, "")}
               </SyntaxHighlighter>
