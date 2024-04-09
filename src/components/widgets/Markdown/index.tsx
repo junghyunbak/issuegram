@@ -37,8 +37,11 @@ export function Markdown({ markdown }: MarkdownProps) {
             /**
              * hljs lanugae에서 js 축약어를 지원하지 않기 때문에 작성한 코드
              */
-            if (match[1] === "js") {
-              match[1] = "javascript";
+            switch (match[1]) {
+              case "js":
+                match[1] = "javascript";
+              case "ts":
+                match[1] = "typescript";
             }
 
             return (
