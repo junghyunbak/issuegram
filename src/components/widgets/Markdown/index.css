@@ -17,7 +17,7 @@
 
   code {
     &:not(pre *) {
-      @apply border border-[#dddddd] px-[3px] py-[2px] text-xs;
+      @apply bg-igHighlightBackground rounded-lg px-[4px] py-[2px] font-segoe text-xs;
     }
   }
 

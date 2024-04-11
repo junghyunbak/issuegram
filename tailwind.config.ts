@@ -17,6 +17,7 @@ const config: Config = {
         secondaryText: "#737373",
         secondaryButton: "#262626",
         igPrimaryButton: "#0095F6",
+        igHighlightBackground: "#efefef",
       },
       backgroundImage: {
         "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
