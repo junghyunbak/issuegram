@@ -1,4 +1,4 @@
-name: Auto Deployment
+name: ci/cd pipeline
 
 on:
   push:
@@ -6,13 +6,52 @@ on:
       - master
 
 jobs:
-  deploy_master:
+  build_and_lint:
     runs-on: ubuntu-latest
     steps:
-      - name: Set up Environment
+      - name: 📥저장소의 코드 가져오기
+        uses: actions/checkout@v3
+
+      - name: 🏷노드 버전 설정
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18.17.1
+
+      - name: 🐈yarn 설치
+        run: npm i -g yarn
+
+      - name: 🐈yarn 캐시 디렉터리 경로 얻기
+        id: yarn-cache-dir-path
+        run: echo "dir=$(yarn cache dir)" >> $GITHUB_OUTPUT
+
+      - name: 🐈yarn 캐싱
+        uses: actions/cache@v3
+        id: yarn-cache
+        with:
+          path: ${{ steps.yarn-cache-dir-path.outputs.dir }}
+          key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-yarn-
+
+      - name: 📦패키지 설치 (캐시되지 않았을 경우)
+        if: steps.yarn-cache.outputs.cache-hit != 'true'
+        run: yarn install
+
+      - run: yarn lint
+      - run: yarn build
+      - run: yarn test
+
+  deploy_master:
+    needs: build_and_lint
+    runs-on: ubuntu-latest
+
+    if: ${{ needs.build_and_lint.result == 'suceess' }}
+
+    steps:
+      - name: 🌳환경변수 설정
         run: echo "${{ secrets.PROD_ENV_PROPERTIES }}" > ./.env
 
-      - name: Send env file
+      - name: 📩환경변수 복사
         uses: appleboy/scp-action@master
         with:
           host: ${{secrets.RELEASE_HOST}}
@@ -21,7 +60,7 @@ jobs:
           source: "./.env"
           target: "~/git-repo/issuegram"
 
-      - name: ssh action
+      - name: 🖥서버 접속 및 스크립트 실행
         uses: appleboy/ssh-action@master
         with:
           host: ${{ secrets.RELEASE_HOST }}
