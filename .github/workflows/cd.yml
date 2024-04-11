@@ -64,10 +64,9 @@ jobs:
     needs: build_and_lint
     runs-on: ubuntu-latest
 
-    if: ${{ needs.build_and_lint.result == 'success' }}
-
     steps:
       - name: 🖥서버 접속 및 스크립트 실행
+        if: ${{ needs.build_and_lint.result == 'success' }}
         uses: appleboy/ssh-action@master
         with:
           host: ${{ secrets.RELEASE_HOST }}
