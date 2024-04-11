@@ -1,0 +1,18 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`썸네일 주소가 있을경우, img 태그를 렌더링한다. 1`] = `
+<div>
+  <div
+    class="flex h-full w-[300px] overflow-hidden max-md:aspect-square max-md:w-full"
+  >
+    <div
+      class="flex size-full items-center justify-center bg-black"
+    >
+      <img
+        class="object-contain"
+        src="https://fake.url"
+      />
+    </div>
+  </div>
+</div>
+`;
