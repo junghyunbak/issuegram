@@ -62,11 +62,14 @@ jobs:
 
   deploy_master:
     needs: build_and_lint
+    if: ${{ needs.build_and_lint.result == 'success' }}
     runs-on: ubuntu-latest
 
     steps:
+      - name: 디버깅
+        run: echo "${{ needs.build_and_lint.result }}"
+
       - name: 🖥서버 접속 및 스크립트 실행
-        if: ${{ needs.build_and_lint.result == 'success' }}
         uses: appleboy/ssh-action@master
         with:
           host: ${{ secrets.RELEASE_HOST }}
