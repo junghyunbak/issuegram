@@ -33,6 +33,9 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-yarn-
 
+      - name: 디버깅
+        run: ls -al
+
       - name: 📦패키지 설치 (캐시되지 않았을 경우)
         if: steps.yarn-cache.outputs.cache-hit != 'true'
         run: yarn install
