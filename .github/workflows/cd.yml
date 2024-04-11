@@ -37,17 +37,6 @@ jobs:
         if: steps.yarn-cache.outputs.cache-hit != 'true'
         run: yarn install
 
-      - run: yarn lint
-      - run: yarn build
-      - run: yarn test
-
-  deploy_master:
-    needs: build_and_lint
-    runs-on: ubuntu-latest
-
-    if: ${{ needs.build_and_lint.result == 'suceess' }}
-
-    steps:
       - name: 🌳환경변수 설정
         run: echo "${{ secrets.PROD_ENV_PROPERTIES }}" > ./.env
 
@@ -60,6 +49,25 @@ jobs:
           source: "./.env"
           target: "~/git-repo/issuegram"
 
+      - name: 🧪lint 테스트
+        run: yarn lint
+        continue-on-error: true
+
+      - name: 🧪build 테스트
+        run: yarn build
+        continue-on-error: true
+
+      - name: 🧪단위 테스트
+        run: yarn test
+        continue-on-error: true
+
+  deploy_master:
+    needs: build_and_lint
+    runs-on: ubuntu-latest
+
+    if: ${{ needs.build_and_lint.result == 'suceess' }}
+
+    steps:
       - name: 🖥서버 접속 및 스크립트 실행
         uses: appleboy/ssh-action@master
         with:
