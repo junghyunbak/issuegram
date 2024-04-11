@@ -65,9 +65,6 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: 디버깅
-        run: echo "${{ needs.build_and_lint.result }}"
-
       - name: 🖥서버 접속 및 스크립트 실행
         uses: appleboy/ssh-action@master
         with:
