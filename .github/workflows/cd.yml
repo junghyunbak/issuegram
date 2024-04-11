@@ -50,19 +50,15 @@ jobs:
 
       - name: 🧪lint 테스트
         run: yarn lint
-        continue-on-error: true
 
       - name: 🧪build 테스트
         run: yarn build
-        continue-on-error: true
 
       - name: 🧪단위 테스트
         run: yarn test
-        continue-on-error: true
 
   deploy_master:
     needs: build_and_lint
-    if: ${{ needs.build_and_lint.result == 'success' }}
     runs-on: ubuntu-latest
 
     steps:
