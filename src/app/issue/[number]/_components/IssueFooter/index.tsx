@@ -9,7 +9,7 @@ export function IssueFooter({ issue }: IssueFooterProps) {
   const date = new Date(issue.created_at);
 
   return (
-    <div className="border-t p-4">
+    <div className="w-full border-t p-4">
       <div className="flex gap-[16px] [&_a]:pb-[8px]">
         <a className="active:opacity-50" href={issue.html_url} target="_blank">
           <HeartOutline />

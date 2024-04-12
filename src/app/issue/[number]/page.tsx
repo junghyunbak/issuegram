@@ -77,6 +77,10 @@ export default async function Issue({
               <IssueBanner issue={issue} />
             </ShowMobileLayout>
 
+            <ShowMobileLayout>
+              <IssueFooter issue={issue} />
+            </ShowMobileLayout>
+
             <CommentListLayout>
               <Markdown markdown={issue.body || ""} />
 
@@ -98,7 +102,9 @@ export default async function Issue({
             </CommentListLayout>
           </div>
 
-          <IssueFooter issue={issue} />
+          <HiddenMobileLayout>
+            <IssueFooter issue={issue} />
+          </HiddenMobileLayout>
         </div>
       </div>
 

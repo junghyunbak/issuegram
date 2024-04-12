@@ -59,6 +59,10 @@ export default async function ModalIssue({
                 <IssueBanner issue={issue} />
               </ShowMobileLayout>
 
+              <ShowMobileLayout>
+                <IssueFooter issue={issue} />
+              </ShowMobileLayout>
+
               <CommentListLayout>
                 <Markdown markdown={issue.body || ""} />
 
@@ -80,7 +84,9 @@ export default async function ModalIssue({
               </CommentListLayout>
             </div>
 
-            <IssueFooter issue={issue} />
+            <HiddenMobileLayout>
+              <IssueFooter issue={issue} />
+            </HiddenMobileLayout>
           </div>
         </IssueModalLayout>
 
