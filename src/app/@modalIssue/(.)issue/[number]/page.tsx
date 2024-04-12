@@ -54,7 +54,7 @@ export default async function ModalIssue({
           <div className="flex aspect-square w-[45dvw] flex-col max-md:aspect-auto max-md:w-[320px]">
             <IssueHeader issue={issue} />
 
-            <div className="flex-1 overflow-x-hidden overflow-y-scroll scrollbar-hide max-md:h-[50dvh] max-md:flex-none">
+            <div className="flex-1 overflow-x-hidden overflow-y-scroll scrollbar-hide max-md:h-[65dvh] max-md:flex-none">
               <ShowMobileLayout>
                 <IssueBanner issue={issue} />
               </ShowMobileLayout>
