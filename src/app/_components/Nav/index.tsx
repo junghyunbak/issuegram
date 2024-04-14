@@ -8,9 +8,13 @@ import config from "@/config";
 import { NavButton } from "./NavButton";
 import { ProfileIcon } from "./ProfileIcon";
 
-interface NavProps {}
+type NavItem = "프로필" | null;
 
-export async function Nav({}: NavProps) {
+interface NavProps {
+  activeItem: NavItem;
+}
+
+export async function Nav({ activeItem }: NavProps) {
   const userInfo = await server.useFetchUserInfo();
 
   return (
@@ -37,7 +41,10 @@ export async function Nav({}: NavProps) {
       </NavButton>
 
       <NavButton path="/" title="프로필">
-        <ProfileIcon url={userInfo.avatar_url} />
+        <ProfileIcon
+          url={userInfo.avatar_url}
+          isActive={activeItem === "프로필"}
+        />
       </NavButton>
     </nav>
   );

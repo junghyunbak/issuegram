@@ -4,6 +4,8 @@ import { server } from "@/hooks";
 import { GridIssues } from "./_components/GridIssues";
 import { filterIssues } from "@/utils";
 import { Metadata } from "next";
+import { MainLayout } from "@/components/layouts/MainLayout";
+import { Nav } from "./_components/Nav";
 
 export async function generateMetadata(): Promise<Metadata> {
   const user = await server.useFetchUserInfo();
@@ -17,12 +19,16 @@ export default async function Home() {
   const issues = await server.useFetchIssues();
 
   return (
-    <div>
-      <Header />
+    <div className="flex size-full">
+      <Nav activeItem="프로필" />
 
-      <Menu type="normal" />
+      <MainLayout>
+        <Header />
 
-      <GridIssues issues={filterIssues(issues, "normal")} />
+        <Menu type="normal" />
+
+        <GridIssues issues={filterIssues(issues, "normal")} />
+      </MainLayout>
     </div>
   );
 }

@@ -25,20 +25,10 @@ export default function RootLayout({
   return (
     <html className="size-full">
       <body className="flex size-full">
-        <Nav />
-
-        <div className="flex-1 overflow-y-scroll" id="scroll">
-          <div className="mx-auto w-full max-w-[935px] px-[20px] pt-[30px] max-md:p-0">
-            <div className="min-h-screen">{children}</div>
-
-            <Footer />
-          </div>
-
+          {children}
           {modalIssue}
           {modalFollowers}
           {modalFollowing}
-        </div>
-
         <CopiedSnackbar />
       </body>
     </html>

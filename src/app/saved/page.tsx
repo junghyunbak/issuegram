@@ -6,6 +6,8 @@ import { GridIssues } from "../_components/GridIssues";
 import { filterIssues } from "@/utils";
 import { HiddenMobileLayout } from "@/components/layouts/HiddenMobileLayout";
 import { ShowMobileLayout } from "@/components/layouts/ShowMobileLayout";
+import { Nav } from "../_components/Nav";
+import { MainLayout } from "@/components/layouts/MainLayout";
 
 export async function generateMetadata(): Promise<Metadata> {
   const user = await server.useFetchUserInfo();
@@ -21,18 +23,22 @@ export default async function Saved() {
   const filteredIssues = filterIssues(issues, "saved");
 
   return (
-    <div>
-      <Header />
+    <div className="flex size-full">
+      <Nav activeItem="프로필" />
 
-      <Menu type="saved" />
+      <MainLayout>
+        <Header />
 
-      <HiddenMobileLayout>
-        <GridIssues issues={filteredIssues} lineCount={4} />
-      </HiddenMobileLayout>
+        <Menu type="saved" />
 
-      <ShowMobileLayout>
-        <GridIssues issues={filteredIssues} />
-      </ShowMobileLayout>
+        <HiddenMobileLayout>
+          <GridIssues issues={filteredIssues} lineCount={4} />
+        </HiddenMobileLayout>
+
+        <ShowMobileLayout>
+          <GridIssues issues={filteredIssues} />
+        </ShowMobileLayout>
+      </MainLayout>
     </div>
   );
 }

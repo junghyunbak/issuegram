@@ -4,6 +4,8 @@ import { GridIssues } from "../_components/GridIssues";
 import { server } from "@/hooks";
 import { filterIssues } from "@/utils";
 import { Metadata } from "next";
+import { MainLayout } from "@/components/layouts/MainLayout";
+import { Nav } from "../_components/Nav";
 
 export async function generateMetadata(): Promise<Metadata> {
   const user = await server.useFetchUserInfo();
@@ -17,12 +19,16 @@ export default async function Portfolio() {
   const issues = await server.useFetchIssues();
 
   return (
-    <div>
-      <Header />
+    <div className="flex size-full">
+      <Nav activeItem="프로필" />
 
-      <Menu type="portfolio" />
+      <MainLayout>
+        <Header />
 
-      <GridIssues issues={filterIssues(issues, "portfolio")} />
+        <Menu type="portfolio" />
+
+        <GridIssues issues={filterIssues(issues, "portfolio")} />
+      </MainLayout>
     </div>
   );
 }

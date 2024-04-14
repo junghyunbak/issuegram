@@ -13,6 +13,8 @@ import { filterIssues, getIssueLabelType } from "@/utils";
 import { Metadata } from "next";
 import ArrowUpLarge from "@/assets/svgs/arrow-up-large.svg";
 import React from "react";
+import { MainLayout } from "@/components/layouts/MainLayout";
+import { Nav } from "@/app/_components/Nav";
 
 export async function generateStaticParams() {
   const issues = await server.useFetchIssues();
@@ -53,73 +55,77 @@ export default async function Issue({
   const startIdx = curIdx - 3 <= 0 ? 0 : curIdx - 3;
 
   return (
-    <div>
-      <ShowMobileLayout>
-        <div className="flex h-11 w-full items-center justify-between border-b px-[16px]">
-          <Link href="/">
-            <ArrowUpLarge className="-rotate-90 transform" />
-          </Link>
-          <p className="font-semibold text-primaryText">게시물</p>
-          <div className="w-[24px]" />
-        </div>
-      </ShowMobileLayout>
+    <div className="flex size-full">
+      <Nav activeItem={null} />
 
-      <div className="mx-auto flex w-full max-w-[815px] border max-md:border-0">
-        <HiddenMobileLayout>
-          <IssueBanner issue={issue} />
-        </HiddenMobileLayout>
-
-        <div className="flex aspect-square w-full flex-col overflow-x-hidden max-md:overflow-x-visible">
-          <IssueHeader issue={issue} />
-
-          <div className="w-full flex-1 overflow-x-hidden overflow-y-scroll max-md:flex-none max-md:scrollbar-hide">
-            <ShowMobileLayout>
-              <IssueBanner issue={issue} />
-            </ShowMobileLayout>
-
-            <ShowMobileLayout>
-              <IssueFooter issue={issue} />
-            </ShowMobileLayout>
-
-            <CommentListLayout>
-              <Markdown markdown={issue.body || ""} />
-
-              {comments.map((comment) => {
-                return (
-                  <div
-                    key={comment.id}
-                    style={
-                      {
-                        "--profile-image": `url("${comment.user?.avatar_url}")`,
-                        "--user-name": `"${comment.user?.login} "`,
-                      } as React.CSSProperties
-                    }
-                  >
-                    <Markdown markdown={comment.body || ""} />
-                  </div>
-                );
-              })}
-            </CommentListLayout>
+      <MainLayout>
+        <ShowMobileLayout>
+          <div className="flex h-11 w-full items-center justify-between border-b px-[16px]">
+            <Link href="/">
+              <ArrowUpLarge className="-rotate-90 transform" />
+            </Link>
+            <p className="font-semibold text-primaryText">게시물</p>
+            <div className="w-[24px]" />
           </div>
+        </ShowMobileLayout>
 
+        <div className="mx-auto flex w-full max-w-[815px] border max-md:border-0">
           <HiddenMobileLayout>
-            <IssueFooter issue={issue} />
+            <IssueBanner issue={issue} />
           </HiddenMobileLayout>
+
+          <div className="flex aspect-square w-full flex-col overflow-x-hidden max-md:overflow-x-visible">
+            <IssueHeader issue={issue} />
+
+            <div className="w-full flex-1 overflow-x-hidden overflow-y-scroll max-md:flex-none max-md:scrollbar-hide">
+              <ShowMobileLayout>
+                <IssueBanner issue={issue} />
+              </ShowMobileLayout>
+
+              <ShowMobileLayout>
+                <IssueFooter issue={issue} />
+              </ShowMobileLayout>
+
+              <CommentListLayout>
+                <Markdown markdown={issue.body || ""} />
+
+                {comments.map((comment) => {
+                  return (
+                    <div
+                      key={comment.id}
+                      style={
+                        {
+                          "--profile-image": `url("${comment.user?.avatar_url}")`,
+                          "--user-name": `"${comment.user?.login} "`,
+                        } as React.CSSProperties
+                      }
+                    >
+                      <Markdown markdown={comment.body || ""} />
+                    </div>
+                  );
+                })}
+              </CommentListLayout>
+            </div>
+
+            <HiddenMobileLayout>
+              <IssueFooter issue={issue} />
+            </HiddenMobileLayout>
+          </div>
         </div>
-      </div>
 
-      <div className="mt-[48px] w-full border-b" />
+        <div className="mt-[48px] w-full border-b" />
 
-      <div className="pt-[42px]">
-        <p className="mb-[20px] text-sm font-semibold text-secondaryText">
-          <Link href="/" className="text-secondaryButton hover:opacity-50">
-            {userInfo.login}
-          </Link>
-          님의 게시글 더보기
-        </p>
+        <div className="pt-[42px]">
+          <p className="mb-[20px] text-sm font-semibold text-secondaryText">
+            <Link href="/" className="text-secondaryButton hover:opacity-50">
+              {userInfo.login}
+            </Link>
+            님의 게시글 더보기
+          </p>
 
-        <GridIssues issues={filteredIssues.slice(startIdx, startIdx + 6)} />
-      </div>
+          <GridIssues issues={filteredIssues.slice(startIdx, startIdx + 6)} />
+        </div>
+      </MainLayout>
     </div>
   );
 }
