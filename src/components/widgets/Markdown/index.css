@@ -17,7 +17,7 @@
 
   code {
     &:not(pre *) {
-      @apply bg-igHighlightBackground rounded-lg px-[4px] py-[2px] font-segoe text-xs;
+      @apply rounded-lg bg-igHighlightBackground px-[4px] py-[2px] font-segoe text-xs;
     }
   }
 
@@ -194,6 +194,12 @@
     th,
     td {
       @apply px-3 py-1.5;
+    }
+
+    tbody {
+      tr:nth-child(even) {
+        @apply bg-gray-100;
+      }
     }
   }
 
