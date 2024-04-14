@@ -6,10 +6,17 @@ exports[`썸네일 주소가 있을경우, img 태그를 렌더링한다. 1`] = 
     class="flex h-full w-[300px] overflow-hidden max-md:aspect-square max-md:w-full"
   >
     <div
-      class="flex size-full items-center justify-center bg-black"
+      class="relative flex size-full items-center justify-center"
     >
       <img
-        class="object-contain"
+        class="absolute size-full object-cover"
+        src="https://fake.url"
+      />
+      <div
+        class="absolute size-full backdrop-blur"
+      />
+      <img
+        class="absolute object-contain"
         src="https://fake.url"
       />
     </div>
