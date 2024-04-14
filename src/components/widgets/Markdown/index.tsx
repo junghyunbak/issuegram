@@ -25,8 +25,19 @@ export function Markdown({ markdown }: MarkdownProps) {
           [rehypeKatex, { output: "mathml" }],
         ]}
         components={{
-          code(test) {
-            const { children: text, className } = test;
+          a({ href, node, ...props }) {
+            if (!href) {
+              return null;
+            }
+
+            if (href.startsWith("#")) {
+              return <a href={href} {...props} />;
+            }
+
+            return <a href={href} {...props} target="_blank" />;
+          },
+          code(props) {
+            const { children: text, className } = props;
 
             let match: ReturnType<RegExp["exec"]>;
 
