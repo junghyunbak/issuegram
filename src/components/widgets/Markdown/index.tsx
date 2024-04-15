@@ -9,6 +9,7 @@ import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
 import { vs } from "react-syntax-highlighter/dist/esm/styles/prism";
 import "./index.css";
 import { ClipboardCopyButton } from "@/components/core/buttons/ClipboardCopyButton";
+import Link from "next/link";
 
 interface MarkdownProps {
   markdown: string;
@@ -31,7 +32,7 @@ export function Markdown({ markdown }: MarkdownProps) {
             }
 
             if (href.startsWith("#")) {
-              return <a href={href} {...props} />;
+              return <Link {...props} href={href} replace />;
             }
 
             return <a href={href} {...props} target="_blank" />;
