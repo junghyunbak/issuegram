@@ -38,7 +38,10 @@ export default async function Saved() {
       </HiddenMobileLayout>
 
       <ShowMobileLayout>
-        <GridIssues issues={filteredIssues} />
+        <GridIssues
+          issues={filteredIssues}
+          issueNumberToThumbnail={issueNumberToThumbnail}
+        />
       </ShowMobileLayout>
     </div>
   );
