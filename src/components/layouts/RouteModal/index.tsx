@@ -17,6 +17,7 @@ export function RouteModal({
 }: RouteModalProps) {
   const router = useRouter();
 
+  /*
   useEffect(() => {
     const $el = document.querySelector("scroll");
 
@@ -34,6 +35,7 @@ export function RouteModal({
       }
     };
   }, []);
+  */
 
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {

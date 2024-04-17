@@ -33,11 +33,11 @@ export default function RootLayout({
 
             <Footer />
           </div>
-
-          {modalIssue}
-          {modalFollowers}
-          {modalFollowing}
         </div>
+
+        {modalIssue}
+        {modalFollowers}
+        {modalFollowing}
 
         <CopiedSnackbar />
       </body>
