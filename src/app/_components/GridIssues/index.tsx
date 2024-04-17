@@ -57,7 +57,7 @@ export function GridIssues({
                   key={j}
                 >
                   {issue.assignee && (
-                    <Pin className="absolute right-0 top-0 m-2" />
+                    <Pin className="absolute right-0 top-0 m-2 z-40" />
                   )}
 
                   <div className="absolute inset-0 flex items-center justify-center bg-black/[0.3] opacity-0 hover:opacity-100 z-50">
