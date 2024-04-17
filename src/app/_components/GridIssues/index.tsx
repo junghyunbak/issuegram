@@ -3,20 +3,21 @@ import Comment from "@/assets/svgs/comment.svg";
 import Link from "next/link";
 import Pin from "@/assets/svgs/pin.svg";
 import randomGradient from "random-gradient";
-import remarkFrontmatter from "remark-frontmatter";
-import remarkParse from "remark-parse";
-import remarkExtractFrontmatter from "remark-extract-frontmatter";
-import remarkStringify from "remark-stringify";
-import { unified } from "unified";
+
 import { getIssueLabels } from "@/utils";
-const toml = require("toml").parse;
+import Image from "next/image";
 
 interface GridIssuesProps {
   issues: Issues;
   lineCount?: 3 | 4;
+  issueNumberToThumbnail?: Map<number, ThumbnailData>;
 }
 
-export function GridIssues({ issues, lineCount = 3 }: GridIssuesProps) {
+export function GridIssues({
+  issues,
+  lineCount = 3,
+  issueNumberToThumbnail,
+}: GridIssuesProps) {
   const tmp: (Issues[number] | null)[][] = [];
 
   for (let i = 0; i < issues.length; i += lineCount) {
@@ -35,17 +36,6 @@ export function GridIssues({ issues, lineCount = 3 }: GridIssuesProps) {
                 return <div className="flex-1" key={i} />;
               }
 
-              const file = unified()
-                .use(remarkParse)
-                .use(remarkFrontmatter, ["toml"])
-                .use(remarkExtractFrontmatter, { toml })
-                .use(remarkStringify)
-                .processSync(issue.body || "");
-
-              const {
-                data: { thumbnail },
-              } = file;
-
               const issueLabels = getIssueLabels(issue);
 
               issueLabels.sort((a, b) => (a < b ? -1 : 1));
@@ -56,6 +46,8 @@ export function GridIssues({ issues, lineCount = 3 }: GridIssuesProps) {
                   "horizontal",
                 ),
               };
+
+              const thumbnail = issueNumberToThumbnail?.get(issue.number);
 
               return (
                 <Link
@@ -88,14 +80,32 @@ export function GridIssues({ issues, lineCount = 3 }: GridIssuesProps) {
                   <div
                     className={`w-full overflow-hidden bg-[#efefef] ${lineCount === 3 ? "aspect-square" : "aspect-[65/100]"}`}
                   >
-                    {typeof thumbnail === "string" ? (
-                      <img className="size-full object-cover" src={thumbnail} />
+                    {thumbnail ? (
+                      thumbnail.base64 ? (
+                        <Image
+                          fill
+                          src={thumbnail.url}
+                          alt=""
+                          className="object-cover"
+                          blurDataURL={thumbnail.base64}
+                          placeholder="blur"
+                        />
+                      ) : (
+                        <Image
+                          fill
+                          src={thumbnail.url}
+                          alt=""
+                          className="object-cover"
+                        />
+                      )
                     ) : (
                       <div
                         className="flex size-full items-center justify-center"
                         style={bgGradient}
                       >
-                        <p className={`break-all p-4 ${lineCount === 3 ? "text-xl" : "text-lg"} font-semibold text-white max-md:text-base`}>
+                        <p
+                          className={`break-all p-4 ${lineCount === 3 ? "text-xl" : "text-lg"} font-semibold text-white max-md:text-base`}
+                        >
                           {issue.title}
                         </p>
                       </div>

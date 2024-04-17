@@ -4,6 +4,7 @@ import { GridIssues } from "../_components/GridIssues";
 import { server } from "@/hooks";
 import { filterIssues } from "@/utils";
 import { Metadata } from "next";
+import { getIssuesBase64Thumbnail } from "@/utils";
 
 export async function generateMetadata(): Promise<Metadata> {
   const user = await server.useFetchUserInfo();
@@ -16,13 +17,18 @@ export async function generateMetadata(): Promise<Metadata> {
 export default async function Portfolio() {
   const issues = await server.useFetchIssues();
 
+  const issueNumberToThumbnail = await getIssuesBase64Thumbnail(issues);
+
   return (
     <div>
       <Header />
 
       <Menu type="portfolio" />
 
-      <GridIssues issues={filterIssues(issues, "portfolio")} />
+      <GridIssues
+        issues={filterIssues(issues, "portfolio")}
+        issueNumberToThumbnail={issueNumberToThumbnail}
+      />
     </div>
   );
 }
