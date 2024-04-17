@@ -10,6 +10,8 @@ COPY ../ ./
 
 RUN yarn install
 
+RUN yarn add sharp --ignore-engines
+
 RUN yarn build
 
 EXPOSE 3000
