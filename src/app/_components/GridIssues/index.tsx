@@ -56,27 +56,6 @@ export function GridIssues({
                   scroll={false}
                   key={j}
                 >
-                  {issue.assignee && (
-                    <Pin className="absolute right-0 top-0 z-10 m-2" />
-                  )}
-
-                  <div className="absolute inset-0 z-20 flex items-center justify-center bg-black/[0.3] opacity-0 hover:opacity-100">
-                    <div className="flex gap-x-7 gap-y-2 max-md:flex-col">
-                      <p className="text-base font-bold text-white">
-                        <Heart fill="white" height="19px" className="inline" />{" "}
-                        {issue.reactions ? issue.reactions.total_count : 0}
-                      </p>
-                      <p className="text-base font-bold text-white">
-                        <Comment
-                          fill="white"
-                          height="19px"
-                          className="inline"
-                        />{" "}
-                        {issue.comments}
-                      </p>
-                    </div>
-                  </div>
-
                   <div
                     className={`w-full overflow-hidden bg-[#efefef] ${lineCount === 3 ? "aspect-square" : "aspect-[65/100]"}`}
                   >
@@ -110,6 +89,27 @@ export function GridIssues({
                         </p>
                       </div>
                     )}
+                  </div>
+
+                  {issue.assignee && (
+                    <Pin className="absolute right-0 top-0 m-2" />
+                  )}
+
+                  <div className="absolute inset-0 flex items-center justify-center bg-black/[0.3] opacity-0 hover:opacity-100">
+                    <div className="flex gap-x-7 gap-y-2 max-md:flex-col">
+                      <p className="text-base font-bold text-white">
+                        <Heart fill="white" height="19px" className="inline" />{" "}
+                        {issue.reactions ? issue.reactions.total_count : 0}
+                      </p>
+                      <p className="text-base font-bold text-white">
+                        <Comment
+                          fill="white"
+                          height="19px"
+                          className="inline"
+                        />{" "}
+                        {issue.comments}
+                      </p>
+                    </div>
                   </div>
                 </Link>
               );
