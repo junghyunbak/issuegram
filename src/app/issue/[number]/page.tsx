@@ -12,6 +12,7 @@ import { HiddenMobileLayout } from "@/components/layouts/HiddenMobileLayout";
 import { filterIssues, getIssueLabelType } from "@/utils";
 import { Metadata } from "next";
 import ArrowUpLarge from "@/assets/svgs/arrow-up-large.svg";
+import { getIssuesBase64Thumbnail } from "@/utils";
 import React from "react";
 
 export async function generateStaticParams() {
@@ -40,6 +41,7 @@ export default async function Issue({
   const issues = await server.useFetchIssues();
   const comments = await server.useFetchIssueComments(number);
   const userInfo = await server.useFetchUserInfo();
+  const issueNumberToThumbnail = await getIssuesBase64Thumbnail(issues);
 
   const issue = issues.find((issue) => issue.number === parseInt(number, 10));
 
@@ -118,7 +120,10 @@ export default async function Issue({
           님의 게시글 더보기
         </p>
 
-        <GridIssues issues={filteredIssues.slice(startIdx, startIdx + 6)} />
+        <GridIssues
+          issues={filteredIssues.slice(startIdx, startIdx + 6)}
+          issueNumberToThumbnail={issueNumberToThumbnail}
+        />
       </div>
     </div>
   );
