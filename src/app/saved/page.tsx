@@ -6,6 +6,7 @@ import { GridIssues } from "../_components/GridIssues";
 import { filterIssues } from "@/utils";
 import { HiddenMobileLayout } from "@/components/layouts/HiddenMobileLayout";
 import { ShowMobileLayout } from "@/components/layouts/ShowMobileLayout";
+import { getIssuesBase64Thumbnail } from "@/utils";
 
 export async function generateMetadata(): Promise<Metadata> {
   const user = await server.useFetchUserInfo();
@@ -20,6 +21,8 @@ export default async function Saved() {
 
   const filteredIssues = filterIssues(issues, "saved");
 
+  const issueNumberToThumbnail = await getIssuesBase64Thumbnail(issues);
+
   return (
     <div>
       <Header />
@@ -27,7 +30,11 @@ export default async function Saved() {
       <Menu type="saved" />
 
       <HiddenMobileLayout>
-        <GridIssues issues={filteredIssues} lineCount={4} />
+        <GridIssues
+          issues={filteredIssues}
+          lineCount={4}
+          issueNumberToThumbnail={issueNumberToThumbnail}
+        />
       </HiddenMobileLayout>
 
       <ShowMobileLayout>

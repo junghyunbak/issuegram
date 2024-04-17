@@ -1,11 +1,5 @@
 import randomGradient from "random-gradient";
-import remarkFrontmatter from "remark-frontmatter";
-import remarkParse from "remark-parse";
-import remarkExtractFrontmatter from "remark-extract-frontmatter";
-import remarkStringify from "remark-stringify";
-import { unified } from "unified";
-import { getIssueLabels } from "@/utils";
-const toml = require("toml").parse;
+import { getIssueLabels, getIssueThumbnail } from "@/utils";
 
 interface IssueBannerProps {
   issue: Issues[number];
@@ -25,16 +19,7 @@ export function IssueBanner({ issue }: IssueBannerProps) {
     ),
   };
 
-  const file = unified()
-    .use(remarkParse)
-    .use(remarkFrontmatter, ["toml"])
-    .use(remarkExtractFrontmatter, { toml })
-    .use(remarkStringify)
-    .processSync(issue.body || "");
-
-  const {
-    data: { thumbnail },
-  } = file;
+  const thumbnail = getIssueThumbnail(issue);
 
   return (
     <div
