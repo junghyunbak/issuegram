@@ -35,7 +35,7 @@ export default async function ModalIssue({
   return (
     <RouteModal>
       <>
-        <div className="absolute left-[10px] z-20">
+        <div className="absolute left-[10px] z-30">
           <IssueModalRouteButton
             href={
               prevIdx === -1
@@ -90,7 +90,7 @@ export default async function ModalIssue({
           </div>
         </IssueModalLayout>
 
-        <div className="absolute right-[10px] z-20">
+        <div className="absolute right-[10px] z-30">
           <IssueModalRouteButton
             href={
               nextIdx === -1
