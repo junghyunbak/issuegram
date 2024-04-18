@@ -217,7 +217,7 @@
   @apply text-[17px];
 
   & > div {
-    @apply mt-[8px] rounded-md;
+    @apply mt-[8px] overflow-hidden;
 
     & > code {
       @apply block w-full min-w-fit;
