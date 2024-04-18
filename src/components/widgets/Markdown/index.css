@@ -206,6 +206,10 @@
   iframe {
     @apply w-full;
   }
+
+  img {
+    @apply my-2 rounded-md;
+  }
 }
 
 .code-block {
@@ -213,7 +217,7 @@
   @apply text-[17px];
 
   & > div {
-    @apply mt-[8px];
+    @apply mt-[8px] rounded-md;
 
     & > code {
       @apply block w-full min-w-fit;
