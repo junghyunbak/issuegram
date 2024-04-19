@@ -18,6 +18,7 @@ export default async function ModalIssue({
 }) {
   const issues = await server.useFetchIssues();
   const comments = await server.useFetchIssueComments(number);
+  const reactions = await server.useFetchIssueReactions(number);
 
   const issue = issues.find((issue) => issue.number === parseInt(number, 10));
 
@@ -60,7 +61,7 @@ export default async function ModalIssue({
               </ShowMobileLayout>
 
               <ShowMobileLayout>
-                <IssueFooter issue={issue} />
+                <IssueFooter issue={issue} issueReactions={reactions} />
               </ShowMobileLayout>
 
               <CommentListLayout>
@@ -85,7 +86,7 @@ export default async function ModalIssue({
             </div>
 
             <HiddenMobileLayout>
-              <IssueFooter issue={issue} />
+              <IssueFooter issue={issue} issueReactions={reactions} />
             </HiddenMobileLayout>
           </div>
         </IssueModalLayout>

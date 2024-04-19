@@ -42,6 +42,7 @@ export default async function Issue({
   const comments = await server.useFetchIssueComments(number);
   const userInfo = await server.useFetchUserInfo();
   const issueNumberToThumbnail = await getIssuesBase64Thumbnail(issues);
+  const reactions = await server.useFetchIssueReactions(number);
 
   const issue = issues.find((issue) => issue.number === parseInt(number, 10));
 
@@ -80,7 +81,7 @@ export default async function Issue({
             </ShowMobileLayout>
 
             <ShowMobileLayout>
-              <IssueFooter issue={issue} />
+              <IssueFooter issue={issue} issueReactions={reactions} />
             </ShowMobileLayout>
 
             <CommentListLayout>
@@ -105,7 +106,7 @@ export default async function Issue({
           </div>
 
           <HiddenMobileLayout>
-            <IssueFooter issue={issue} />
+            <IssueFooter issue={issue} issueReactions={reactions} />
           </HiddenMobileLayout>
         </div>
       </div>
