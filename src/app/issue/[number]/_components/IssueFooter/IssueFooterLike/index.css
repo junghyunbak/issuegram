@@ -1,0 +1,15 @@
+.footer-like-text {
+  @apply text-sm;
+
+  span {
+    @apply font-semibold;
+  }
+}
+
+.footer-like-user-icon {
+  @apply -mr-[5px] h-[20px] w-[20px] overflow-hidden rounded-full;
+
+  img {
+    @apply size-full;
+  }
+}
