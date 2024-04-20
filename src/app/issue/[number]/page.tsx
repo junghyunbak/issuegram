@@ -42,13 +42,17 @@ export default async function Issue({
   const comments = await server.useFetchIssueComments(number);
   const userInfo = await server.useFetchUserInfo();
   const issueNumberToThumbnail = await getIssuesBase64Thumbnail(issues);
-  const reactions = await server.useFetchIssueReactions(number);
 
   const issue = issues.find((issue) => issue.number === parseInt(number, 10));
 
   if (!issue) {
     return <Error />;
   }
+
+  const reactions =
+    (issue.reactions?.total_count || 0) > 0
+      ? await server.useFetchIssueReactions(number)
+      : [];
 
   const filteredIssues = filterIssues(issues, getIssueLabelType(issue));
 

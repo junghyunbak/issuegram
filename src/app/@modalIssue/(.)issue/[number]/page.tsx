@@ -18,13 +18,17 @@ export default async function ModalIssue({
 }) {
   const issues = await server.useFetchIssues();
   const comments = await server.useFetchIssueComments(number);
-  const reactions = await server.useFetchIssueReactions(number);
 
   const issue = issues.find((issue) => issue.number === parseInt(number, 10));
 
   if (!issue) {
     return null;
   }
+
+  const reactions =
+    (issue.reactions?.total_count || 0) > 0
+      ? await server.useFetchIssueReactions(number)
+      : [];
 
   const filteredIssues = filterIssues(issues, getIssueLabelType(issue));
 
