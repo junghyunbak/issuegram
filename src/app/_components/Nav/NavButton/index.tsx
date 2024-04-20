@@ -2,7 +2,7 @@
 
 import { useRouter } from "next/navigation";
 
-// TODO: 현재 경로에 따라 title 강조(bold)처리하기
+// [ ]: 현재 경로에 따라 title 강조(bold)처리하기
 
 interface NavButtonProps {
   children: React.ReactNode;

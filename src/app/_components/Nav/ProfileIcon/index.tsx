@@ -1,4 +1,4 @@
-// TODO: 현재 url에 따라 프로필 아이콘 선택처리(border) 하도록 구현
+// [ ]: 현재 url에 따라 프로필 아이콘 선택처리(border) 하도록 구현
 
 interface ProfileIconProps {
   url: string;

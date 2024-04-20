@@ -1,5 +1,5 @@
 export function Footer({}) {
-  // TODO: 데이터를 config 파일로 이동
+  // [ ]: 데이터를 config 파일로 이동
   const links: { link: string; value: string }[] = [
     { link: "https://github.com/junghyunbak", value: "Github" },
     { link: "https://www.instagram.com/__cxxlxxhxxn/", value: "Instagram" },

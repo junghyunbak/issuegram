@@ -86,7 +86,7 @@ export function Markdown({ markdown }: MarkdownProps) {
                 showLineNumbers
                 wrapLines
                 lineProps={(lineNumber) => {
-                  // TODO: 스타일 타입 설정
+                  // [ ]: 스타일 타입 설정
 
                   const style: any = {
                     display: "block",

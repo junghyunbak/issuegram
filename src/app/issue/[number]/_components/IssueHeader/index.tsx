@@ -4,7 +4,7 @@ interface IssueHeaderProps {
   issue: Issues[number];
 }
 
-// TODO: 넘치는 title 말줄임 처리할 것
+// [ ]: 넘치는 title 말줄임 처리할 것
 
 export function IssueHeader({ issue }: IssueHeaderProps) {
   return (
