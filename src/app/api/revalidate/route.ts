@@ -28,6 +28,8 @@ export async function POST(request: NextRequest) {
 
       revalidateTag("issues");
       revalidateTag(`issue-${payload.issue.number}`);
+      // BUG: reactions의 경우 webhook 에서 지원하지 않아, 현재는 의미가 없는 코드
+      revalidateTag(`issue-${payload.issue.number}-reactions`);
 
       break;
     }
