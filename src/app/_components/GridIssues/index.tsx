@@ -97,10 +97,16 @@ export function GridIssues({
 
                   <div className="absolute inset-0 flex items-center justify-center bg-black/[0.3] opacity-0 hover:opacity-100">
                     <div className="flex gap-x-7 gap-y-2 max-md:flex-col">
-                      <p className="text-base font-bold text-white">
-                        <Heart fill="white" height="19px" className="inline" />{" "}
-                        {issue.reactions ? issue.reactions.total_count : 0}
-                      </p>
+                      {issue.reactions && issue.reactions.total_count !== 0 && (
+                        <p className="text-base font-bold text-white">
+                          <Heart
+                            fill="white"
+                            height="19px"
+                            className="inline"
+                          />{" "}
+                          {issue.reactions.total_count}
+                        </p>
+                      )}
                       <p className="text-base font-bold text-white">
                         <Comment
                           fill="white"

@@ -49,6 +49,11 @@ export default async function Issue({
     return <Error />;
   }
 
+  const reactions =
+    (issue.reactions?.total_count || 0) > 0
+      ? await server.useFetchIssueReactions(number)
+      : [];
+
   const filteredIssues = filterIssues(issues, getIssueLabelType(issue));
 
   const curIdx = filteredIssues.findIndex((_issue) => _issue === issue);
@@ -80,7 +85,7 @@ export default async function Issue({
             </ShowMobileLayout>
 
             <ShowMobileLayout>
-              <IssueFooter issue={issue} />
+              <IssueFooter issue={issue} issueReactions={reactions} />
             </ShowMobileLayout>
 
             <CommentListLayout>
@@ -105,7 +110,7 @@ export default async function Issue({
           </div>
 
           <HiddenMobileLayout>
-            <IssueFooter issue={issue} />
+            <IssueFooter issue={issue} issueReactions={reactions} />
           </HiddenMobileLayout>
         </div>
       </div>

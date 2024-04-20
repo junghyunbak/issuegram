@@ -25,6 +25,11 @@ export default async function ModalIssue({
     return null;
   }
 
+  const reactions =
+    (issue.reactions?.total_count || 0) > 0
+      ? await server.useFetchIssueReactions(number)
+      : [];
+
   const filteredIssues = filterIssues(issues, getIssueLabelType(issue));
 
   const curIdx = filteredIssues.findIndex((_issue) => _issue === issue);
@@ -60,7 +65,7 @@ export default async function ModalIssue({
               </ShowMobileLayout>
 
               <ShowMobileLayout>
-                <IssueFooter issue={issue} />
+                <IssueFooter issue={issue} issueReactions={reactions} />
               </ShowMobileLayout>
 
               <CommentListLayout>
@@ -85,7 +90,7 @@ export default async function ModalIssue({
             </div>
 
             <HiddenMobileLayout>
-              <IssueFooter issue={issue} />
+              <IssueFooter issue={issue} issueReactions={reactions} />
             </HiddenMobileLayout>
           </div>
         </IssueModalLayout>
