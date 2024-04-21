@@ -18,3 +18,19 @@
     }
   }
 }
+
+.intro-markdown {
+  @apply text-sm;
+
+  img {
+    @apply inline;
+  }
+
+  a {
+    @apply text-clickable;
+
+    &::before {
+      content: "@";
+    }
+  }
+}

@@ -1,4 +1,3 @@
-import config from "@/config";
 import base64 from "base-64";
 import utf8 from "utf8";
 import "./index.css";
@@ -51,7 +50,7 @@ export function Introduce({ name, content }: IntroduceProps) {
   return (
     <div className="flex flex-col">
       <p className="text-sm font-semibold">{name}</p>
-      <div className="text-sm [&_img]:inline">
+      <div className="intro-markdown">
         <Markdown
           remarkPlugins={[remarkGfm, remarkMath, [remarkFrontmatter, ["toml"]]]}
           rehypePlugins={[
