@@ -14,7 +14,7 @@ export async function Nav({}: NavProps) {
   const userInfo = await server.useFetchUserInfo();
 
   return (
-    <nav className="w-[244px] border-r p-[12px] transition-[width] max-[1920px]:w-[335px] max-xl:w-[72px] max-md:hidden">
+    <nav className="w-[244px] border-r p-[12px] transition-[width] min-[1920px]:w-[335px] max-xl:w-[72px] max-md:hidden">
       <div className="relative mb-[96px] [&>div]:transition-[opacity] [&>div]:duration-500">
         <div className="absolute mt-[13px] p-[12px] opacity-100 max-xl:opacity-0">
           <Link href="/">
