@@ -34,6 +34,10 @@ export async function POST(request: NextRequest) {
       break;
     }
 
+    case "push": {
+      revalidateTag("intro-readme");
+    }
+
     default:
       break;
   }

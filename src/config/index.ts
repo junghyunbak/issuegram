@@ -4,6 +4,7 @@ const config = {
     owner: "junghyunbak",
     repo: "junghyunbak",
     accessToken: process.env.GITHUB_ACCESS_TOKEN,
+    readmePath: "/intro",
   },
 };
 
