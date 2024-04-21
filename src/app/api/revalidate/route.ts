@@ -5,26 +5,21 @@ import * as crypto from "crypto";
 
 const WEBHOOK_SECRET: string = process.env.REVALIDATE_SECRET_TOKEN || "";
 
-/**
- * https://docs.github.com/en/webhooks/using-webhooks/validating-webhook-deliveries#typescript-example
- */
-const verify_signature = (req: Request) => {
+export async function POST(request: NextRequest) {
+  let payload = await request.json();
+
   const signature = crypto
     .createHmac("sha256", WEBHOOK_SECRET)
-    .update(JSON.stringify(req.body))
+    .update(JSON.stringify(payload))
     .digest("hex");
 
   let trusted = Buffer.from(`sha256=${signature}`, "ascii");
   let untrusted = Buffer.from(
-    req.headers.get("x-hub-signature-256") || "",
+    request.headers.get("x-hub-signature-256") || "",
     "ascii",
   );
 
-  return crypto.timingSafeEqual(trusted, untrusted);
-};
-
-export async function POST(request: NextRequest) {
-  if (!verify_signature(request)) {
+  if (!crypto.timingSafeEqual(trusted, untrusted)) {
     return Response.json(
       { message: "유효하지 않은 토큰입니다." },
       { status: 401 },
@@ -33,7 +28,7 @@ export async function POST(request: NextRequest) {
 
   switch (request.headers.get("x-github-event")) {
     case "issue_comment": {
-      const payload = (await request.json()) as IssueCommentEvent;
+      payload = payload as IssueCommentEvent;
 
       revalidateTag("issues");
       revalidateTag(`issue-${payload.issue.number}-comments`);
@@ -42,7 +37,7 @@ export async function POST(request: NextRequest) {
     }
 
     case "issues": {
-      const payload = (await request.json()) as IssuesEvent;
+      payload = payload as IssuesEvent;
 
       revalidateTag("issues");
       revalidateTag(`issue-${payload.issue.number}`);
