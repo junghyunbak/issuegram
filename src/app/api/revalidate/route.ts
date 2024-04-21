@@ -4,7 +4,7 @@ import type { IssueCommentEvent, IssuesEvent } from "@octokit/webhooks-types";
 
 export async function POST(request: NextRequest) {
   if (
-    process.env.REVALIDATE_SECRET_TOKEN ===
+    process.env.REVALIDATE_SECRET_TOKEN !==
     request.nextUrl.searchParams.get("secret")
   ) {
     return Response.json(
