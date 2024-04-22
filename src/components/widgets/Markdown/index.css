@@ -135,17 +135,24 @@
     }
 
     summary {
-      @apply mb-[32px] cursor-pointer list-none;
+      @apply mb-[48px] inline cursor-pointer list-none;
 
       &::after {
         content: " ――　답글 보기";
 
-        @apply ml-[8px] mt-[16px] block w-full text-xs font-semibold text-secondaryText;
+        @apply absolute left-0 ml-[8px] mt-[32px] w-full text-xs font-semibold text-secondaryText;
       }
 
       &::-webkit-details-marker {
         @apply hidden;
       }
+    }
+  }
+
+  /* footnotes 관련 스타일 */
+  section {
+    h2 {
+      @apply inline;
     }
   }
 
