@@ -1,0 +1,16 @@
+.code-block {
+  /* 코드블럭 폰트 크기 기준 */
+  @apply text-[17px];
+
+  & > div {
+    @apply mt-[8px] overflow-hidden;
+
+    & > code {
+      @apply block w-full min-w-fit;
+    }
+  }
+
+  & > p {
+    @apply text-igSecondaryText dark:text-igSecondaryTextDark mt-[8px] font-segoe text-xs;
+  }
+}

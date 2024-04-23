@@ -140,7 +140,7 @@
       &::after {
         content: " ――　답글 보기";
 
-        @apply absolute left-0 ml-[8px] mt-[32px] w-full text-xs font-semibold text-secondaryText;
+        @apply text-igSecondaryText dark:text-igSecondaryTextDark absolute left-0 ml-[8px] mt-[32px] w-full text-xs font-semibold;
       }
 
       &::-webkit-details-marker {
@@ -157,7 +157,7 @@
   }
 
   blockquote {
-    @apply relative text-secondaryText;
+    @apply text-igSecondaryText dark:text-igSecondaryTextDark relative;
 
     &::before {
       content: "quotation ";
@@ -173,7 +173,7 @@
       &::before {
         content: "quotation ";
 
-        @apply font-semibold text-secondaryButton;
+        @apply dark:text-primaryTextDark font-semibold text-primaryText;
       }
 
       &::after {
@@ -220,22 +220,5 @@
 
   hr {
     @apply border-igSeparator dark:border-igSeparatorDark;
-  }
-}
-
-.code-block {
-  /* 코드블럭 폰트 크기 기준 */
-  @apply text-[17px];
-
-  & > div {
-    @apply mt-[8px] overflow-hidden;
-
-    & > code {
-      @apply block w-full min-w-fit;
-    }
-  }
-
-  & > p {
-    @apply mt-[8px] font-segoe text-xs text-secondaryText;
   }
 }

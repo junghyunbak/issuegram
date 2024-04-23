@@ -7,6 +7,7 @@ import {
 } from "react-syntax-highlighter/dist/esm/styles/prism";
 import { ClipboardCopyButton } from "@/components/core/buttons/ClipboardCopyButton";
 import useStore from "@/store";
+import "./index.css";
 
 interface CodeBlockProps {
   lang: string;

@@ -14,6 +14,7 @@ interface MarkdownProps {
   markdown: string;
 }
 
+// [ ]: markdown css 파일 CodeBlock 폴더로 이동
 export function Markdown({ markdown }: MarkdownProps) {
   return (
     <div className="markdown">
