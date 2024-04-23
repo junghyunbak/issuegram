@@ -76,7 +76,7 @@ export default async function Issue({
           <IssueBanner issue={issue} />
         </HiddenMobileLayout>
 
-        <div className="border-igSeparator dark:border-igSeparatorDark flex aspect-square w-full flex-col overflow-x-hidden border-l max-md:overflow-x-visible">
+        <div className="border-igSeparator dark:border-igSeparatorDark flex aspect-square w-full flex-col overflow-x-hidden border-l max-md:overflow-x-visible max-md:border-0">
           <IssueHeader issue={issue} />
 
           <div className="w-full flex-1 overflow-x-hidden overflow-y-scroll max-md:flex-none max-md:scrollbar-hide">

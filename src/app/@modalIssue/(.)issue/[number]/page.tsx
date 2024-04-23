@@ -56,7 +56,7 @@ export default async function ModalIssue({
             <IssueBanner issue={issue} />
           </HiddenMobileLayout>
 
-          <div className="border-igSeparator dark:border-igSeparatorDark flex aspect-square w-[45dvw] flex-col border-l max-md:aspect-auto max-md:w-[320px]">
+          <div className="border-igSeparator dark:border-igSeparatorDark flex aspect-square w-[45dvw] flex-col border-l max-md:aspect-auto max-md:w-[320px] max-md:border-0">
             <IssueHeader issue={issue} />
 
             <div className=" flex-1 overflow-x-hidden overflow-y-scroll scrollbar-hide max-md:h-[65dvh] max-md:flex-none">
