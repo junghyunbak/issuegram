@@ -21,11 +21,5 @@ body {
 }
 
 .body-dark {
-  @apply dark:bg-black;
-
-  p,
-  a,
-  span {
-    @apply dark:text-primaryTextDark;
-  }
+  @apply dark:text-primaryTextDark dark:bg-black;
 }

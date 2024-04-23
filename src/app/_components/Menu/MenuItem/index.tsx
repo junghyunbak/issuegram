@@ -40,14 +40,14 @@ export function MenuItem({ type, selectType, href }: MenuItemProps) {
   return (
     <Link
       href={href}
-      className={`menu-item ${isActive ? "border-t border-black" : ""}`}
+      className={`menu-item ${isActive ? "dark:border-primaryTextDark border-t border-primaryText" : ""}`}
     >
       <IconSvg
-        className={`${isActive ? "max-md:fill-igPrimaryButton max-md:stroke-igPrimaryButton fill-black stroke-black" : "fill-secondaryText stroke-secondaryText"}`}
+        className={`${isActive ? "dark:fill-primaryTextDark dark:stroke-primaryTextDark fill-primaryText stroke-primaryText max-md:fill-igPrimaryButton max-md:stroke-igPrimaryButton" : "fill-igSecondaryText dark:fill-igSecondaryTextDark stroke-igSecondaryText dark:stroke-igSecondaryTextDark"}`}
       />
 
       <p
-        className={`${isActive ? "font-semibold text-black" : "text-secondaryText"}`}
+        className={`${isActive ? "dark:text-primaryTextDark font-semibold text-primaryText" : "text-igSecondaryText dark:text-igSecondaryTextDark"}`}
       >
         {itemTitle}
       </p>
