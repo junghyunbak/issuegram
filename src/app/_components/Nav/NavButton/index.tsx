@@ -30,7 +30,11 @@ export function NavButton({ children, path, title }: NavButtonProps) {
         {children}
       </div>
 
-      {title && <div className="pl-[16px] max-xl:hidden">{title}</div>}
+      {title && (
+        <div className="pl-[16px] max-xl:hidden">
+          <p>{title}</p>
+        </div>
+      )}
     </div>
   );
 }

@@ -15,7 +15,7 @@ export async function Nav({}: NavProps) {
   const userInfo = await server.useFetchUserInfo();
 
   return (
-    <nav className="flex w-[244px] flex-col border-r p-[12px] transition-[width] max-xl:w-[72px] max-md:hidden min-[1920px]:w-[335px]">
+    <nav className="border-igSeparator dark:border-igSeparatorDark flex w-[244px] flex-col border-r p-[12px] transition-[width] max-xl:w-[72px] max-md:hidden min-[1920px]:w-[335px]">
       <div className="relative mb-[96px] [&>div]:transition-[opacity] [&>div]:duration-500">
         <div className="absolute mt-[13px] p-[12px] opacity-100 max-xl:opacity-0">
           <Link href="/">
@@ -25,7 +25,7 @@ export async function Nav({}: NavProps) {
 
         <div className="absolute mt-[12px] opacity-0 max-xl:opacity-100">
           <NavButton path="/">
-            <Instagram />
+            <Instagram className="dark:text-primaryTextDark text-primaryText" />
           </NavButton>
         </div>
       </div>
@@ -36,7 +36,7 @@ export async function Nav({}: NavProps) {
             path={`${userInfo.html_url}/${config.github.repo}/issues/new`}
             title="글쓰기"
           >
-            <NewPost />
+            <NewPost className="dark:stroke-primaryTextDark stroke-primaryText" />
           </NavButton>
 
           <NavButton path="/" title="프로필">

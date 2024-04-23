@@ -20,6 +20,8 @@ const config: Config = {
         secondaryButton: "#262626",
         igHoverOverlay: "rgb(0,0,0,0.05)",
         igHoverOverlayDark: "rgb(255,255,255,0.1)",
+        igSeparator: "#DBDBDB",
+        igSeparatorDark: "#262626",
         igStroke: "#DBDBDB",
         igStrokeDark: "#555555",
         igTertiaryIcon: "#737373",
