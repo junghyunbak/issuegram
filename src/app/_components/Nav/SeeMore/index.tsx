@@ -58,10 +58,18 @@ export function SeeMore() {
       }
     };
 
+    const handleCloseModalWithEsc = (e: KeyboardEvent) => {
+      if (e.code === "Escape") {
+        setModalState("closed");
+      }
+    };
+
     window.addEventListener("click", handleCloseModal);
+    window.addEventListener("keydown", handleCloseModalWithEsc);
 
     return () => {
       window.removeEventListener("click", handleCloseModal);
+      window.removeEventListener("keydown", handleCloseModalWithEsc);
     };
   }, []);
 
