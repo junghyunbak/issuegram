@@ -15,7 +15,7 @@ export function Footer({}) {
           return (
             <li className="mx-[8px] mb-[12px] flex" key={i}>
               <a
-                className="text-xs text-[#737373] active:opacity-50"
+                className="text-igSecondaryText dark:text-igSecondaryTextDark text-xs active:opacity-50"
                 href={link}
                 target="_blank"
               >
@@ -27,7 +27,7 @@ export function Footer({}) {
       </ul>
 
       <div className="my-3 flex justify-center">
-        <p className="text-xs text-[#737373]">
+        <p className="text-igSecondaryText dark:text-igSecondaryTextDark text-xs">
           © 2024 Issuegram from junghyunbak
         </p>
       </div>
