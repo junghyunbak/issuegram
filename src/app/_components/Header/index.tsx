@@ -10,6 +10,7 @@ import rehypeRaw from "rehype-raw";
 import rehypeSlug from "rehype-slug";
 import rehypeKatex from "rehype-katex";
 import Link from "next/link";
+import { ShowMobileLayout } from "@/components/layouts/ShowMobileLayout";
 
 interface CounterProps {
   post: number;
@@ -75,9 +76,11 @@ export async function Header() {
 
   return (
     <header>
-      <div className="hidden h-11 items-center justify-center border-b max-md:flex">
-        <p>{userInfo.login}</p>
-      </div>
+      <ShowMobileLayout>
+        <div className="border-igElevatedSeparator dark:border-igElevatedSeparatorDark flex h-11 w-full items-center justify-center border-b">
+          <p>{userInfo.login}</p>
+        </div>
+      </ShowMobileLayout>
 
       <div className="mb-[44px] flex items-stretch max-md:m-4">
         <div className="mr-[30px] flex shrink-0 grow basis-0 items-center justify-center">
@@ -95,7 +98,7 @@ export async function Header() {
               <span className="text-xl">{userInfo.login}</span>
             </div>
             <a
-              className="flex h-8 w-fit cursor-pointer items-center rounded-lg bg-[#efefef] px-4 text-sm font-semibold leading-[18px] hover:bg-[#dbdbdb]"
+              className="bg-igSecondaryButton dark:bg-igSecondaryButtonDark hover:bg-igSecondaryButtonHover dark:hover:bg-igSecondaryButtonHoverDark flex h-8 w-fit cursor-pointer items-center rounded-lg px-4 text-sm font-semibold leading-[18px]"
               href={readme.html_url}
               target="_blank"
             >
@@ -121,7 +124,7 @@ export async function Header() {
         <Introduce name={userInfo.name || ""} content={readmeContent} />
       </div>
 
-      <div className="flex border-t md:hidden">
+      <div className="border-igSeparator dark:border-igSeparatorDark flex border-t md:hidden">
         <Counter
           post={issues.length}
           followers={userInfo.followers}
