@@ -62,21 +62,23 @@ export default async function Issue({
   return (
     <div>
       <ShowMobileLayout>
-        <div className="flex h-11 w-full items-center justify-between border-b px-[16px]">
+        <div className="flex h-11 w-full items-center justify-between border-b border-igElevatedSeparator px-[16px] dark:border-igElevatedSeparatorDark">
           <Link href="/">
             <ArrowUpLarge className="-rotate-90 transform" />
           </Link>
-          <p className="font-semibold text-primaryText">게시물</p>
+          <p className="font-semibold text-primaryText dark:text-primaryTextDark">
+            게시물
+          </p>
           <div className="w-[24px]" />
         </div>
       </ShowMobileLayout>
 
-      <div className="border-igSeparator dark:border-igSeparatorDark mx-auto flex w-full max-w-[815px] border max-md:border-0">
+      <div className="mx-auto flex w-full max-w-[815px] border border-igSeparator max-md:border-0 dark:border-igSeparatorDark">
         <HiddenMobileLayout>
           <IssueBanner issue={issue} />
         </HiddenMobileLayout>
 
-        <div className="border-igSeparator dark:border-igSeparatorDark flex aspect-square w-full flex-col overflow-x-hidden border-l max-md:overflow-x-visible max-md:border-0">
+        <div className="flex aspect-square w-full flex-col overflow-x-hidden border-l border-igSeparator max-md:overflow-x-visible max-md:border-0 dark:border-igSeparatorDark">
           <IssueHeader issue={issue} />
 
           <div className="w-full flex-1 overflow-x-hidden overflow-y-scroll max-md:flex-none max-md:scrollbar-hide">
@@ -115,13 +117,13 @@ export default async function Issue({
         </div>
       </div>
 
-      <div className="border-igSeparator dark:border-igSeparatorDark mt-[48px] w-full border-b" />
+      <div className="mt-[48px] w-full border-b border-igSeparator dark:border-igSeparatorDark" />
 
       <div className="pt-[42px]">
         <p className="mb-[20px] text-sm font-semibold text-secondaryText">
           <Link
             href="/"
-            className="dark:text-primaryTextDark text-primaryText hover:opacity-50"
+            className="text-primaryText hover:opacity-50 dark:text-primaryTextDark"
           >
             {userInfo.login}
           </Link>
