@@ -33,10 +33,10 @@ export function FollowModal({ title, children }: FollowModal) {
 
   return (
     <div
-      className="follow-modal m-[20px] flex h-full max-h-[400px] min-h-[200px] w-[400px] flex-col overflow-hidden rounded-xl bg-white"
+      className="follow-modal dark:bg-igBannerBackgroundDark m-[20px] flex h-full max-h-[400px] min-h-[200px] w-[400px] flex-col overflow-hidden rounded-xl bg-white"
       onClick={(e) => e.stopPropagation()}
     >
-      <div className="flex h-[43px] items-center justify-between border-b px-[8px]">
+      <div className="border-igElevatedSeparator dark:border-igElevatedSeparatorDark flex h-[43px] items-center justify-between border-b px-[8px]">
         <div className="p-[8px]">
           <div className="h-[18px] w-[18px]" />
         </div>
@@ -45,7 +45,7 @@ export function FollowModal({ title, children }: FollowModal) {
           className="cursor-pointer p-[8px]"
           onClick={handleCloseButtonClick}
         >
-          <X stroke="#000000" />
+          <X className="dark:stroke-primaryTextDark stroke-primaryText" />
         </div>
       </div>
 

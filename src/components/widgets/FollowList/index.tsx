@@ -11,7 +11,7 @@ export function FollowList({ users }: FollowListProps) {
             <a className="flex" href={user.html_url} target="_blank">
               <div className="mr-[2px] p-[10px]">
                 <img
-                  className="h-[44px] w-[44px] rounded-full border"
+                  className="h-[44px] w-[44px] rounded-full"
                   src={user.avatar_url}
                 />
               </div>
