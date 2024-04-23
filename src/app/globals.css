@@ -19,3 +19,13 @@ body {
     transform-origin: center;
   }
 }
+
+.body-dark {
+  @apply dark:bg-black;
+
+  p,
+  a,
+  span {
+    @apply dark:text-primaryTextDark;
+  }
+}
