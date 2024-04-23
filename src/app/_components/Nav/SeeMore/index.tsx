@@ -5,6 +5,7 @@ import Sun from "@/assets/svgs/sun.svg";
 import Moon from "@/assets/svgs/moon.svg";
 import ArrowUp from "@/assets/svgs/arrow-up.svg";
 import { useEffect, useRef, useState } from "react";
+import useStore from "@/store";
 
 // [ ]: 다크모드 관련 컴포넌트 분리
 export function SeeMore() {
@@ -12,7 +13,10 @@ export function SeeMore() {
     "closed",
   );
 
-  const [isDark, setIsDark] = useState(false);
+  const [isDark, setIsDark] = useStore((state) => [
+    state.isDark,
+    state.setIsDark,
+  ]);
 
   const menuContainer = useRef<HTMLDivElement | null>(null);
   const mainMenu = useRef<HTMLDivElement | null>(null);
