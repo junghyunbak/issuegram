@@ -8,7 +8,7 @@ export function ProfileIcon({ url }: ProfileIconProps) {
   return (
     <img
       src={url}
-      className="aspect-square w-[26px] rounded-full border-2 border-black "
+      className="dark:border-primaryTextDark aspect-square w-[26px] rounded-full border-2 border-black"
     />
   );
 }

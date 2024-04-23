@@ -5,11 +5,10 @@ import remarkFrontmatter from "remark-frontmatter";
 import rehypeRaw from "rehype-raw";
 import rehypeSlug from "rehype-slug";
 import rehypeKatex from "rehype-katex";
-import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
-import { vs } from "react-syntax-highlighter/dist/esm/styles/prism";
+
 import "./index.css";
-import { ClipboardCopyButton } from "@/components/core/buttons/ClipboardCopyButton";
 import Link from "next/link";
+import { CodeBlock } from "./CodeBlock";
 
 interface MarkdownProps {
   markdown: string;
@@ -53,7 +52,7 @@ export function Markdown({ markdown }: MarkdownProps) {
               "",
             ];
 
-            const lineNumbers = new Set();
+            const lineNumbers = new Set<number>();
 
             lines.split(",").forEach((v) => {
               if (v.includes("-")) {
@@ -82,47 +81,11 @@ export function Markdown({ markdown }: MarkdownProps) {
             });
 
             return (
-              <SyntaxHighlighter
-                showLineNumbers
-                wrapLines
-                lineProps={(lineNumber) => {
-                  // [ ]: 스타일 타입 설정
-
-                  const style: any = {
-                    display: "block",
-                    paddingLeft: "12.6px",
-                    paddingRight: "12.6px",
-                  };
-
-                  if (lineNumbers.has(lineNumber)) {
-                    style.background =
-                      "linear-gradient(to right, rgb(0 0 0 / 10%) 80%, transparent)";
-                  }
-
-                  return { style };
-                }}
-                PreTag={({ children, ...props }) => {
-                  return (
-                    <div className="code-block">
-                      <div {...props}>{children}</div>
-
-                      <p>
-                        {lang}{" "}
-                        <ClipboardCopyButton text={String(text)}>
-                          <span className="ml-[10px] cursor-pointer font-semibold">
-                            코드 복사
-                          </span>
-                        </ClipboardCopyButton>
-                      </p>
-                    </div>
-                  );
-                }}
-                language={lang}
-                style={vs}
-                customStyle={{ paddingLeft: 0, paddingRight: 0 }}
-              >
-                {String(text).replace(/\n$/, "")}
-              </SyntaxHighlighter>
+              <CodeBlock
+                lineNumbers={lineNumbers}
+                code={String(text)}
+                lang={lang}
+              />
             );
           },
         }}

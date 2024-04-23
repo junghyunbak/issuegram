@@ -61,7 +61,7 @@ export function IssueModalRouteButton({
       onClick={handleButtonClick}
     >
       <ArrowUp
-        className={`transform ${direction === "left" ? "-rotate-90" : "rotate-90"}`}
+        className={`transform fill-black ${direction === "left" ? "-rotate-90" : "rotate-90"}`}
       />
     </div>
   );

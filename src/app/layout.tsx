@@ -24,7 +24,7 @@ export default function RootLayout({
 }>) {
   return (
     <html className="size-full">
-      <body className="flex size-full">
+      <body className="body-dark flex size-full">
         <Nav />
 
         <div className="flex-1 overflow-y-scroll" id="scroll">
