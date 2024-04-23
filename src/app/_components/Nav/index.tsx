@@ -7,6 +7,7 @@ import { server } from "@/hooks";
 import config from "@/config";
 import { NavButton } from "./NavButton";
 import { ProfileIcon } from "./ProfileIcon";
+import { SeeMore } from "./SeeMore";
 
 interface NavProps {}
 
@@ -14,7 +15,7 @@ export async function Nav({}: NavProps) {
   const userInfo = await server.useFetchUserInfo();
 
   return (
-    <nav className="w-[244px] border-r p-[12px] transition-[width] min-[1920px]:w-[335px] max-xl:w-[72px] max-md:hidden">
+    <nav className="flex w-[244px] flex-col border-r p-[12px] transition-[width] max-xl:w-[72px] max-md:hidden min-[1920px]:w-[335px]">
       <div className="relative mb-[96px] [&>div]:transition-[opacity] [&>div]:duration-500">
         <div className="absolute mt-[13px] p-[12px] opacity-100 max-xl:opacity-0">
           <Link href="/">
@@ -29,16 +30,22 @@ export async function Nav({}: NavProps) {
         </div>
       </div>
 
-      <NavButton
-        path={`${userInfo.html_url}/${config.github.repo}/issues/new`}
-        title="글쓰기"
-      >
-        <NewPost />
-      </NavButton>
+      <div className="flex flex-1 flex-col justify-between">
+        <div>
+          <NavButton
+            path={`${userInfo.html_url}/${config.github.repo}/issues/new`}
+            title="글쓰기"
+          >
+            <NewPost />
+          </NavButton>
 
-      <NavButton path="/" title="프로필">
-        <ProfileIcon url={userInfo.avatar_url} />
-      </NavButton>
+          <NavButton path="/" title="프로필">
+            <ProfileIcon url={userInfo.avatar_url} />
+          </NavButton>
+        </div>
+
+        <SeeMore />
+      </div>
     </nav>
   );
 }
