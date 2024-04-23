@@ -6,6 +6,7 @@ import Moon from "@/assets/svgs/moon.svg";
 import ArrowUp from "@/assets/svgs/arrow-up.svg";
 import { useEffect, useRef, useState } from "react";
 
+// [ ]: 다크모드 관련 컴포넌트 분리
 export function SeeMore() {
   const [modalState, setModalState] = useState<"closed" | "main" | "mode">(
     "closed",
@@ -29,6 +30,30 @@ export function SeeMore() {
 
     menuContainer.current.style.height = `${modalState === "main" ? mainMenu.current.offsetHeight : modeMenu.current.offsetHeight}px`;
   }, [modalState]);
+
+  useEffect(() => {
+    if (window.localStorage.getItem("theme") === "dark") {
+      setIsDark(true);
+
+      document.documentElement.classList.add("dark");
+    }
+  }, []);
+
+  const handleDarkModeToggleButtonClick = () => {
+    if (!isDark) {
+      setIsDark(true);
+
+      window.localStorage.setItem("theme", "dark");
+
+      document.documentElement.classList.add("dark");
+    } else {
+      setIsDark(false);
+
+      window.localStorage.removeItem("theme");
+
+      document.documentElement.classList.remove("dark");
+    }
+  };
 
   return (
     <div className="relative mb-[12px]">
@@ -89,9 +114,7 @@ export function SeeMore() {
               <div className="p-[8px]">
                 <div
                   className="flex cursor-pointer items-center justify-between gap-x-[12px] rounded-lg p-[16px] hover:bg-black/[0.05] active:opacity-50"
-                  onClick={() => {
-                    setIsDark(!isDark);
-                  }}
+                  onClick={handleDarkModeToggleButtonClick}
                 >
                   <p className="text-sm">다크 모드</p>
                   <div className="relative h-[16px] w-[26px] rounded-2xl bg-[#dbdfe4]">
