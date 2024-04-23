@@ -17,6 +17,7 @@ export function SeeMore() {
   const menuContainer = useRef<HTMLDivElement | null>(null);
   const mainMenu = useRef<HTMLDivElement | null>(null);
   const modeMenu = useRef<HTMLDivElement | null>(null);
+  const modalToggleButton = useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {
     if (
@@ -39,6 +40,35 @@ export function SeeMore() {
     }
   }, []);
 
+  useEffect(() => {
+    const handleCloseModal = (e: MouseEvent) => {
+      if (
+        !menuContainer.current ||
+        !modalToggleButton.current ||
+        !(e.target instanceof HTMLElement)
+      ) {
+        return;
+      }
+
+      if (
+        !menuContainer.current.contains(e.target) &&
+        !modalToggleButton.current.contains(e.target)
+      ) {
+        setModalState("closed");
+      }
+    };
+
+    window.addEventListener("click", handleCloseModal);
+
+    return () => {
+      window.removeEventListener("click", handleCloseModal);
+    };
+  }, []);
+
+  const handleModalToggleButtonClick = () => {
+    setModalState(modalState === "closed" ? "main" : "closed");
+  };
+
   const handleDarkModeToggleButtonClick = () => {
     if (!isDark) {
       setIsDark(true);
@@ -58,10 +88,9 @@ export function SeeMore() {
   return (
     <div className="relative mb-[12px]">
       <div
+        ref={modalToggleButton}
         className="hover:bg-igHoverOverlay dark:hover:bg-igHoverOverlayDark group flex cursor-pointer rounded-lg p-[12px] active:opacity-50"
-        onClick={() => {
-          setModalState(modalState === "closed" ? "main" : "closed");
-        }}
+        onClick={handleModalToggleButtonClick}
       >
         <div className="scale-100 transition-[transform] duration-300 group-hover:scale-105">
           <Hamburger className="dark:stroke-primaryTextDark stroke-primaryText" />
@@ -73,7 +102,7 @@ export function SeeMore() {
       {modalState !== "closed" && (
         <div
           ref={menuContainer}
-          className="dark:bg-igBannerBackground absolute bottom-[52px] left-0 z-[60] h-10 w-[266px] overflow-x-hidden overflow-y-hidden rounded-2xl bg-white shadow-[0_4px_12px_rgba(0,0,0,0.15)] max-xl:bottom-0 max-xl:left-[48px]"
+          className="dark:bg-igBannerBackground absolute bottom-[52px] left-0 h-10 w-[266px] overflow-x-hidden overflow-y-hidden rounded-2xl bg-white shadow-[0_4px_12px_rgba(0,0,0,0.15)] max-xl:bottom-0 max-xl:left-[48px]"
         >
           <div
             ref={mainMenu}
