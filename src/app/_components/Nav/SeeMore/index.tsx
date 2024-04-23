@@ -104,13 +104,15 @@ export function SeeMore() {
           <Hamburger className="dark:stroke-primaryTextDark stroke-primaryText" />
         </div>
 
-        <div className="pl-[16px] max-xl:hidden">더 보기</div>
+        <div className="pl-[16px] max-xl:hidden">
+          <p>더 보기</p>
+        </div>
       </div>
 
       {modalState !== "closed" && (
         <div
           ref={menuContainer}
-          className="dark:bg-igBannerBackground absolute bottom-[52px] left-0 h-10 w-[266px] overflow-x-hidden overflow-y-hidden rounded-2xl bg-white shadow-[0_4px_12px_rgba(0,0,0,0.15)] max-xl:bottom-0 max-xl:left-[48px]"
+          className="dark:bg-igBannerBackground absolute bottom-[52px] left-0 z-10 h-10 w-[266px] overflow-x-hidden overflow-y-hidden rounded-2xl bg-white shadow-[0_4px_12px_rgba(0,0,0,0.15)] max-xl:bottom-0 max-xl:left-[48px]"
         >
           <div
             ref={mainMenu}
