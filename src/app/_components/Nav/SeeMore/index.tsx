@@ -112,7 +112,7 @@ export function SeeMore() {
       {modalState !== "closed" && (
         <div
           ref={menuContainer}
-          className="dark:bg-igBannerBackground absolute bottom-[52px] left-0 z-10 h-10 w-[266px] overflow-x-hidden overflow-y-hidden rounded-2xl bg-white shadow-[0_4px_12px_rgba(0,0,0,0.15)] max-xl:bottom-0 max-xl:left-[48px]"
+          className="dark:bg-igBannerBackgroundDark absolute bottom-[52px] left-0 z-10 h-10 w-[266px] overflow-x-hidden overflow-y-hidden rounded-2xl bg-white shadow-[0_4px_12px_rgba(0,0,0,0.15)] max-xl:bottom-0 max-xl:left-[48px]"
         >
           <div
             ref={mainMenu}

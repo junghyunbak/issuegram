@@ -71,12 +71,12 @@ export default async function Issue({
         </div>
       </ShowMobileLayout>
 
-      <div className="mx-auto flex w-full max-w-[815px] border max-md:border-0">
+      <div className="border-igSeparator dark:border-igSeparatorDark mx-auto flex w-full max-w-[815px] border max-md:border-0">
         <HiddenMobileLayout>
           <IssueBanner issue={issue} />
         </HiddenMobileLayout>
 
-        <div className="flex aspect-square w-full flex-col overflow-x-hidden max-md:overflow-x-visible">
+        <div className="border-igSeparator dark:border-igSeparatorDark flex aspect-square w-full flex-col overflow-x-hidden border-l max-md:overflow-x-visible">
           <IssueHeader issue={issue} />
 
           <div className="w-full flex-1 overflow-x-hidden overflow-y-scroll max-md:flex-none max-md:scrollbar-hide">
@@ -115,11 +115,14 @@ export default async function Issue({
         </div>
       </div>
 
-      <div className="mt-[48px] w-full border-b" />
+      <div className="border-igSeparator dark:border-igSeparatorDark mt-[48px] w-full border-b" />
 
       <div className="pt-[42px]">
         <p className="mb-[20px] text-sm font-semibold text-secondaryText">
-          <Link href="/" className="text-secondaryButton hover:opacity-50">
+          <Link
+            href="/"
+            className="dark:text-primaryTextDark text-primaryText hover:opacity-50"
+          >
             {userInfo.login}
           </Link>
           님의 게시글 더보기

@@ -8,8 +8,10 @@
 }
 
 .issue-header-modal-list {
+  @apply bg-igBannerBackground dark:bg-igBannerBackgroundDark;
+
   li {
-    @apply h-[48px] cursor-pointer border-b border-[#dbdbdb] text-[14px];
+    @apply border-igStroke dark:border-igStrokeDark h-[48px] cursor-pointer border-b text-[14px];
 
     &:last-child {
       @apply border-b-0;

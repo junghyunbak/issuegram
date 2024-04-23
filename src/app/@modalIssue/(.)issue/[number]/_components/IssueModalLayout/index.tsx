@@ -15,7 +15,7 @@ export function IssueModalLayout({ children }: IssueModalLayoutProps) {
   return (
     <div
       onClick={handleModalClick}
-      className="issue-modal z-20 flex max-h-[93dvh] overflow-hidden rounded bg-white max-md:flex-col"
+      className="issue-modal z-20 flex max-h-[93dvh] overflow-hidden rounded bg-white dark:bg-black max-md:flex-col"
     >
       {children}
     </div>
