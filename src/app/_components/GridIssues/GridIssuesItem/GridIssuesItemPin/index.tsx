@@ -5,7 +5,7 @@ interface GridIssuesItemPinProps {
 }
 
 export function GridIssuesItemPin({ issue }: GridIssuesItemPinProps) {
-  if (issue.assignee) {
+  if (!issue.assignee) {
     return null;
   }
 
