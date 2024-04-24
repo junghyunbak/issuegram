@@ -98,7 +98,7 @@ export async function Header() {
               <span className="text-xl">{userInfo.login}</span>
             </div>
             <a
-              className="bg-igSecondaryButton dark:bg-igSecondaryButtonDark hover:bg-igSecondaryButtonHover dark:hover:bg-igSecondaryButtonHoverDark flex h-8 w-fit cursor-pointer items-center rounded-lg px-4 text-sm font-semibold leading-[18px]"
+              className="bg-igSecondaryButton dark:bg-igSecondaryButtonDark hover:bg-igSecondaryButtonHover dark:hover:bg-igSecondaryButtonHoverDark flex h-8 w-fit cursor-pointer items-center rounded-lg px-4 text-sm font-semibold leading-[18px] active:opacity-50"
               href={readme.html_url}
               target="_blank"
             >

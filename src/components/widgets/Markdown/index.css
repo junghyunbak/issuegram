@@ -17,7 +17,7 @@
 
   code {
     &:not(pre *) {
-      @apply bg-igBannerBackground dark:bg-igBannerBackgroundDark rounded-lg px-[4px] py-[2px] font-segoe text-xs;
+      @apply rounded-lg bg-igBannerBackground px-[4px] py-[2px] font-segoe text-xs dark:bg-igBannerBackgroundDark;
     }
   }
 
@@ -60,7 +60,7 @@
     &::before {
       content: var(--user-name);
 
-      @apply dark:text-primaryTextDark inline font-segoe font-semibold text-primaryText;
+      @apply inline font-segoe font-semibold text-primaryText dark:text-primaryTextDark;
     }
 
     &::after {
@@ -86,7 +86,7 @@
       &::before {
         content: var(--user-name);
 
-        @apply dark:text-primaryTextDark inline font-segoe font-semibold text-primaryText;
+        @apply inline font-segoe font-semibold text-primaryText dark:text-primaryTextDark;
       }
 
       &::after {
@@ -105,7 +105,7 @@
       &::before {
         content: var(--user-name);
 
-        @apply dark:text-primaryTextDark inline font-segoe font-semibold text-primaryText;
+        @apply inline font-segoe font-semibold text-primaryText dark:text-primaryTextDark;
       }
 
       &::after {
@@ -140,7 +140,7 @@
       &::after {
         content: " ――　답글 보기";
 
-        @apply text-igSecondaryText dark:text-igSecondaryTextDark absolute left-0 ml-[8px] mt-[32px] w-full text-xs font-semibold;
+        @apply absolute left-0 ml-[8px] mt-[32px] w-full text-xs font-semibold text-igSecondaryText active:opacity-50 dark:text-igSecondaryTextDark;
       }
 
       &::-webkit-details-marker {
@@ -157,7 +157,7 @@
   }
 
   blockquote {
-    @apply text-igSecondaryText dark:text-igSecondaryTextDark relative;
+    @apply relative text-igSecondaryText dark:text-igSecondaryTextDark;
 
     &::before {
       content: "quotation ";
@@ -173,7 +173,7 @@
       &::before {
         content: "quotation ";
 
-        @apply dark:text-primaryTextDark font-semibold text-primaryText;
+        @apply font-semibold text-primaryText dark:text-primaryTextDark;
       }
 
       &::after {
@@ -195,7 +195,7 @@
     tr,
     th,
     td {
-      @apply border-igStroke dark:border-igStrokeDark border;
+      @apply border border-igStroke dark:border-igStrokeDark;
     }
 
     th,
@@ -205,7 +205,7 @@
 
     tbody {
       tr:nth-child(even) {
-        @apply dark:bg-igBannerBackgroundDark bg-gray-100;
+        @apply bg-gray-100 dark:bg-igBannerBackgroundDark;
       }
     }
   }

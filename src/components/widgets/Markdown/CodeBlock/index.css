@@ -11,6 +11,10 @@
   }
 
   & > p {
-    @apply text-igSecondaryText dark:text-igSecondaryTextDark mt-[8px] font-segoe text-xs;
+    @apply mt-[8px] font-segoe text-xs text-igSecondaryText dark:text-igSecondaryTextDark;
+
+    & > span {
+      @apply active:opacity-50;
+    }
   }
 }
