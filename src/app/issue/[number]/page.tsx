@@ -120,7 +120,7 @@ export default async function Issue({
       <div className="mt-[48px] w-full border-b border-igSeparator dark:border-igSeparatorDark" />
 
       <div className="pt-[42px]">
-        <p className="mb-[20px] text-sm font-semibold text-secondaryText">
+        <p className="mb-[20px] text-sm font-semibold text-igSecondaryText dark:text-igSecondaryTextDark">
           <Link
             href="/"
             className="text-primaryText hover:opacity-50 dark:text-primaryTextDark"
