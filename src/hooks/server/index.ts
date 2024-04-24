@@ -54,12 +54,12 @@ export const useFetchUserInfo = async (): Promise<User> => {
   return user;
 };
 
-export const useFetchReadme = async () => {
+export const useFetchReadme = async (): Promise<Readme> => {
   const readmePath = config.github.readmePath.startsWith("/")
     ? config.github.readmePath.slice(1)
     : config.github.readmePath;
 
-  const readme = await fetch(
+  const readme = (await fetch(
     `https://api.github.com/repos/${config.github.owner}/${config.github.repo}/readme/${readmePath}`,
     {
       headers: { Authorization: `Bearer ${config.github.accessToken}` },
@@ -67,7 +67,7 @@ export const useFetchReadme = async () => {
         tags: ["intro-readme"],
       },
     },
-  ).then((value) => value.json());
+  ).then((value) => value.json()) as Readme);
 
   return readme;
 };
