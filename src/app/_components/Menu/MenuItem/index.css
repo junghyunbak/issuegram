@@ -1,11 +1,11 @@
 .menu-item {
-  @apply flex h-[52px] items-center justify-center gap-[6px] text-xs active:opacity-50 max-md:flex-1;
+  @apply flex h-[52px] items-center justify-center gap-[6px] active:opacity-50 max-md:flex-1;
 
   svg {
     @apply h-6 md:h-3;
   }
 
   p {
-    @apply max-md:hidden;
+    @apply text-xs max-md:hidden;
   }
 }

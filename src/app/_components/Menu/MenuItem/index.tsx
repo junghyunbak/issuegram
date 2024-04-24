@@ -37,18 +37,24 @@ export function MenuItem({ type, selectType, href }: MenuItemProps) {
 
   const isActive = selectType === type;
 
-  return (
-    <Link
-      href={href}
-      className={`menu-item ${isActive ? "dark:border-primaryTextDark border-t border-primaryText" : ""}`}
-    >
-      <IconSvg
-        className={`${isActive ? "dark:fill-primaryTextDark dark:stroke-primaryTextDark fill-primaryText stroke-primaryText max-md:fill-igPrimaryButton max-md:stroke-igPrimaryButton" : "fill-igSecondaryText dark:fill-igSecondaryTextDark stroke-igSecondaryText dark:stroke-igSecondaryTextDark"}`}
-      />
-
-      <p
-        className={`${isActive ? "dark:text-primaryTextDark font-semibold text-primaryText" : "text-igSecondaryText dark:text-igSecondaryTextDark"}`}
+  if (isActive) {
+    return (
+      <Link
+        href={href}
+        className="menu-item border-t border-primaryText dark:border-primaryTextDark"
       >
+        <IconSvg className="max-md:text-igPrimaryButton" />
+
+        <p className="font-semibold">{itemTitle}</p>
+      </Link>
+    );
+  }
+
+  return (
+    <Link href={href} className="menu-item">
+      <IconSvg className="text-igSecondaryText dark:text-igSecondaryTextDark" />
+
+      <p className="text-igSecondaryText dark:text-igSecondaryTextDark">
         {itemTitle}
       </p>
     </Link>

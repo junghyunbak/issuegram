@@ -1,4 +1,14 @@
-<svg aria-label="저장됨" class="x1lliihq x1n2onr6 x1roi4f4" fill="blue" stroke="blue" role="img" viewBox="0 0 24 24">
-  <polygon fill="none" points="20 21 12 13.44 4 21 4 3 20 3 20 21" stroke-linecap="round" stroke-linejoin="round" stroke-width="2">
-  </polygon>
+<svg
+  fill="currentColor"
+  stroke="currentColor"
+  role="img"
+  viewBox="0 0 24 24"
+>
+  <polygon
+    fill="none"
+    points="20 21 12 13.44 4 21 4 3 20 3 20 21"
+    stroke-linecap="round"
+    stroke-linejoin="round"
+    stroke-width="2"
+  ></polygon>
 </svg>
