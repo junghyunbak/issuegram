@@ -41,7 +41,7 @@ export function MenuItem({ type, selectType, href }: MenuItemProps) {
     return (
       <Link
         href={href}
-        className="menu-item border-t border-primaryText dark:border-primaryTextDark"
+        className="menu-item border-igPrimaryText dark:border-igPrimaryTextDark border-t"
       >
         <IconSvg className="max-md:text-igPrimaryButton" />
 

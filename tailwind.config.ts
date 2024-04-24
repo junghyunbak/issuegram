@@ -13,14 +13,16 @@ const config: Config = {
     },
     extend: {
       colors: {
-        primaryText: "#000000",
-        primaryTextDark: "#F5F5F5",
+        igPrimaryText: "#000000",
+        igPrimaryTextDark: "#F5F5F5",
 
         igSecondaryText: "#737373",
         igSecondaryTextDark: "#A8A8A8",
 
         igLink: "#00376B",
         igLinkDark: "#E0F1FF",
+
+        igPrimaryButton: "#0095F6",
 
         igSecondaryButton: "#EFEFEF",
         igSecondaryButtonDark: "#363636",
@@ -51,12 +53,6 @@ const config: Config = {
         igHighlightBackground: "#efefef",
 
         igTertiaryIcon: "#737373",
-        igPrimaryButton: "#0095F6",
-      },
-      backgroundImage: {
-        "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
-        "gradient-conic":
-          "conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))",
       },
     },
   },
