@@ -101,11 +101,11 @@ export function SeeMore() {
     <div className="relative mb-[12px]">
       <div
         ref={modalToggleButton}
-        className="hover:bg-igHoverOverlay dark:hover:bg-igHoverOverlayDark group flex cursor-pointer rounded-lg p-[12px] active:opacity-50"
+        className="group flex cursor-pointer rounded-lg p-[12px] hover:bg-igHoverOverlay active:opacity-50 dark:hover:bg-igHoverOverlayDark"
         onClick={handleModalToggleButtonClick}
       >
         <div className="scale-100 transition-[transform] duration-300 group-hover:scale-105">
-          <Hamburger className="dark:stroke-primaryTextDark stroke-primaryText" />
+          <Hamburger />
         </div>
 
         <div className="pl-[16px] max-xl:hidden">
@@ -116,7 +116,7 @@ export function SeeMore() {
       {modalState !== "closed" && (
         <div
           ref={menuContainer}
-          className="dark:bg-igBannerBackgroundDark absolute bottom-[52px] left-0 z-10 h-10 w-[266px] overflow-x-hidden overflow-y-hidden rounded-2xl bg-white shadow-[0_4px_12px_rgba(0,0,0,0.15)] max-xl:bottom-0 max-xl:left-[48px]"
+          className="absolute bottom-[52px] left-0 z-10 h-10 w-[266px] overflow-x-hidden overflow-y-hidden rounded-2xl bg-white shadow-[0_4px_12px_rgba(0,0,0,0.15)] max-xl:bottom-0 max-xl:left-[48px] dark:bg-igBannerBackgroundDark"
         >
           <div
             ref={mainMenu}
@@ -127,7 +127,7 @@ export function SeeMore() {
                 setModalState("mode");
               }}
             >
-              <div className="hover:bg-igHoverOverlay dark:hover:bg-igHoverOverlayDark flex cursor-pointer items-center gap-x-[12px] rounded-lg p-[16px] active:opacity-50 ">
+              <div className="flex cursor-pointer items-center gap-x-[12px] rounded-lg p-[16px] hover:bg-igHoverOverlay active:opacity-50 dark:hover:bg-igHoverOverlayDark ">
                 {isDark ? <Moon /> : <Sun />}
                 <p>모드 전환</p>
               </div>
@@ -138,7 +138,7 @@ export function SeeMore() {
             className={`absolute top-0 w-full transition-transform ${modalState === "mode" ? "translate-x-0" : " translate-x-full"}`}
           >
             <div>
-              <div className="border-igStroke dark:border-igStrokeDark flex items-center justify-between border-b p-[16px]">
+              <div className="flex items-center justify-between border-b border-igStroke p-[16px] dark:border-igStrokeDark">
                 <div className="flex items-center gap-x-[12px]">
                   <div
                     className="flex h-[24px] w-[24px] cursor-pointer items-center justify-center"
@@ -146,7 +146,7 @@ export function SeeMore() {
                       setModalState("main");
                     }}
                   >
-                    <ArrowUp className="[&_path]:text-igTertiaryIcon w-[12px] -rotate-90" />
+                    <ArrowUp className="w-[12px] -rotate-90 text-igTertiaryIcon" />
                   </div>
                   <p className="font-semibold">모드 전환</p>
                 </div>
@@ -156,13 +156,13 @@ export function SeeMore() {
 
               <div className="p-[8px]">
                 <div
-                  className="hover:bg-igHoverOverlay dark:hover:bg-igHoverOverlayDark flex cursor-pointer items-center justify-between gap-x-[12px] rounded-lg p-[16px] active:opacity-50"
+                  className="flex cursor-pointer items-center justify-between gap-x-[12px] rounded-lg p-[16px] hover:bg-igHoverOverlay active:opacity-50 dark:hover:bg-igHoverOverlayDark"
                   onClick={handleDarkModeToggleButtonClick}
                 >
                   <p className="text-sm">다크 모드</p>
-                  <div className="bg-igToggleBackgroundOnPrism dark:bg-igToggleBackgroundOnPrismDark relative h-[16px] w-[26px] rounded-2xl">
+                  <div className="relative h-[16px] w-[26px] rounded-2xl bg-igToggleBackgroundOnPrism dark:bg-igToggleBackgroundOnPrismDark">
                     <div
-                      className={`bg-igStrokePrism dark:bg-igStrokePrismDark absolute inset-[2px] h-[12px] w-[12px] rounded-full transition-all duration-200 ${isDark ? "left-[12px]" : ""}`}
+                      className={`absolute inset-[2px] h-[12px] w-[12px] rounded-full bg-igStrokePrism transition-all duration-200 dark:bg-igStrokePrismDark ${isDark ? "left-[12px]" : ""}`}
                     />
                   </div>
                 </div>

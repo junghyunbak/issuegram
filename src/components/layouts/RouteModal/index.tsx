@@ -73,7 +73,7 @@ export function RouteModal({
           className="absolute right-[10px] top-[10px] cursor-pointer p-[8px] active:opacity-50"
           onClick={handleCloseModal}
         >
-          <X />
+          <X className="text-white"/>
         </div>
       )}
     </div>

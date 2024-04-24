@@ -66,9 +66,7 @@ export default async function Issue({
           <Link href="/">
             <ArrowUpLarge className="-rotate-90 transform" />
           </Link>
-          <p className="font-semibold text-primaryText dark:text-primaryTextDark">
-            게시물
-          </p>
+          <p className="font-semibold">게시물</p>
           <div className="w-[24px]" />
         </div>
       </ShowMobileLayout>
@@ -120,14 +118,13 @@ export default async function Issue({
       <div className="mt-[48px] w-full border-b border-igSeparator dark:border-igSeparatorDark" />
 
       <div className="pt-[42px]">
-        <p className="mb-[20px] text-sm font-semibold text-igSecondaryText dark:text-igSecondaryTextDark">
-          <Link
-            href="/"
-            className="text-primaryText hover:opacity-50 dark:text-primaryTextDark"
-          >
+        <p className="mb-[20px] text-sm font-semibold">
+          <Link href="/" className="hover:opacity-50">
             {userInfo.login}
           </Link>
-          님의 게시글 더보기
+          <span className="text-igSecondaryText dark:text-igSecondaryTextDark">
+            님의 게시글 더보기
+          </span>
         </p>
 
         <GridIssues

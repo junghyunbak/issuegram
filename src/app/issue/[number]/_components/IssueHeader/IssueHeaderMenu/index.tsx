@@ -20,10 +20,10 @@ export function IssueHeaderMenu({ issue }: IssueHeaderMenuProps) {
     <>
       <div className="flex items-center justify-center">
         <div
-          className="cursor-pointer p-[8px]"
+          className="group cursor-pointer p-[8px]"
           onClick={() => setIsModalOpen(true)}
         >
-          <Kebab />
+          <Kebab className="group-hover:text-igSecondaryText group-active:opacity-50 dark:group-hover:text-igSecondaryTextDark" />
         </div>
       </div>
 

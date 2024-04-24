@@ -6,10 +6,10 @@
 
     p,
     a {
-      @apply max-md:text-igSecondaryText max-md:dark:text-igSecondaryTextDark text-center [&_*]:max-md:block;
+      @apply text-center max-md:text-igSecondaryText max-md:dark:text-igSecondaryTextDark [&_*]:max-md:block;
 
       span {
-        @apply dark:text-primaryTextDark font-semibold text-primaryText;
+        @apply dark:text-igPrimaryTextDark text-igPrimaryText font-semibold;
       }
     }
 
