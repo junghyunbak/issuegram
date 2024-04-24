@@ -5,18 +5,17 @@ import { getIssueLabels } from "@/utils";
 interface GridIssuesItemThumbnailProps {
   issue: Issues[number];
   issueNumberToThumbnail?: Map<number, ThumbnailData>;
-  lineCount?: 3 | 4;
+  lineCount: 3 | 4;
 }
 
-export function GridIssuesItemThumbnail({
-  lineCount = 3,
-  ...props
-}: GridIssuesItemThumbnailProps) {
+export function GridIssuesItemThumbnail(props: GridIssuesItemThumbnailProps) {
+  const { lineCount } = props;
+
   return (
     <div
       className={`w-full overflow-hidden bg-[#efefef] ${lineCount === 3 ? "aspect-square" : "aspect-[65/100]"}`}
     >
-      <GridIssuesItemThumbnailContent lineCount={lineCount} {...props} />
+      <GridIssuesItemThumbnailContent {...props} />
     </div>
   );
 }

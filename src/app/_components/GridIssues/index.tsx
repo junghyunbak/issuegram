@@ -24,8 +24,9 @@ export async function GridIssues({ issues, lineCount = 3 }: GridIssuesProps) {
     <div className="flex flex-col">
       {issuesRows.map((issuesRow, i) => (
         <GridIssuesRow
-          issuesRow={issuesRow}
           key={i}
+          issuesRow={issuesRow}
+          lineCount={lineCount}
           issueNumberToThumbnail={issueNumberToThumbnail}
         />
       ))}
@@ -36,19 +37,22 @@ export async function GridIssues({ issues, lineCount = 3 }: GridIssuesProps) {
 interface GridIssuesRowProps {
   issuesRow: (Issues[number] | null)[];
   issueNumberToThumbnail?: Map<number, ThumbnailData>;
+  lineCount: 3 | 4;
 }
 
 function GridIssuesRow({
   issuesRow,
   issueNumberToThumbnail,
+  lineCount,
 }: GridIssuesRowProps) {
   return (
     <div className="mb-[4px] flex w-full max-md:mb-[3px]">
       {issuesRow.map((issue, i) => (
         <GridIssuesItem
-          issue={issue}
           key={i}
+          issue={issue}
           issueNumberToThumbnail={issueNumberToThumbnail}
+          lineCount={lineCount}
         />
       ))}
     </div>

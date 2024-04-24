@@ -6,13 +6,13 @@ import { GridIssuesItemPin } from "./GridIssuesItemPin";
 interface GridIssuesItemProps {
   issue: Issues[number] | null;
   issueNumberToThumbnail?: Map<number, ThumbnailData>;
-  lineCount?: 3 | 4;
+  lineCount: 3 | 4;
 }
 
 export function GridIssuesItem({
   issue,
   issueNumberToThumbnail,
-  lineCount = 3,
+  lineCount,
 }: GridIssuesItemProps) {
   if (!issue) {
     return <div className="flex-1" />;
