@@ -16,4 +16,7 @@ declare global {
 
   type Reactions =
     Endpoints["GET /repos/{owner}/{repo}/issues/{issue_number}/reactions"]["response"]["data"];
+
+  type Readme =
+    Endpoints["GET /repos/{owner}/{repo}/readme/{dir}"]["response"]["data"];
 }

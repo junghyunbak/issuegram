@@ -1,12 +1,7 @@
+import config from "@/config";
+
 export function Footer({}) {
-  // [ ]: 데이터를 config 파일로 이동
-  const links: { link: string; value: string }[] = [
-    { link: "https://github.com/junghyunbak", value: "Github" },
-    { link: "https://www.instagram.com/__cxxlxxhxxn/", value: "Instagram" },
-    { link: "https://www.acmicpc.net/user/jeong5728", value: "Baekjoon" },
-    { link: "https://ipwag.tistory.com/", value: "Tistory" },
-    { link: "mailto:jeong5728@gmail.com", value: "Gmail" },
-  ];
+  const links = config.footerLinks;
 
   return (
     <footer className="pb-[52px] max-md:hidden">
@@ -15,7 +10,7 @@ export function Footer({}) {
           return (
             <li className="mx-[8px] mb-[12px] flex" key={i}>
               <a
-                className="text-igSecondaryText dark:text-igSecondaryTextDark text-xs active:opacity-50"
+                className="text-xs text-igSecondaryText active:opacity-50 dark:text-igSecondaryTextDark"
                 href={link}
                 target="_blank"
               >
@@ -27,7 +22,7 @@ export function Footer({}) {
       </ul>
 
       <div className="my-3 flex justify-center">
-        <p className="text-igSecondaryText dark:text-igSecondaryTextDark text-xs">
+        <p className="text-xs text-igSecondaryText dark:text-igSecondaryTextDark">
           © 2024 Issuegram from junghyunbak
         </p>
       </div>

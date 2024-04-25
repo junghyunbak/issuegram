@@ -1,127 +1,60 @@
-import Heart from "@/assets/svgs/heart.svg";
-import Comment from "@/assets/svgs/comment.svg";
-import Link from "next/link";
-import Pin from "@/assets/svgs/pin.svg";
-import randomGradient from "random-gradient";
-
-import { getIssueLabels } from "@/utils";
-import Image from "next/image";
+import { GridIssuesItem } from "./GridIssuesItem";
+import { getIssuesBase64Thumbnail } from "@/utils";
 
 interface GridIssuesProps {
   issues: Issues;
   lineCount?: 3 | 4;
-  issueNumberToThumbnail?: Map<number, ThumbnailData>;
 }
 
-export function GridIssues({
-  issues,
-  lineCount = 3,
-  issueNumberToThumbnail,
-}: GridIssuesProps) {
-  const tmp: (Issues[number] | null)[][] = [];
+export async function GridIssues({ issues, lineCount = 3 }: GridIssuesProps) {
+  const issueNumberToThumbnail = await getIssuesBase64Thumbnail(issues);
+
+  const issuesRows: (Issues[number] | null)[][] = [];
 
   for (let i = 0; i < issues.length; i += lineCount) {
     const slices = issues.slice(i, i + lineCount);
 
-    tmp.push([...slices, ...Array(lineCount - slices.length).fill(null)]);
+    issuesRows.push([
+      ...slices,
+      ...Array(lineCount - slices.length).fill(null),
+    ]);
   }
 
   return (
     <div className="flex flex-col">
-      {tmp.map((arr, i) => {
-        return (
-          <div className="mb-[4px] flex w-full max-md:mb-[3px]" key={i}>
-            {arr.map((issue, j) => {
-              if (!issue) {
-                return <div className="flex-1" key={i} />;
-              }
+      {issuesRows.map((issuesRow, i) => (
+        <GridIssuesRow
+          key={i}
+          issuesRow={issuesRow}
+          lineCount={lineCount}
+          issueNumberToThumbnail={issueNumberToThumbnail}
+        />
+      ))}
+    </div>
+  );
+}
 
-              const issueLabels = getIssueLabels(issue);
+interface GridIssuesRowProps {
+  issuesRow: (Issues[number] | null)[];
+  issueNumberToThumbnail?: Map<number, ThumbnailData>;
+  lineCount: 3 | 4;
+}
 
-              issueLabels.sort((a, b) => (a < b ? -1 : 1));
-
-              const bgGradient = {
-                background: randomGradient(
-                  issueLabels.join("") || issue.title,
-                  "horizontal",
-                ),
-              };
-
-              const thumbnail = issueNumberToThumbnail?.get(issue.number);
-
-              return (
-                <Link
-                  href={`/issue/${issue.number}`}
-                  className="relative mr-[4px] block flex-1 cursor-pointer last:mr-auto max-md:mr-[3px]"
-                  scroll={false}
-                  key={j}
-                >
-                  <div
-                    className={`w-full overflow-hidden bg-[#efefef] ${lineCount === 3 ? "aspect-square" : "aspect-[65/100]"}`}
-                  >
-                    {thumbnail ? (
-                      thumbnail.base64 ? (
-                        <Image
-                          fill
-                          src={thumbnail.url}
-                          alt=""
-                          className="object-cover"
-                          blurDataURL={thumbnail.base64}
-                          placeholder="blur"
-                        />
-                      ) : (
-                        <Image
-                          fill
-                          src={thumbnail.url}
-                          alt=""
-                          className="object-cover"
-                        />
-                      )
-                    ) : (
-                      <div
-                        className="flex size-full items-center justify-center"
-                        style={bgGradient}
-                      >
-                        <p
-                          className={`break-all p-4 ${lineCount === 3 ? "text-xl" : "text-lg"} font-semibold text-white max-md:text-base`}
-                        >
-                          {issue.title}
-                        </p>
-                      </div>
-                    )}
-                  </div>
-
-                  {issue.assignee && (
-                    <div className="absolute right-0 top-0 m-2">
-                      <Pin className="text-white" />
-                    </div>
-                  )}
-
-                  <div className="absolute inset-0 flex items-center justify-center bg-black/[0.3] opacity-0 hover:opacity-100">
-                    <div className="flex gap-x-7 gap-y-2 max-md:flex-col">
-                      {issue.reactions && issue.reactions.total_count !== 0 && (
-                        <div className="flex items-center gap-x-[7px] text-white">
-                          <Heart height="19px" />
-
-                          <p className="text-base font-bold">
-                            {issue.reactions.total_count}
-                          </p>
-                        </div>
-                      )}
-
-                      <div className="flex items-center gap-x-[7px] text-white">
-                        <Comment height="19px" />
-
-                        <p className="text-base font-bold">{issue.comments}</p>
-                      </div>
-                    </div>
-                  </div>
-                </Link>
-              );
-            })}
-          </div>
-        );
-      })}
+function GridIssuesRow({
+  issuesRow,
+  issueNumberToThumbnail,
+  lineCount,
+}: GridIssuesRowProps) {
+  return (
+    <div className="mb-[4px] flex w-full max-md:mb-[3px]">
+      {issuesRow.map((issue, i) => (
+        <GridIssuesItem
+          key={i}
+          issue={issue}
+          issueNumberToThumbnail={issueNumberToThumbnail}
+          lineCount={lineCount}
+        />
+      ))}
     </div>
   );
 }

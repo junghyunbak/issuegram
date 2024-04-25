@@ -1,10 +1,11 @@
-import type { Metadata } from "next";
-import { Footer } from "./_components/Footer";
 import React from "react";
+import type { Metadata } from "next";
 import { Nav } from "./_components/Nav";
-import "./globals.css";
-import "@/assets/fonts/stylesheet.css";
+import { Footer } from "./_components/Footer";
 import { CopiedSnackbar } from "@/components/widgets/CopiedSnackbar";
+import { NavMobile } from "./_components/NavMobile";
+import "@/assets/fonts/stylesheet.css";
+import "./globals.css";
 
 export const metadata: Metadata = {
   title: "Issuegram",
@@ -24,23 +25,33 @@ export default function RootLayout({
 }>) {
   return (
     <html className="size-full">
-      <body className="body-dark flex size-full">
-        <Nav />
-
-        <div className="flex-1 overflow-y-scroll" id="scroll">
+      <body className="body-dark size-full">
+        <NavLayout>
           <div className="mx-auto w-full max-w-[935px] px-[20px] pt-[30px] max-md:p-0">
             <div className="min-h-screen">{children}</div>
-
             <Footer />
           </div>
-        </div>
-
+        </NavLayout>
+        <CopiedSnackbar />
         {modalIssue}
         {modalFollowers}
         {modalFollowing}
-
-        <CopiedSnackbar />
       </body>
     </html>
+  );
+}
+
+interface NavLayoutProps {
+  children: React.ReactNode;
+}
+
+function NavLayout({ children }: NavLayoutProps) {
+  return (
+    <div className="flex size-full max-md:flex-col">
+      <Nav />
+      <NavMobile />
+
+      <div className="flex-1 overflow-y-scroll">{children}</div>
+    </div>
   );
 }
