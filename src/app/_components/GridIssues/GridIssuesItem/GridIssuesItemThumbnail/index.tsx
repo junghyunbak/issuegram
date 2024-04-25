@@ -45,14 +45,16 @@ function GridIssuesItemThumbnailContent({
   }
 
   if (thumbnail.base64) {
-    <Image
-      fill
-      src={thumbnail.url}
-      alt=""
-      className="object-cover"
-      blurDataURL={thumbnail.base64}
-      placeholder="blur"
-    />;
+    return (
+      <Image
+        fill
+        src={thumbnail.url}
+        alt=""
+        className="object-cover"
+        blurDataURL={thumbnail.base64}
+        placeholder="blur"
+      />
+    );
   }
 
   return <Image fill src={thumbnail.url} alt="" className="object-cover" />;

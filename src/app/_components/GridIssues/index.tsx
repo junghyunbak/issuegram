@@ -36,24 +36,15 @@ export async function GridIssues({ issues, lineCount = 3 }: GridIssuesProps) {
 
 interface GridIssuesRowProps {
   issuesRow: (Issues[number] | null)[];
-  issueNumberToThumbnail?: Map<number, ThumbnailData>;
+  issueNumberToThumbnail: Map<number, ThumbnailData>;
   lineCount: 3 | 4;
 }
 
-function GridIssuesRow({
-  issuesRow,
-  issueNumberToThumbnail,
-  lineCount,
-}: GridIssuesRowProps) {
+function GridIssuesRow({ issuesRow, ...props }: GridIssuesRowProps) {
   return (
     <div className="mb-[4px] flex w-full max-md:mb-[3px]">
       {issuesRow.map((issue, i) => (
-        <GridIssuesItem
-          key={i}
-          issue={issue}
-          issueNumberToThumbnail={issueNumberToThumbnail}
-          lineCount={lineCount}
-        />
+        <GridIssuesItem key={i} issue={issue} {...props} />
       ))}
     </div>
   );
