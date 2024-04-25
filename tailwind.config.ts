@@ -50,7 +50,8 @@ const config: Config = {
         igToggleBackgroundOnPrism: "#dbdfe4",
         igToggleBackgroundOnPrismDark: "#F8F9F9",
 
-        igHighlightBackground: "#efefef",
+        igHighlightBackground: "#EFEFEF",
+        igHighlightBackgroundDark: "#262626",
 
         igTertiaryIcon: "#737373",
       },
