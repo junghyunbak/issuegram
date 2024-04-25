@@ -9,29 +9,40 @@ interface GridIssuesItemProps {
   lineCount: 3 | 4;
 }
 
-export function GridIssuesItem({
+export function GridIssuesItem({ lineCount, ...props }: GridIssuesItemProps) {
+  return (
+    <div
+      className={[
+        "relative mr-[4px] flex-1 cursor-pointer last:mr-auto max-md:mr-[3px]",
+        lineCount === 3 ? "aspect-square text-xl" : "aspect-[65/100] text-lg",
+      ].join(" ")}
+    >
+      <GridIssueItemContent {...props} />
+    </div>
+  );
+}
+
+interface GridIssueItemContentProps
+  extends Omit<GridIssuesItemProps, "lineCount"> {}
+
+export function GridIssueItemContent({
   issue,
   issueNumberToThumbnail,
-  lineCount,
-}: GridIssuesItemProps) {
+}: GridIssueItemContentProps) {
   if (!issue) {
-    return <div className="flex-1" />;
+    return null;
   }
+
+  const thumbnail = issueNumberToThumbnail?.get(issue.number);
 
   return (
     <Link
       href={`/issue/${issue.number}`}
-      className="relative mr-[4px] block flex-1 cursor-pointer last:mr-auto max-md:mr-[3px]"
+      className="block size-full"
       scroll={false}
     >
-      <GridIssuesItemThumbnail
-        issue={issue}
-        issueNumberToThumbnail={issueNumberToThumbnail}
-        lineCount={lineCount}
-      />
-
+      <GridIssuesItemThumbnail issue={issue} thumbnail={thumbnail} />
       <GridIssuesItemPin issue={issue} />
-
       <GridIssuesItemCounter issue={issue} />
     </Link>
   );

@@ -4,17 +4,12 @@ import { getIssueLabels } from "@/utils";
 
 interface GridIssuesItemThumbnailProps {
   issue: Issues[number];
-  issueNumberToThumbnail?: Map<number, ThumbnailData>;
-  lineCount: 3 | 4;
+  thumbnail?: ThumbnailData;
 }
 
 export function GridIssuesItemThumbnail(props: GridIssuesItemThumbnailProps) {
-  const { lineCount } = props;
-
   return (
-    <div
-      className={`w-full overflow-hidden bg-[#efefef] ${lineCount === 3 ? "aspect-square" : "aspect-[65/100]"}`}
-    >
+    <div className={"size-full overflow-hidden bg-[#efefef]"}>
       <GridIssuesItemThumbnailContent {...props} />
     </div>
   );
@@ -25,11 +20,8 @@ interface GridIssuesItemThumbnailContentProps
 
 function GridIssuesItemThumbnailContent({
   issue,
-  issueNumberToThumbnail,
-  lineCount,
+  thumbnail,
 }: GridIssuesItemThumbnailContentProps) {
-  const thumbnail = issueNumberToThumbnail?.get(issue.number);
-
   if (!thumbnail) {
     const issueLabels = getIssueLabels(issue).sort((a, b) => (a < b ? -1 : 1));
 
@@ -45,12 +37,7 @@ function GridIssuesItemThumbnailContent({
         className="flex size-full items-center justify-center p-4"
         style={bgGradient}
       >
-        <p
-          className={[
-            "break-all font-semibold text-white max-md:text-base",
-            lineCount === 3 ? "text-xl" : "text-lg",
-          ].join(" ")}
-        >
+        <p className="break-all font-semibold text-white max-md:text-base">
           {issue.title}
         </p>
       </div>
