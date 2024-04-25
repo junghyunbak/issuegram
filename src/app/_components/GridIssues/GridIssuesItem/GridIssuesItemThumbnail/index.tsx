@@ -9,7 +9,7 @@ interface GridIssuesItemThumbnailProps {
 
 export function GridIssuesItemThumbnail(props: GridIssuesItemThumbnailProps) {
   return (
-    <div className={"size-full overflow-hidden bg-[#efefef]"}>
+    <div className={"absolute inset-0 size-full overflow-hidden bg-[#efefef]"}>
       <GridIssuesItemThumbnailContent {...props} />
     </div>
   );

@@ -21,7 +21,7 @@ export async function GridIssues({ issues, lineCount = 3 }: GridIssuesProps) {
   }
 
   return (
-    <div className="flex flex-col">
+    <div className="flex w-full flex-col">
       {issuesRows.map((issuesRow, i) => (
         <GridIssuesRow
           key={i}
