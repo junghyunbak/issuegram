@@ -50,7 +50,7 @@ function GridIssuesItemThumbnailContent({
         fill
         src={thumbnail.url}
         alt=""
-        className="object-cover"
+        style={{ objectFit: "cover" }}
         blurDataURL={thumbnail.base64}
         placeholder="blur"
       />
