@@ -13,7 +13,7 @@ export function GridIssuesItem({ lineCount, ...props }: GridIssuesItemProps) {
   return (
     <div
       className={[
-        "relative mr-[4px] flex-1 last:mr-auto max-md:mr-[3px]",
+        "relative mr-[4px] flex-1 overflow-hidden last:mr-auto max-md:mr-[3pl]",
         lineCount === 3 ? "aspect-square text-xl" : "aspect-[65/100] text-lg",
       ].join(" ")}
     >
