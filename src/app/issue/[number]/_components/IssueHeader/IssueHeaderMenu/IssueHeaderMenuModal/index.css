@@ -1,5 +1,5 @@
 .issue-header-modal {
-  @apply fixed inset-0 z-50 flex items-center justify-center;
+  @apply fixed inset-0 z-40 flex items-center justify-center;
 
   animation-name: fade-out-and-scale-down;
   animation-timing-function: ease-out;
@@ -11,7 +11,7 @@
   @apply bg-igBannerBackground dark:bg-igBannerBackgroundDark;
 
   li {
-    @apply border-igStroke dark:border-igStrokeDark h-[48px] cursor-pointer border-b text-[14px];
+    @apply h-[48px] cursor-pointer border-b border-igStroke text-[14px] dark:border-igStrokeDark;
 
     &:last-child {
       @apply border-b-0;
