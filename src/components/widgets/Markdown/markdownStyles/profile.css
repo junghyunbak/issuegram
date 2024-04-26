@@ -23,6 +23,35 @@
     }
   }
 
+  blockquote {
+    @apply relative mb-[46px] ml-[46px] mt-[5px];
+
+    blockquote {
+      @apply mt-[23px];
+    }
+
+    &::before {
+      content: "";
+    }
+
+    & > *:nth-child(1) {
+      &::before {
+        @apply font-semibold text-igPrimaryText dark:text-igPrimaryTextDark;
+
+        content: "quotation ";
+      }
+    }
+
+    &::after {
+      content: "";
+
+      background-image: url("./user.jpg");
+      background-size: cover;
+
+      @apply absolute -left-[46px] top-0 inline-block h-[32px] w-[32px] rounded-full;
+    }
+  }
+
   details:not(li details) {
     & > *:not(summary) {
       @apply relative mb-[46px] ml-[46px] mt-[5px];
