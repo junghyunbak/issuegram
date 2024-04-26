@@ -10,6 +10,7 @@
 @import "./markdownStyles/blockquote.css";
 @import "./markdownStyles/details.css";
 @import "./markdownStyles/profile.css";
+@import "./markdownStyles/table.css";
 
 .markdown {
   @apply relative w-full text-sm;
