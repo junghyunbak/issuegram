@@ -1,0 +1,10 @@
+.markdown {
+  ol,
+  ul {
+    @apply list-[revert];
+  }
+
+  li {
+    @apply ml-7 mt-1;
+  }
+}

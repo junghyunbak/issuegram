@@ -1,0 +1,7 @@
+.markdown {
+  code {
+    &:not(pre *) {
+      @apply rounded-lg bg-igHighlightBackground px-[4px] py-[2px] font-segoe text-xs dark:bg-igHighlightBackgroundDark;
+    }
+  }
+}

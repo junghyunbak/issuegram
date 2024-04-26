@@ -1,0 +1,5 @@
+.markdown {
+  iframe {
+    @apply w-full;
+  }
+}

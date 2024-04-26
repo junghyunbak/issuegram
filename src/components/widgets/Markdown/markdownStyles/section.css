@@ -1,0 +1,8 @@
+/* footnotes 관련 스타일 */
+.markdown {
+  section {
+    h2 {
+      @apply inline;
+    }
+  }
+}

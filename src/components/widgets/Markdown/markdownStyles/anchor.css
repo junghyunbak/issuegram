@@ -1,0 +1,21 @@
+.markdown {
+  a {
+    @apply text-igLink dark:text-igLinkDark;
+
+    &::before {
+      content: "@";
+    }
+
+    &[href^="#user-content-fn-"] {
+      @apply before:content-["["] after:content-["]"];
+    }
+
+    &[href^="#user-content-fnref-"] {
+      @apply no-underline;
+
+      &::before {
+        content: "";
+      }
+    }
+  }
+}

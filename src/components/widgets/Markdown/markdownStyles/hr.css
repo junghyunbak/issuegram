@@ -1,0 +1,5 @@
+.markdown {
+  hr {
+    @apply border-igSeparator dark:border-igSeparatorDark;
+  }
+}

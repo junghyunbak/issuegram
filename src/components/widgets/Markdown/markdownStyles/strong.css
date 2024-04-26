@@ -1,0 +1,5 @@
+.markdown {
+  strong {
+    @apply font-semibold;
+  }
+}

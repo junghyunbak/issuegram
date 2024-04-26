@@ -1,0 +1,20 @@
+.markdown {
+  & > * {
+    @apply relative mb-[46px] mr-[16px] mt-[5px];
+
+    &::before {
+      content: var(--user-name);
+
+      @apply inline font-segoe font-semibold text-igPrimaryText dark:text-igPrimaryTextDark;
+    }
+
+    &::after {
+      content: "";
+
+      background-image: var(--profile-image);
+      background-size: cover;
+
+      @apply absolute -left-[46px] top-0 inline-block h-[32px] w-[32px] rounded-full;
+    }
+  }
+}

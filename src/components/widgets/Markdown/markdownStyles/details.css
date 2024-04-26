@@ -1,0 +1,77 @@
+.markdown {
+  details {
+    @apply mb-0;
+  }
+
+  > details {
+    @apply relative;
+
+    & > *:not(summary) {
+      @apply relative mb-[46px] ml-[46px] mt-[5px];
+
+      &::before {
+        content: var(--user-name);
+
+        @apply inline font-segoe font-semibold text-igPrimaryText dark:text-igPrimaryTextDark;
+      }
+
+      &::after {
+        content: "";
+
+        background-image: var(--profile-image);
+        background-size: cover;
+
+        @apply absolute -left-[46px] top-0 inline-block h-[32px] w-[32px] rounded-full;
+      }
+    }
+
+    & > details > *:not(summary) {
+      @apply relative mb-[46px] ml-[46px] mt-[5px];
+
+      &::before {
+        content: var(--user-name);
+
+        @apply inline font-segoe font-semibold text-igPrimaryText dark:text-igPrimaryTextDark;
+      }
+
+      &::after {
+        content: "";
+
+        background-image: var(--profile-image);
+        background-size: cover;
+
+        @apply absolute -left-[46px] top-0 inline-block h-[32px] w-[32px] rounded-full;
+      }
+    }
+
+    &[open] {
+      & > summary {
+        &::after {
+          content: " ――　답글 숨기기";
+        }
+      }
+
+      & > details[open] {
+        & > summary {
+          &::after {
+            content: " ――　답글 숨기기";
+          }
+        }
+      }
+    }
+
+    summary {
+      @apply mb-[48px] inline cursor-pointer list-none;
+
+      &::after {
+        content: " ――　답글 보기";
+
+        @apply absolute left-0 ml-[8px] mt-[32px] w-full text-xs font-semibold text-igSecondaryText active:opacity-50 dark:text-igSecondaryTextDark;
+      }
+
+      &::-webkit-details-marker {
+        @apply hidden;
+      }
+    }
+  }
+}

@@ -1,0 +1,5 @@
+.markdown {
+  img {
+    @apply my-2 rounded-md;
+  }
+}

@@ -5,16 +5,14 @@ import remarkFrontmatter from "remark-frontmatter";
 import rehypeRaw from "rehype-raw";
 import rehypeSlug from "rehype-slug";
 import rehypeKatex from "rehype-katex";
-
-import "./index.css";
 import Link from "next/link";
 import { CodeBlock } from "./CodeBlock";
+import "./index.css";
 
 interface MarkdownProps {
   markdown: string;
 }
 
-// [ ]: markdown css 파일 CodeBlock 폴더로 이동
 export function Markdown({ markdown }: MarkdownProps) {
   return (
     <div className="markdown">

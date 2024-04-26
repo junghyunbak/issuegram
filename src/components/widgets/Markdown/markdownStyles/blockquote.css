@@ -1,0 +1,33 @@
+/* // [ ]: background-image url 절대경로 설정  */
+.markdown {
+  blockquote {
+    @apply relative text-igSecondaryText dark:text-igSecondaryTextDark;
+
+    &::before {
+      content: "quotation ";
+    }
+
+    &::after {
+      background-image: url("./user.jpg");
+    }
+
+    blockquote {
+      @apply mb-[46px] ml-[46px] mt-[12px];
+
+      &::before {
+        content: "quotation ";
+
+        @apply font-semibold text-igPrimaryText dark:text-igPrimaryTextDark;
+      }
+
+      &::after {
+        content: "";
+
+        background-image: url("./user.jpg");
+        background-size: cover;
+
+        @apply absolute -left-[46px] top-0 inline-block h-[32px] w-[32px] rounded-full;
+      }
+    }
+  }
+}
