@@ -87,7 +87,10 @@ export default async function Issue({
             </ShowMobileLayout>
 
             <CommentListLayout>
-              <Markdown markdown={issue.body || ""} enableFragmentLink={false}/>
+              <Markdown
+                markdown={issue.body || ""}
+                enableFragmentLink={false}
+              />
 
               {comments.map((comment) => {
                 return (
@@ -125,7 +128,10 @@ export default async function Issue({
           </span>
         </p>
 
-        <GridIssues issues={filteredIssues.slice(startIdx, startIdx + 6)} />
+        <GridIssues
+          issues={filteredIssues.slice(startIdx, startIdx + 6)}
+          linking={false}
+        />
       </div>
     </div>
   );
