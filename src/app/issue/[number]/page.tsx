@@ -11,8 +11,8 @@ import { ShowMobileLayout } from "@/components/layouts/ShowMobileLayout";
 import { HiddenMobileLayout } from "@/components/layouts/HiddenMobileLayout";
 import { filterIssues, getIssueLabelType } from "@/utils";
 import { Metadata } from "next";
-import ArrowUpLarge from "@/assets/svgs/arrow-up-large.svg";
 import React from "react";
+import { IssuePageMobileNav } from "./_components/IssuePageMobileNav";
 
 export async function generateStaticParams() {
   const issues = await server.useFetchIssues();
@@ -60,13 +60,7 @@ export default async function Issue({
   return (
     <div>
       <ShowMobileLayout>
-        <div className="flex h-11 w-full items-center justify-between border-b border-igElevatedSeparator px-[16px] dark:border-igElevatedSeparatorDark">
-          <Link href="/">
-            <ArrowUpLarge className="-rotate-90 transform" />
-          </Link>
-          <p className="font-semibold">게시물</p>
-          <div className="w-[24px]" />
-        </div>
+        <IssuePageMobileNav />
       </ShowMobileLayout>
 
       <div className="mx-auto flex w-full max-w-[815px] border border-igSeparator max-md:border-0 dark:border-igSeparatorDark">
