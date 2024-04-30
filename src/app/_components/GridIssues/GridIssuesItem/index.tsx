@@ -1,15 +1,48 @@
-import Link from "next/link";
 import { GridIssuesItemCounter } from "./GridIssuesItemCounter";
 import { GridIssuesItemThumbnail } from "./GridIssuesItemThumbnail";
 import { GridIssuesItemPin } from "./GridIssuesItemPin";
+import React from "react";
+import { GridIssuesItemClickLayout } from "./GridIssuesItemClickLayout";
 
 interface GridIssuesItemProps {
   issue: Issues[number] | null;
   issueNumberToThumbnail: Map<number, ThumbnailData>;
   lineCount: 3 | 4;
+  linking: boolean;
 }
 
-export function GridIssuesItem({ lineCount, ...props }: GridIssuesItemProps) {
+export function GridIssuesItem({
+  lineCount,
+  issueNumberToThumbnail,
+  issue,
+  linking,
+}: GridIssuesItemProps) {
+  return (
+    <GridIssuesItemLayout lineCount={lineCount}>
+      {issue && (
+        <GridIssuesItemClickLayout
+          href={`/issue/${issue.number}`}
+          linking={linking}
+        >
+          <GridIssuesItemThumbnail
+            issue={issue}
+            thumbnail={issueNumberToThumbnail.get(issue.number)}
+          />
+          <GridIssuesItemPin issue={issue} />
+          <GridIssuesItemCounter issue={issue} />
+        </GridIssuesItemClickLayout>
+      )}
+    </GridIssuesItemLayout>
+  );
+}
+
+function GridIssuesItemLayout({
+  children,
+  lineCount,
+}: {
+  children: React.ReactNode;
+  lineCount: 3 | 4;
+}) {
   return (
     <div className="mr-[4px] flex-1 last:mr-auto max-md:mr-[3px]">
       <div
@@ -18,34 +51,8 @@ export function GridIssuesItem({ lineCount, ...props }: GridIssuesItemProps) {
           lineCount === 3 ? "pt-[100%] text-xl" : "pt-[153%] text-lg",
         ].join(" ")}
       >
-        <GridIssueItemContent {...props} />
+        {children}
       </div>
     </div>
-  );
-}
-
-interface GridIssueItemContentProps
-  extends Omit<GridIssuesItemProps, "lineCount"> {}
-
-export function GridIssueItemContent({
-  issue,
-  issueNumberToThumbnail,
-}: GridIssueItemContentProps) {
-  if (!issue) {
-    return null;
-  }
-
-  const thumbnail = issueNumberToThumbnail?.get(issue.number);
-
-  return (
-    <Link
-      href={`/issue/${issue.number}`}
-      className="block size-full"
-      scroll={false}
-    >
-      <GridIssuesItemThumbnail issue={issue} thumbnail={thumbnail} />
-      <GridIssuesItemPin issue={issue} />
-      <GridIssuesItemCounter issue={issue} />
-    </Link>
   );
 }

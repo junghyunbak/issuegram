@@ -10,10 +10,20 @@ import { CodeBlock } from "./CodeBlock";
 import "./index.css";
 
 interface MarkdownProps {
+  /**
+   * markdown 텍스트
+   */
   markdown: string;
+
+  /**
+   * fragment anchor 클릭 시 history를 추가 여부를 나타내는 속성
+   * 
+   * default: true
+   */
+  enableFragmentLink?: boolean;
 }
 
-export function Markdown({ markdown }: MarkdownProps) {
+export function Markdown({ markdown, enableFragmentLink = true }: MarkdownProps) {
   return (
     <div className="markdown">
       <ReactMarkdown
@@ -30,7 +40,11 @@ export function Markdown({ markdown }: MarkdownProps) {
             }
 
             if (href.startsWith("#")) {
-              return <Link {...props} href={href} replace />;
+              if(enableFragmentLink) {
+                return <Link {...props} href={href} replace />;
+              } else {
+                return <a {...props} href={href}/>
+              }
             }
 
             return <a href={href} {...props} target="_blank" />;
