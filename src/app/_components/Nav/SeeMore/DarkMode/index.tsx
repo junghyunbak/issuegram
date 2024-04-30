@@ -4,6 +4,7 @@ import { type ModalState } from "..";
 import Sun from "@/assets/svgs/sun.svg";
 import Moon from "@/assets/svgs/moon.svg";
 import useStore from "@/store";
+const cookies = require("browser-cookies");
 
 interface DarkModeProps {
   modalState: ModalState;
@@ -21,13 +22,13 @@ const DarkMode = forwardRef<HTMLDivElement | null, DarkModeProps>(
       if (!isDark) {
         setIsDark(true);
 
-        window.localStorage.setItem("theme", "dark");
+        cookies.set("theme", "dark");
 
         document.documentElement.classList.add("dark");
       } else {
         setIsDark(false);
 
-        window.localStorage.removeItem("theme");
+        cookies.erase("theme");
 
         document.documentElement.classList.remove("dark");
       }

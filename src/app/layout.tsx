@@ -3,6 +3,7 @@ import type { Metadata } from "next";
 import { Nav } from "./_components/Nav";
 import { Footer } from "./_components/Footer";
 import { CopiedSnackbar } from "@/components/widgets/CopiedSnackbar";
+import { cookies } from "next/headers";
 import "@/assets/fonts/stylesheet.css";
 import "./globals.css";
 
@@ -22,8 +23,12 @@ export default function RootLayout({
   modalFollowers: React.ReactNode;
   modalFollowing: React.ReactNode;
 }>) {
+  const cookieStore = cookies();
+
   return (
-    <html className="size-full">
+    <html
+      className={`size-full ${cookieStore.get("theme")?.value === "dark" ? "dark" : ""}`}
+    >
       <body className="body-dark size-full">
         <div className="flex size-full">
           <Nav />

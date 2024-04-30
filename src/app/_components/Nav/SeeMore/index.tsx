@@ -69,17 +69,6 @@ export function SeeMore() {
     };
   }, []);
 
-  /**
-   * localstorage에 저장된 테마에 따라 다크모드 설정
-   */
-  useEffect(() => {
-    if (window.localStorage.getItem("theme") === "dark") {
-      setIsDark(true);
-
-      document.documentElement.classList.add("dark");
-    }
-  }, []);
-
   const handleModalToggleButtonClick = () => {
     setModalState(modalState === "closed" ? "main" : "closed");
   };
