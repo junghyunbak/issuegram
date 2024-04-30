@@ -53,6 +53,15 @@
   }
 
   details:not(li details) {
+    @apply relative;
+
+    /*
+     * br 태그가 들어올 경우 적용되지 않는 이슈 존재 (Chrome) 
+     */
+    & > *:nth-child(2) {
+      @apply mt-[46px];
+    }
+
     & > *:not(summary) {
       @apply relative mb-[46px] ml-[46px] mt-[5px];
 

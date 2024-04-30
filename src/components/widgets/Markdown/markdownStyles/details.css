@@ -1,9 +1,7 @@
 .markdown {
   details {
-    @apply relative mb-0;
-
     summary {
-      @apply mb-[48px] inline cursor-pointer list-none;
+      @apply inline cursor-pointer list-none;
 
       &::after {
         content: " ――　답글 보기";
