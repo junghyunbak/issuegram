@@ -1,5 +1,5 @@
 .markdown {
-  details {
+  details:not(li details) {
     summary {
       @apply inline cursor-pointer list-none;
 
