@@ -1,5 +1,5 @@
+import { TextThumbnail } from "@/components/widgets/TextThumbnail";
 import { getIssueLabels, getIssueThumbnail } from "@/utils";
-import uniqolor from "uniqolor";
 
 interface IssueBannerProps {
   issue: Issues[number];
@@ -25,18 +25,11 @@ export function IssueBanner({ issue }: IssueBannerProps) {
           <img className="absolute object-contain" src={thumbnail} />
         </div>
       ) : (
-        <div
-          className="flex size-full items-center justify-center p-4 max-md:p-3"
-          style={{
-            backgroundColor: uniqolor(issueLabels.join("")).color,
-          }}
-        >
-          <div className="flex size-full items-center justify-center rounded-md bg-white p-2">
-            <p className="font-euljiro break-all text-4xl text-black">
-              {title}
-            </p>
-          </div>
-        </div>
+        <TextThumbnail
+          text={title}
+          textForColor={issueLabels.join("")}
+          type="banner"
+        />
       )}
     </div>
   );
