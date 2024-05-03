@@ -1,5 +1,5 @@
-import randomGradient from "random-gradient";
 import { getIssueLabels, getIssueThumbnail } from "@/utils";
+import uniqolor from "uniqolor";
 
 interface IssueBannerProps {
   issue: Issues[number];
@@ -11,13 +11,6 @@ export function IssueBanner({ issue }: IssueBannerProps) {
   const issueLabels = getIssueLabels(issue);
 
   issueLabels.sort((a, b) => (a < b ? -1 : 1));
-
-  const bgGradient = {
-    background: randomGradient(
-      issueLabels.join("") || issue.title,
-      "horizontal",
-    ),
-  };
 
   const thumbnail = getIssueThumbnail(issue);
 
@@ -33,10 +26,16 @@ export function IssueBanner({ issue }: IssueBannerProps) {
         </div>
       ) : (
         <div
-          className="flex size-full items-center justify-center p-4"
-          style={bgGradient}
+          className="flex size-full items-center justify-center p-4 max-md:p-3"
+          style={{
+            backgroundColor: uniqolor(issueLabels.join("")).color,
+          }}
         >
-          <p className="text-2xl font-bold text-white">{title}</p>
+          <div className="flex size-full items-center justify-center rounded-md bg-white p-2">
+            <p className="font-euljiro break-all text-4xl text-black">
+              {title}
+            </p>
+          </div>
         </div>
       )}
     </div>

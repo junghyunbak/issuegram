@@ -1,6 +1,6 @@
 import Image from "next/image";
-import randomGradient from "random-gradient";
 import { getIssueLabels } from "@/utils";
+import uniqolor from "uniqolor";
 
 interface GridIssuesItemThumbnailProps {
   issue: Issues[number];
@@ -25,21 +25,18 @@ function GridIssuesItemThumbnailContent({
   if (!thumbnail) {
     const issueLabels = getIssueLabels(issue).sort((a, b) => (a < b ? -1 : 1));
 
-    const bgGradient = {
-      background: randomGradient(
-        issueLabels.join("") || issue.title,
-        "horizontal",
-      ),
-    };
-
     return (
       <div
-        className="flex size-full items-center justify-center p-4"
-        style={bgGradient}
+        className="flex size-full items-center justify-center p-3 max-md:p-2"
+        style={{
+          backgroundColor: uniqolor(issueLabels.join("")).color,
+        }}
       >
-        <p className="break-all font-semibold text-white max-md:text-base">
-          {issue.title}
-        </p>
+        <div className="flex size-full items-center justify-center rounded-md bg-white p-2">
+          <p className="font-euljiro break-all text-3xl text-black max-md:text-xl">
+            {issue.title}
+          </p>
+        </div>
       </div>
     );
   }
