@@ -37,3 +37,8 @@
   font-family: "Segoe UI Emoji";
   src: url("./segoeuiemj.ttf") format("truetype");
 }
+
+@font-face {
+  font-family: "euljiro";
+  src: url("./euljiro.ttf") format("truetype");
+}
