@@ -10,6 +10,7 @@ const config: Config = {
   theme: {
     fontFamily: {
       segoe: "Segoe UI",
+      euljiro: "euljiro",
     },
     extend: {
       colors: {
