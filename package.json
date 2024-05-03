@@ -38,6 +38,7 @@
     "tailwind-scrollbar-hide": "^1.1.7",
     "toml": "^3.0.0",
     "unified": "^11.0.4",
+    "uniqolor": "^1.1.1",
     "utf8": "^3.0.0",
     "zustand": "^4.5.2"
   },
