@@ -3,9 +3,10 @@ import { getIssueLabels, getIssueThumbnail } from "@/utils";
 
 interface IssueBannerProps {
   issue: Issues[number];
+  isModal?: boolean;
 }
 
-export function IssueBanner({ issue }: IssueBannerProps) {
+export function IssueBanner({ issue, isModal = true }: IssueBannerProps) {
   const { title } = issue;
 
   const issueLabels = getIssueLabels(issue);
@@ -16,7 +17,10 @@ export function IssueBanner({ issue }: IssueBannerProps) {
 
   return (
     <div
-      className={`flex h-full w-[300px] overflow-hidden max-md:aspect-square max-md:w-full`}
+      className={[
+        "flex h-full overflow-hidden max-md:aspect-square max-md:w-full",
+        isModal ? "w-[300px]" : "w-[260px]",
+      ].join(" ")}
     >
       {typeof thumbnail === "string" ? (
         <div className="relative flex size-full items-center justify-center">
