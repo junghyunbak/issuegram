@@ -1,5 +1,4 @@
 import { GridIssuesItem } from "./GridIssuesItem";
-import { getIssuesBase64Thumbnail } from "@/utils";
 
 interface GridIssuesProps {
   issues: Issues;
@@ -12,8 +11,6 @@ export async function GridIssues({
   lineCount = 3,
   linking = true,
 }: GridIssuesProps) {
-  const issueNumberToThumbnail = await getIssuesBase64Thumbnail(issues);
-
   const issuesRows: (Issues[number] | null)[][] = [];
 
   for (let i = 0; i < issues.length; i += lineCount) {
@@ -35,7 +32,6 @@ export async function GridIssues({
               issue={issue}
               linking={linking}
               lineCount={lineCount}
-              issueNumberToThumbnail={issueNumberToThumbnail}
             />
           ))}
         </div>

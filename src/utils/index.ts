@@ -3,7 +3,6 @@ import remarkParse from "remark-parse";
 import remarkExtractFrontmatter from "remark-extract-frontmatter";
 import remarkStringify from "remark-stringify";
 import { unified } from "unified";
-import sharp from "sharp";
 const toml = require("toml").parse;
 
 const labelTypes: { [P in LabelType]: P } = {
@@ -87,48 +86,4 @@ export const getIssueThumbnail = (issue: Issues[number]): string | null => {
   }
 
   return null;
-};
-
-export const getBase64Image = async (
-  imageUrl: string,
-): Promise<Base64Image | undefined> => {
-  try {
-    const response = await fetch(imageUrl);
-
-    const arrayBuffer = await response.arrayBuffer();
-
-    const image = sharp(Buffer.from(arrayBuffer));
-
-    const previewImage = await image
-      .toFormat("jpeg")
-      .jpeg({ quality: 1 })
-      .toBuffer({ resolveWithObject: true });
-
-    const base64 = previewImage.data.toString("base64");
-
-    return `data:image/jpeg;base64,${base64}`;
-  } catch (e) {
-    return undefined;
-  }
-};
-
-export const getIssuesBase64Thumbnail = async (
-  issues: Issues,
-): Promise<Map<number, ThumbnailData>> => {
-  const ret: Map<number, ThumbnailData> = new Map();
-
-  for (const issue of issues) {
-    const thumbnail = getIssueThumbnail(issue);
-
-    if (!thumbnail) {
-      continue;
-    }
-
-    ret.set(issue.number, {
-      url: thumbnail,
-      base64: await getBase64Image(thumbnail),
-    });
-  }
-
-  return ret;
 };
