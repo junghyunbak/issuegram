@@ -1,9 +1,20 @@
 import { GridIssuesItem } from "./GridIssuesItem";
-import { getIssuesBase64Thumbnail } from "@/utils";
 
 interface GridIssuesProps {
   issues: Issues;
+
+  /**
+   * default: 3
+   *
+   * 한 행(row)에 들어갈 피드 개수
+   */
   lineCount?: 3 | 4;
+
+  /**
+   * default: true
+   *
+   * next router를 사용하여 페이지 이동할 지 여부
+   */
   linking?: boolean;
 }
 
@@ -12,8 +23,6 @@ export async function GridIssues({
   lineCount = 3,
   linking = true,
 }: GridIssuesProps) {
-  const issueNumberToThumbnail = await getIssuesBase64Thumbnail(issues);
-
   const issuesRows: (Issues[number] | null)[][] = [];
 
   for (let i = 0; i < issues.length; i += lineCount) {
@@ -35,7 +44,6 @@ export async function GridIssues({
               issue={issue}
               linking={linking}
               lineCount={lineCount}
-              issueNumberToThumbnail={issueNumberToThumbnail}
             />
           ))}
         </div>

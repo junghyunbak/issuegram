@@ -3,7 +3,7 @@
 exports[`썸네일 주소가 있을경우, img 태그를 렌더링한다. 1`] = `
 <div>
   <div
-    class="flex h-full w-[300px] overflow-hidden max-md:aspect-square max-md:w-full"
+    class="flex h-full overflow-hidden max-md:aspect-square max-md:w-full w-[300px]"
   >
     <div
       class="relative flex size-full items-center justify-center"

@@ -1,10 +1,9 @@
 import Image from "next/image";
-import { getIssueLabels } from "@/utils";
+import { getIssueLabels, getIssueThumbnail } from "@/utils";
 import { TextThumbnail } from "@/components/widgets/TextThumbnail";
 
 interface GridIssuesItemThumbnailProps {
   issue: Issues[number];
-  thumbnail?: ThumbnailData;
 }
 
 export function GridIssuesItemThumbnail(props: GridIssuesItemThumbnailProps) {
@@ -20,9 +19,10 @@ interface GridIssuesItemThumbnailContentProps
 
 function GridIssuesItemThumbnailContent({
   issue,
-  thumbnail,
 }: GridIssuesItemThumbnailContentProps) {
-  if (!thumbnail) {
+  const thumbnailUrl = getIssueThumbnail(issue);
+
+  if (!thumbnailUrl) {
     const issueLabels = getIssueLabels(issue).sort((a, b) => (a < b ? -1 : 1));
 
     return (
@@ -30,18 +30,5 @@ function GridIssuesItemThumbnailContent({
     );
   }
 
-  if (thumbnail.base64) {
-    return (
-      <Image
-        fill
-        src={thumbnail.url}
-        alt=""
-        style={{ objectFit: "cover" }}
-        blurDataURL={thumbnail.base64}
-        placeholder="blur"
-      />
-    );
-  }
-
-  return <Image fill src={thumbnail.url} alt="" className="object-cover" />;
+  return <Image fill src={thumbnailUrl} alt="" className="object-cover" />;
 }
