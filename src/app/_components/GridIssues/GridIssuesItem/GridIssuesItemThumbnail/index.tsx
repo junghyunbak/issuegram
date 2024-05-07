@@ -1,6 +1,6 @@
 import Image from "next/image";
 import { getIssueLabels } from "@/utils";
-import uniqolor from "uniqolor";
+import { TextThumbnail } from "@/components/widgets/TextThumbnail";
 
 interface GridIssuesItemThumbnailProps {
   issue: Issues[number];
@@ -26,18 +26,7 @@ function GridIssuesItemThumbnailContent({
     const issueLabels = getIssueLabels(issue).sort((a, b) => (a < b ? -1 : 1));
 
     return (
-      <div
-        className="flex size-full items-center justify-center p-3 max-md:p-2"
-        style={{
-          backgroundColor: uniqolor(issueLabels.join("")).color,
-        }}
-      >
-        <div className="flex size-full items-center justify-center rounded-md bg-white p-2">
-          <p className="font-euljiro break-all text-3xl text-black max-md:text-xl">
-            {issue.title}
-          </p>
-        </div>
-      </div>
+      <TextThumbnail text={issue.title} textForColor={issueLabels.join("")} />
     );
   }
 

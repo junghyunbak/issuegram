@@ -65,7 +65,7 @@ export default async function Issue({
 
       <div className="mx-auto flex w-full max-w-[815px] border border-igSeparator max-md:border-0 dark:border-igSeparatorDark">
         <HiddenMobileLayout>
-          <IssueBanner issue={issue} />
+          <IssueBanner issue={issue} isModal={false} />
         </HiddenMobileLayout>
 
         <div className="flex aspect-square w-full flex-col overflow-x-hidden border-l border-igSeparator max-md:overflow-x-visible max-md:border-0 dark:border-igSeparatorDark">
