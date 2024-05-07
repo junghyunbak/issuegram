@@ -6,14 +6,12 @@ import { GridIssuesItemClickLayout } from "./GridIssuesItemClickLayout";
 
 interface GridIssuesItemProps {
   issue: Issues[number] | null;
-  issueNumberToThumbnail: Map<number, ThumbnailData>;
   lineCount: 3 | 4;
   linking: boolean;
 }
 
 export function GridIssuesItem({
   lineCount,
-  issueNumberToThumbnail,
   issue,
   linking,
 }: GridIssuesItemProps) {
@@ -24,10 +22,7 @@ export function GridIssuesItem({
           href={`/issue/${issue.number}`}
           linking={linking}
         >
-          <GridIssuesItemThumbnail
-            issue={issue}
-            thumbnail={issueNumberToThumbnail.get(issue.number)}
-          />
+          <GridIssuesItemThumbnail issue={issue} />
           <GridIssuesItemPin issue={issue} />
           <GridIssuesItemCounter issue={issue} />
         </GridIssuesItemClickLayout>
