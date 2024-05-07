@@ -2,7 +2,19 @@ import { GridIssuesItem } from "./GridIssuesItem";
 
 interface GridIssuesProps {
   issues: Issues;
+
+  /**
+   * default: 3
+   *
+   * 한 행(row)에 들어갈 피드 개수
+   */
   lineCount?: 3 | 4;
+
+  /**
+   * default: true
+   *
+   * next router를 사용하여 페이지 이동할 지 여부
+   */
   linking?: boolean;
 }
 
