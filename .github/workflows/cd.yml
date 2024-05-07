@@ -39,9 +39,6 @@ jobs:
       - name: 📦패키지 설치
         run: yarn install
 
-      - name: 🚧yarn v1 환경에서 sharp 패키지 설치 이슈를 위한 작업
-        run: yarn add sharp --ignore-engines
-
       - name: 🌳환경변수 설정
         run: echo "${{ secrets.PROD_ENV_PROPERTIES }}" > ./.env
 
