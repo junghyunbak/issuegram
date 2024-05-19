@@ -21,7 +21,7 @@ const config: Config = {
         igSecondaryTextDark: "#A8A8A8",
 
         igLink: "#00376B",
-        igLinkDark: "#E0F1FF",
+        igLinkDark: "#385898",
 
         igPrimaryButton: "#0095F6",
 
