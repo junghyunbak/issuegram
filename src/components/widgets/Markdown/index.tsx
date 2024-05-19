@@ -14,19 +14,9 @@ interface MarkdownProps {
    * markdown 텍스트
    */
   markdown: string;
-
-  /**
-   * fragment anchor 클릭 시 history를 추가 여부를 나타내는 속성
-   *
-   * default: true
-   */
-  enableFragmentLink?: boolean;
 }
 
-export function Markdown({
-  markdown,
-  enableFragmentLink = true,
-}: MarkdownProps) {
+export function Markdown({ markdown }: MarkdownProps) {
   return (
     <div className="markdown">
       <ReactMarkdown

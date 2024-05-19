@@ -81,10 +81,7 @@ export default async function Issue({
             </ShowMobileLayout>
 
             <CommentListLayout>
-              <Markdown
-                markdown={issue.body || ""}
-                enableFragmentLink={false}
-              />
+              <Markdown markdown={issue.body || ""} />
 
               {comments.map((comment) => {
                 return (
