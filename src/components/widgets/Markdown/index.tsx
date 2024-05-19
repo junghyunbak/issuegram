@@ -5,8 +5,8 @@ import remarkFrontmatter from "remark-frontmatter";
 import rehypeRaw from "rehype-raw";
 import rehypeSlug from "rehype-slug";
 import rehypeKatex from "rehype-katex";
-import Link from "next/link";
 import { CodeBlock } from "./CodeBlock";
+import { FragmentAnchor } from "@/components/core/anchor/FragmentAnchor";
 import "./index.css";
 
 interface MarkdownProps {
@@ -17,13 +17,16 @@ interface MarkdownProps {
 
   /**
    * fragment anchor 클릭 시 history를 추가 여부를 나타내는 속성
-   * 
+   *
    * default: true
    */
   enableFragmentLink?: boolean;
 }
 
-export function Markdown({ markdown, enableFragmentLink = true }: MarkdownProps) {
+export function Markdown({
+  markdown,
+  enableFragmentLink = true,
+}: MarkdownProps) {
   return (
     <div className="markdown">
       <ReactMarkdown
@@ -40,11 +43,7 @@ export function Markdown({ markdown, enableFragmentLink = true }: MarkdownProps)
             }
 
             if (href.startsWith("#")) {
-              if(enableFragmentLink) {
-                return <Link {...props} href={href} replace />;
-              } else {
-                return <a {...props} href={href}/>
-              }
+              return <FragmentAnchor {...{ ...props, href }} />;
             }
 
             return <a href={href} {...props} target="_blank" />;
