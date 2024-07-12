@@ -8,7 +8,10 @@ import "./globals.css";
 
 export const metadata: Metadata = {
   title: "Issuegram",
-  description: "Issuegram (Github Issues + Instagram) 개인 블로그 ",
+  description: "Issuegram (Github Issues + Instagram) 개인 블로그",
+  other: {
+    "google-site-verification": "cT0MruhYhAIxE2PwRZWlZmOseoYdbQeBXWNULoe0kEI",
+  },
 };
 
 export default function RootLayout({
