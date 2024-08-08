@@ -1,44 +1,50 @@
 @font-face {
   font-family: "Segoe UI";
-  src: url("./segoeuisl.ttf") format("truetype");
+  src: url("./segoeuisl.woff") format("woff");
   font-weight: 200;
   font-style: normal;
+  font-display: swap;
 }
 
 @font-face {
   font-family: "Segoe UI";
-  src: url("./segoeuil.ttf") format("truetype");
+  src: url("./segoeuil.woff") format("woff");
   font-weight: 300;
   font-style: normal;
+  font-display: swap;
 }
 
 @font-face {
   font-family: "Segoe UI";
-  src: url("./segoeui.ttf") format("truetype");
+  src: url("./segoeui.woff") format("woff");
   font-weight: normal;
   font-style: normal;
+  font-display: swap;
 }
 
 @font-face {
   font-family: "Segoe UI";
-  src: url("./segoeuisb.ttf") format("truetype");
+  src: url("./segoeuisb.woff") format("woff");
   font-weight: 600;
   font-style: normal;
+  font-display: swap;
 }
 
 @font-face {
   font-family: "Segoe UI";
-  src: url("./segoeuib.ttf") format("truetype");
+  src: url("./segoeuib.woff") format("woff");
   font-weight: bold;
   font-style: normal;
+  font-display: swap;
 }
 
 @font-face {
   font-family: "Segoe UI Emoji";
+  font-display: swap;
   src: url("./segoeuiemj.ttf") format("truetype");
 }
 
 @font-face {
   font-family: "euljiro";
-  src: url("./euljiro.ttf") format("truetype");
+  src: url("./euljiro.woff") format("woff");
 }
