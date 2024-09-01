@@ -1,8 +1,23 @@
 import { GridIssues } from "@/app/_components/GridIssues";
-import { useFetchIssues } from "@/hooks/server";
+import * as server from "@/hooks/server";
 import { filterIssues, getIssueLabels } from "@/utils";
 import ArrowUp from "@/assets/svgs/arrow-up.svg";
 import Link from "next/link";
+
+export async function generateStaticParams() {
+  const issues = await server.useFetchIssues();
+
+  const labels = Array.from(
+    new Set(
+      filterIssues(issues, "saved").reduce<string[]>(
+        (a, issue) => [...a, ...getIssueLabels(issue)],
+        [],
+      ),
+    ),
+  );
+
+  return labels.map((label) => ({ label }));
+}
 
 interface LabelIssuesProps {
   params: { label: string };
@@ -11,7 +26,7 @@ interface LabelIssuesProps {
 export default async function LabelIssues({
   params: { label },
 }: LabelIssuesProps) {
-  const issues = await useFetchIssues();
+  const issues = await server.useFetchIssues();
 
   const decodedLabel = decodeURIComponent(label);
 
