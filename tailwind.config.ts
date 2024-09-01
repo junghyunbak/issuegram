@@ -1,4 +1,5 @@
 import type { Config } from "tailwindcss";
+import defaultTheme from "tailwindcss/defaultTheme";
 
 const config: Config = {
   content: [
@@ -8,6 +9,37 @@ const config: Config = {
   ],
   darkMode: "selector",
   theme: {
+    screens: {
+      /**
+       * 스크린 커스텀하기 전 문법 지원을 위한 코드
+       */
+      "max-md": { max: "767px" },
+      "max-xl": { max: "1023px" },
+      /**
+       * 커스텀 스크린 코드
+       */
+      mobile: {
+        max: "767px",
+      },
+      tablet: {
+        max: "1023px",
+      },
+      mobileToTablet: {
+        min: "768px",
+        max: "1023px",
+      },
+      pc: {
+        min: "1024px",
+      },
+      "pc-xl": {
+        min: "1920px",
+      },
+      /**
+       * 무슨 이유에선지 default screen 적용을 해도,
+       * max-md, max-xl, ... 와 같은 문법을 사용할 수 없음.
+       */
+      ...defaultTheme.screens,
+    },
     fontFamily: {
       segoe: "Segoe UI",
       euljiro: "euljiro",

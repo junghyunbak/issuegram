@@ -1,0 +1,15 @@
+.saved-item-dimmed {
+  background-image: linear-gradient(
+    to top,
+    rgba(38, 38, 38, 0.6),
+    rgba(255, 255, 255, 0)
+  );
+
+  &:hover {
+    background-image: linear-gradient(
+      to top,
+      rgba(38, 38, 38, 0.2),
+      rgba(255, 255, 255, 0)
+    );
+  }
+}

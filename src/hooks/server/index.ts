@@ -2,6 +2,7 @@ import config from "@/config";
 
 // [ ]: api 에러 예외처리
 // [ ]: 100 이상의 데이터를 가져오도록 수정
+// [ ]: 훅이라고 할 수 없으므로, 폴더 이름 개편
 
 export const useFetchIssues = async (): Promise<Issues> => {
   const issues = (await fetch(

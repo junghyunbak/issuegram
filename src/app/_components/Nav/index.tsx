@@ -17,7 +17,7 @@ export async function Nav({}: NavProps) {
 
   return (
     <HiddenMobileLayout>
-      <nav className="flex w-[244px] flex-col border-r border-igSeparator p-[12px] transition-[width] max-xl:w-[72px] min-[1920px]:w-[335px] dark:border-igSeparatorDark">
+      <nav className="pc-xl:w-[335px] flex w-[244px] flex-col border-r border-igSeparator p-[12px] transition-[width] max-xl:w-[72px] dark:border-igSeparatorDark">
         <div className="relative mb-[96px] [&>div]:transition-[opacity] [&>div]:duration-500">
           <div className="absolute mt-[13px] p-[12px] opacity-100 max-xl:opacity-0">
             <Link href="/">
