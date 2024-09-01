@@ -37,16 +37,16 @@ export default async function LabelIssues({
   });
 
   return (
-    <div>
+    <div className="mobile:mt-6">
       <Link
-        className="flex items-center pb-4 text-igSecondaryText"
+        className="mb-4 flex w-fit items-center text-igSecondaryText"
         href="/saved"
       >
         <ArrowUp className="-rotate-90" />
         <p className="p-1 text-sm font-semibold">저장됨</p>
       </Link>
 
-      <p className="p-3 text-xl">{decodedLabel}</p>
+      <p className="px-3 py-2 text-xl">{decodedLabel}</p>
 
       <GridIssues issues={filteredIssue} />
     </div>
