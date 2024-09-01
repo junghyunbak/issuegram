@@ -52,8 +52,11 @@ export default async function Issue({
       ? await server.useFetchIssueReactions(number)
       : [];
 
-  const filteredIssues = filterIssues(issues, getIssueLabelType(issue));
+  const filteredIssues = filterIssues(issues, getIssueLabelType(issue)).filter(
+    ({ number: issueNumber }) => issueNumber.toString() !== number,
+  );
 
+  // [ ]: 현재 인덱스 계산법은 더 많은 게시글을 확인할 수 없다.
   const curIdx = filteredIssues.findIndex((_issue) => _issue === issue);
   const startIdx = curIdx - 3 <= 0 ? 0 : curIdx - 3;
 
