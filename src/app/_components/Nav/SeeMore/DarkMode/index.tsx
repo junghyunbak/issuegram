@@ -52,7 +52,11 @@ const DarkMode = forwardRef<HTMLDivElement | null, DarkModeProps>(
               <p className="font-semibold">모드 전환</p>
             </div>
 
-            {isDark ? <Moon /> : <Sun />}
+            {isDark ? (
+              <Moon className="w-[18px]" />
+            ) : (
+              <Sun className="w-[18px]" />
+            )}
           </div>
 
           <div className="p-[8px]">
