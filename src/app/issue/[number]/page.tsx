@@ -59,9 +59,9 @@ export default async function Issue({
 
   return (
     <div>
-      <ShowMobileLayout>
+      <div className="mobile:block sticky top-0 z-10 hidden bg-white dark:bg-black">
         <IssuePageMobileNav />
-      </ShowMobileLayout>
+      </div>
 
       <div className="mx-auto flex w-full max-w-[815px] border border-igSeparator max-md:border-0 dark:border-igSeparatorDark">
         <HiddenMobileLayout>
