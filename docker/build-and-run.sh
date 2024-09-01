@@ -8,6 +8,6 @@ docker build --no-cache --file "$SCRIPT_DIR/Dockerfile" --tag ${IMAGE_NAME} "$SC
 
 docker rm --force ${IMAGE_NAME}
 
-docker run --detach --publish 3005:3000 --name ${IMAGE_NAME} ${IMAGE_NAME}
+docker image prune --force 
 
-docker system prune -af
+docker run --detach --publish 3005:3000 --name ${IMAGE_NAME} ${IMAGE_NAME}
