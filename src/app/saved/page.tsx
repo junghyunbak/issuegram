@@ -63,7 +63,7 @@ export default async function Saved() {
               key={label}
             >
               <Link
-                className="relative block size-full cursor-pointer overflow-hidden rounded border border-igStroke"
+                className="relative block size-full cursor-pointer overflow-hidden rounded border border-igStroke dark:border-igStrokeDark"
                 href={`/saved/${label}`}
               >
                 {issue &&
