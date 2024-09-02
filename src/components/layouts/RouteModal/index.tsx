@@ -17,6 +17,13 @@ export function RouteModal({
 }: RouteModalProps) {
   const router = useRouter();
 
+  /**
+   * 1. 커스텀 scroll div를 만듬
+   * 2. 모달이 스크롤을 덮게 됨
+   * 3. 모달 뒤쪽이 스크롤 되는 이슈 사라짐
+   *
+   * => 코드 비활성화
+   */
   /*
   useEffect(() => {
     const $el = document.querySelector("scroll");
@@ -63,7 +70,7 @@ export function RouteModal({
 
   return (
     <div
-      className="fixed inset-0 flex items-center justify-center bg-black/65"
+      className="fixed inset-0 z-20 flex items-center justify-center bg-black/65"
       onClick={handleCloseModal}
     >
       {children}
@@ -73,7 +80,7 @@ export function RouteModal({
           className="absolute right-[10px] top-[10px] cursor-pointer p-[8px] active:opacity-50"
           onClick={handleCloseModal}
         >
-          <X className="text-white"/>
+          <X className="text-white" />
         </div>
       )}
     </div>
