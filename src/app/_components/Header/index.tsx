@@ -18,11 +18,9 @@ export async function Header() {
 
   return (
     <header>
-      <ShowMobileLayout>
-        <div className="flex h-11 w-full items-center justify-center border-b border-igElevatedSeparator dark:border-igElevatedSeparatorDark">
-          <p>{userInfo.login}</p>
-        </div>
-      </ShowMobileLayout>
+      <div className="mobile:flex sticky top-0 z-10 hidden h-11 w-full items-center justify-center border-b border-igElevatedSeparator bg-white dark:border-igElevatedSeparatorDark dark:bg-black">
+        <p>{userInfo.login}</p>
+      </div>
 
       <div className="mb-[44px] flex items-stretch max-md:m-4">
         <div className="mr-[30px] flex shrink-0 grow basis-0 items-center justify-center">
