@@ -39,7 +39,7 @@ function GridIssuesItemLayout({
   lineCount: 3 | 4;
 }) {
   return (
-    <div className="mr-[4px] flex-1 last:mr-auto max-md:mr-[3px]">
+    <div className="mobile:mr-[3px] mr-[4px] flex-1 last:mr-auto">
       <div
         className={[
           "relative",

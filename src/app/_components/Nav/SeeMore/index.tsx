@@ -95,7 +95,7 @@ export function SeeMore() {
           <Hamburger />
         </div>
 
-        <div className="pl-[16px] max-xl:hidden">
+        <div className="tablet:hidden pl-[16px]">
           <p>더 보기</p>
         </div>
       </div>
@@ -103,7 +103,7 @@ export function SeeMore() {
       {modalState !== "closed" && (
         <div
           ref={menuContainer}
-          className="absolute bottom-[52px] left-0 z-10 h-10 w-[266px] overflow-x-hidden overflow-y-hidden rounded-2xl bg-white shadow-[0_4px_12px_rgba(0,0,0,0.15)] max-xl:bottom-0 max-xl:left-[48px] dark:bg-igBannerBackgroundDark"
+          className="tablet:bottom-0 tablet:left-[48px] absolute bottom-[52px] left-0 z-10 h-10 w-[266px] overflow-x-hidden overflow-y-hidden rounded-2xl bg-white shadow-[0_4px_12px_rgba(0,0,0,0.15)] dark:bg-igBannerBackgroundDark"
         >
           <MainMenu
             ref={mainMenu}

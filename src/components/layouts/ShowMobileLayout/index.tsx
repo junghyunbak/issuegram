@@ -5,5 +5,5 @@ interface ShowMobileLayoutProps {
 }
 
 export function ShowMobileLayout({ children }: ShowMobileLayoutProps) {
-  return <div className="hidden max-md:flex">{children}</div>;
+  return <div className="mobile:flex hidden">{children}</div>;
 }

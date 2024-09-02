@@ -17,15 +17,15 @@ export async function Nav({}: NavProps) {
 
   return (
     <HiddenMobileLayout>
-      <nav className="pc-xl:w-[335px] flex w-[244px] flex-col border-r border-igSeparator p-[12px] transition-[width] max-xl:w-[72px] dark:border-igSeparatorDark">
+      <nav className="pc-xl:w-[335px] tablet:w-[72px] flex w-[244px] flex-col border-r border-igSeparator p-[12px] transition-[width] dark:border-igSeparatorDark">
         <div className="relative mb-[96px] [&>div]:transition-[opacity] [&>div]:duration-500">
-          <div className="absolute mt-[13px] p-[12px] opacity-100 max-xl:opacity-0">
+          <div className="tablet:opacity-0 absolute mt-[13px] p-[12px] opacity-100">
             <Link href="/">
               <InstagramText />
             </Link>
           </div>
 
-          <div className="absolute mt-[12px] opacity-0 max-xl:opacity-100">
+          <div className="tablet:opacity-100 absolute mt-[12px] opacity-0">
             <NavButton path="/">
               <Instagram />
             </NavButton>

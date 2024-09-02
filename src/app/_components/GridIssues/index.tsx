@@ -37,7 +37,7 @@ export async function GridIssues({
   return (
     <div className="flex w-full flex-col">
       {issuesRows.map((issuesRow, i) => (
-        <div className="mb-[4px] flex w-full max-md:mb-[3px]" key={i}>
+        <div className="mobile:mb-[3px] mb-[4px] flex w-full" key={i}>
           {issuesRow.map((issue, j) => (
             <GridIssuesItem
               key={j}

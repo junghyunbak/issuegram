@@ -66,15 +66,15 @@ export default async function Issue({
         <IssuePageMobileNav />
       </div>
 
-      <div className="mx-auto flex w-full max-w-[815px] border border-igSeparator max-md:border-0 dark:border-igSeparatorDark">
+      <div className="mobile:border-0 mx-auto flex w-full max-w-[815px] border border-igSeparator dark:border-igSeparatorDark">
         <HiddenMobileLayout>
           <IssueBanner issue={issue} isModal={false} />
         </HiddenMobileLayout>
 
-        <div className="flex aspect-square w-full flex-col overflow-x-hidden border-l border-igSeparator max-md:overflow-x-visible max-md:border-0 dark:border-igSeparatorDark">
+        <div className="mobile:overflow-x-visible mobile:border-0 flex aspect-square w-full flex-col overflow-x-hidden border-l border-igSeparator dark:border-igSeparatorDark">
           <IssueHeader issue={issue} />
 
-          <div className="w-full flex-1 overflow-x-hidden overflow-y-scroll max-md:flex-none max-md:scrollbar-hide">
+          <div className="mobile:flex-none mobile:scrollbar-hide w-full flex-1 overflow-x-hidden overflow-y-scroll">
             <ShowMobileLayout>
               <IssueBanner issue={issue} />
             </ShowMobileLayout>

@@ -18,7 +18,7 @@ export function IssueBanner({ issue, isModal = true }: IssueBannerProps) {
   return (
     <div
       className={[
-        "flex h-full overflow-hidden max-md:aspect-square max-md:w-full",
+        "mobile:aspect-square mobile:w-full flex h-full overflow-hidden",
         isModal ? "w-[300px]" : "w-[260px]",
       ].join(" ")}
     >

@@ -1,15 +1,15 @@
 .counter {
-  @apply mb-[20px] flex w-full gap-10 max-md:my-[12px] max-md:gap-0 max-md:text-sm;
+  @apply mobile:my-[12px] mobile:gap-0 mobile:text-sm mb-[20px] flex w-full gap-10;
 
   li {
-    @apply flex justify-center max-md:flex-1;
+    @apply mobile:flex-1 flex justify-center;
 
     p,
     a {
-      @apply text-center max-md:text-igSecondaryText max-md:dark:text-igSecondaryTextDark [&_*]:max-md:block;
+      @apply mobile:text-igSecondaryText mobile:dark:text-igSecondaryTextDark [&_*]:mobile:block text-center;
 
       span {
-        @apply dark:text-igPrimaryTextDark text-igPrimaryText font-semibold;
+        @apply font-semibold text-igPrimaryText dark:text-igPrimaryTextDark;
       }
     }
 

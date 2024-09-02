@@ -8,7 +8,7 @@ interface GridIssuesItemCounterProps {
 export function GridIssuesItemCounter({ issue }: GridIssuesItemCounterProps) {
   return (
     <div className="absolute inset-0 flex items-center justify-center bg-black/[0.3] opacity-0 hover:opacity-100">
-      <div className="flex gap-x-7 gap-y-2 max-md:flex-col">
+      <div className="mobile:flex-col flex gap-x-7 gap-y-2">
         {issue.reactions && issue.reactions.total_count !== 0 && (
           <div className="flex items-center gap-x-[7px] text-white">
             <Heart height="19px" />

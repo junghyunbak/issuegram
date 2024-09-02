@@ -18,7 +18,7 @@ export function TextThumbnail({
     <div
       className={[
         "flex size-full items-center justify-center",
-        type === "feed" ? "p-3 max-md:p-2" : "p-4 max-md:p-3",
+        type === "feed" ? "mobile:p-2 p-3" : "mobile:p-3 p-4",
       ].join(" ")}
       style={{
         backgroundColor: uniqolor(textForColor).color,
@@ -33,7 +33,7 @@ export function TextThumbnail({
         <p
           className={[
             "break-all font-euljiro text-black",
-            type === "feed" ? "text-3xl max-md:text-xl" : "text-4xl",
+            type === "feed" ? "mobile:text-xl text-3xl" : "text-4xl",
           ].join(" ")}
         >
           {text}

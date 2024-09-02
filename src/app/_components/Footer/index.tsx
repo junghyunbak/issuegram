@@ -4,7 +4,7 @@ export function Footer({}) {
   const links = config.footerLinks;
 
   return (
-    <footer className="pb-[52px] max-md:hidden">
+    <footer className="mobile:hidden pb-[52px]">
       <ul className="mt-[24px] flex flex-wrap justify-center">
         {links.map(({ link, value }, i) => {
           return (

@@ -23,7 +23,7 @@ export function NavButton({ children, path, title }: NavButtonProps) {
 
   return (
     <div
-      className="hover:bg-igHoverOverlay dark:hover:bg-igHoverOverlayDark group my-[4px] flex cursor-pointer rounded-lg p-[12px] active:opacity-50"
+      className="group my-[4px] flex cursor-pointer rounded-lg p-[12px] hover:bg-igHoverOverlay active:opacity-50 dark:hover:bg-igHoverOverlayDark"
       onClick={handleButtonClick}
     >
       <div className="scale-100 transition-[transform] duration-300 group-hover:scale-105">
@@ -31,7 +31,7 @@ export function NavButton({ children, path, title }: NavButtonProps) {
       </div>
 
       {title && (
-        <div className="pl-[16px] max-xl:hidden">
+        <div className="tablet:hidden pl-[16px]">
           <p>{title}</p>
         </div>
       )}
