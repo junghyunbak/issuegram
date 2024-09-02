@@ -1,5 +1,4 @@
 import type { Config } from "tailwindcss";
-import defaultTheme from "tailwindcss/defaultTheme";
 
 const config: Config = {
   content: [
@@ -29,11 +28,6 @@ const config: Config = {
       "pc-xl": {
         min: "1920px",
       },
-      /**
-       * 무슨 이유에선지 default screen 적용을 해도,
-       * mobile, tablet, ... 와 같은 문법을 사용할 수 없음.
-       */
-      ...defaultTheme.screens,
     },
     fontFamily: {
       segoe: "Segoe UI",
