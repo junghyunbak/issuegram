@@ -2,7 +2,7 @@
   @apply mobile:flex-1 flex h-[52px] items-center justify-center gap-[6px] active:opacity-50;
 
   svg {
-    @apply h-6 md:h-3;
+    @apply mobile:h-6 h-3;
   }
 
   p {
