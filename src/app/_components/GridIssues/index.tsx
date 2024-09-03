@@ -18,7 +18,7 @@ interface GridIssuesProps {
   linking?: boolean;
 }
 
-export async function GridIssues({
+export function GridIssues({
   issues,
   lineCount = 3,
   linking = true,
@@ -37,7 +37,7 @@ export async function GridIssues({
   return (
     <div className="flex w-full flex-col">
       {issuesRows.map((issuesRow, i) => (
-        <div className="mobile:mb-[3px] mb-[4px] flex w-full" key={i}>
+        <div className="mb-[4px] flex w-full mobile:mb-[3px]" key={i}>
           {issuesRow.map((issue, j) => (
             <GridIssuesItem
               key={j}

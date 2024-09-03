@@ -68,7 +68,7 @@ export const useFetchReadme = async (): Promise<Readme> => {
         tags: ["intro-readme"],
       },
     },
-  ).then((value) => value.json()) as Readme);
+  ).then((value) => value.json())) as Readme;
 
   return readme;
 };
