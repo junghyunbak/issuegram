@@ -2,6 +2,7 @@ type FooterLink = { link: string; value: string };
 
 const config: {
   domain: string;
+  port: number;
   github: {
     owner: string;
     repo: string;
@@ -11,6 +12,7 @@ const config: {
   footerLinks: FooterLink[];
 } = {
   domain: "lightpavilion.site",
+  port: 3000,
   github: {
     owner: "junghyunbak",
     repo: "junghyunbak",

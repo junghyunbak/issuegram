@@ -1,9 +1,10 @@
 import { FollowModal } from "@/components/layouts/FollowModal";
 import { FollowList } from "@/components/widgets/FollowList";
-import { server } from "@/hooks";
+
+import { getUserFollowers } from "@/api";
 
 export default async function Followers() {
-  const followers = await server.useFetchFollowers();
+  const { followers } = await getUserFollowers();
 
   return (
     <div className="fixed inset-0 flex items-center justify-center bg-black">

@@ -1,31 +1,34 @@
-import { server } from "@/hooks";
+import React from "react";
+
+import { Metadata } from "next";
+import Link from "next/link";
+
 import { IssueBanner } from "./_components/IssueBanner";
-import { Error } from "@/components/widgets/Error";
 import { IssueHeader } from "./_components/IssueHeader";
 import { IssueFooter } from "./_components/IssueFooter";
-import { CommentListLayout } from "@/components/layouts/CommentListLayout";
-import { Markdown } from "@/components/widgets/Markdown";
-import Link from "next/link";
-import { GridIssues } from "@/app/_components/GridIssues";
-import { ShowMobileLayout } from "@/components/layouts/ShowMobileLayout";
-import { HiddenMobileLayout } from "@/components/layouts/HiddenMobileLayout";
-import { filterIssues, getIssueLabelType } from "@/utils";
-import { Metadata } from "next";
-import React from "react";
 import { IssuePageMobileNav } from "./_components/IssuePageMobileNav";
 
-export async function generateStaticParams() {
-  const issues = await server.useFetchIssues();
+import { Markdown } from "@/components/widgets/Markdown";
+import { CommentListLayout } from "@/components/layouts/CommentListLayout";
+import { ShowMobileLayout } from "@/components/layouts/ShowMobileLayout";
+import { HiddenMobileLayout } from "@/components/layouts/HiddenMobileLayout";
 
-  return issues.map((issue) => ({ number: issue.number.toString() }));
-}
+import { GridIssues } from "@/app/_components/GridIssues";
+
+import {
+  getAnIssue,
+  getIssueComments,
+  getIssueReactions,
+  getIssues,
+  getUserInfo,
+} from "@/api";
 
 export async function generateMetadata({
   params: { number },
 }: {
   params: { number: string };
 }): Promise<Metadata> {
-  const issue = await server.useFetchAnIssue(number);
+  const { issue } = await getAnIssue(number);
 
   return {
     title: `${issue.title} | Issuegram`,
@@ -37,44 +40,37 @@ export default async function Issue({
 }: {
   params: { number: string };
 }) {
-  const issues = await server.useFetchIssues();
-  const comments = await server.useFetchIssueComments(number);
-  const userInfo = await server.useFetchUserInfo();
+  const { issue } = await getAnIssue(number);
 
-  const issue = issues.find((issue) => issue.number === parseInt(number, 10));
+  const { comments } = await getIssueComments(number);
 
-  if (!issue) {
-    return <Error />;
-  }
+  const { reactions } = await getIssueReactions(number);
 
-  const reactions =
-    (issue.reactions?.total_count || 0) > 0
-      ? await server.useFetchIssueReactions(number)
-      : [];
+  const { user } = await getUserInfo();
 
-  const filteredIssues = filterIssues(issues, getIssueLabelType(issue)).filter(
-    ({ number: issueNumber }) => issueNumber.toString() !== number,
-  );
+  const { issues } = await getIssues();
 
   // [ ]: 현재 인덱스 계산법은 더 많은 게시글을 확인할 수 없다.
-  const curIdx = filteredIssues.findIndex((_issue) => _issue === issue);
+  const curIdx = issues.findIndex(
+    ({ number: issueNumber }) => issueNumber === +number,
+  );
   const startIdx = curIdx - 3 <= 0 ? 0 : curIdx - 3;
 
   return (
     <div>
-      <div className="mobile:block sticky top-0 z-10 hidden bg-white dark:bg-black">
+      <div className="sticky top-0 z-10 hidden bg-white mobile:block dark:bg-black">
         <IssuePageMobileNav />
       </div>
 
-      <div className="mobile:border-0 mx-auto flex w-full max-w-[815px] border border-igSeparator dark:border-igSeparatorDark">
+      <div className="mx-auto flex w-full max-w-[815px] border border-igSeparator mobile:border-0 dark:border-igSeparatorDark">
         <HiddenMobileLayout>
           <IssueBanner issue={issue} isModal={false} />
         </HiddenMobileLayout>
 
-        <div className="mobile:overflow-x-visible mobile:border-0 flex aspect-square w-full flex-col overflow-x-hidden border-l border-igSeparator dark:border-igSeparatorDark">
+        <div className="flex aspect-square w-full flex-col overflow-x-hidden border-l border-igSeparator mobile:overflow-x-visible mobile:border-0 dark:border-igSeparatorDark">
           <IssueHeader issue={issue} />
 
-          <div className="mobile:flex-none mobile:scrollbar-hide w-full flex-1 overflow-x-hidden overflow-y-scroll">
+          <div className="w-full flex-1 overflow-x-hidden overflow-y-scroll mobile:flex-none mobile:scrollbar-hide">
             <ShowMobileLayout>
               <IssueBanner issue={issue} />
             </ShowMobileLayout>
@@ -115,7 +111,7 @@ export default async function Issue({
       <div className="pt-[42px]">
         <p className="mb-[20px] text-sm font-semibold">
           <Link href="/" className="hover:opacity-50">
-            {userInfo.login}
+            {user.login}
           </Link>
           <span className="text-igSecondaryText dark:text-igSecondaryTextDark">
             님의 게시글 더보기
@@ -123,7 +119,7 @@ export default async function Issue({
         </p>
 
         <GridIssues
-          issues={filteredIssues.slice(startIdx, startIdx + 6)}
+          issues={issues.slice(startIdx, startIdx + 6)}
           linking={false}
         />
       </div>

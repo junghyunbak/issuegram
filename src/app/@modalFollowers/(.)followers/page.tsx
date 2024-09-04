@@ -1,10 +1,11 @@
 import { FollowModal } from "@/components/layouts/FollowModal";
 import { RouteModal } from "@/components/layouts/RouteModal";
 import { FollowList } from "@/components/widgets/FollowList";
-import { server } from "@/hooks";
+
+import { getUserFollowers } from "@/api";
 
 export default async function ModalFollowers() {
-  const followers = await server.useFetchFollowers();
+  const { followers } = await getUserFollowers();
 
   return (
     <RouteModal hiddenCloseButton disableEsc>

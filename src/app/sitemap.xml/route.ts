@@ -1,5 +1,6 @@
+import { getIssues } from "@/api";
+
 import config from "@/config";
-import { server } from "@/hooks";
 
 export const dynamic = "force-dynamic";
 
@@ -24,7 +25,7 @@ export async function GET() {
     changeFrequency: "weekly",
   });
 
-  const issues = await server.useFetchIssues();
+  const { issues } = await getIssues();
 
   const issueSitemaps: string[] = [];
 

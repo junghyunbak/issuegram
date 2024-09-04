@@ -1,23 +1,8 @@
-import { GridIssues } from "@/app/_components/GridIssues";
-import * as server from "@/hooks/server";
-import { filterIssues, getIssueLabels } from "@/utils";
 import ArrowUp from "@/assets/svgs/arrow-up.svg";
+
 import Link from "next/link";
 
-export async function generateStaticParams() {
-  const issues = await server.useFetchIssues();
-
-  const labels = Array.from(
-    new Set(
-      filterIssues(issues, "saved").reduce<string[]>(
-        (a, issue) => [...a, ...getIssueLabels(issue)],
-        [],
-      ),
-    ),
-  );
-
-  return labels.map((label) => ({ label }));
-}
+import { SavedIssuesLoader } from "./_components/SavedIssuesLoader";
 
 interface LabelIssuesProps {
   params: { label: string };
@@ -26,15 +11,7 @@ interface LabelIssuesProps {
 export default async function LabelIssues({
   params: { label },
 }: LabelIssuesProps) {
-  const issues = await server.useFetchIssues();
-
   const decodedLabel = decodeURIComponent(label);
-
-  const filteredIssue = filterIssues(issues, "saved").filter((issue) => {
-    const labels = getIssueLabels(issue);
-
-    return labels.includes(decodedLabel);
-  });
 
   return (
     <div className="mobile:mt-6">
@@ -48,7 +25,7 @@ export default async function LabelIssues({
 
       <p className="px-3 py-2 text-xl">{decodedLabel}</p>
 
-      <GridIssues issues={filteredIssue} />
+      <SavedIssuesLoader labels={decodedLabel} />
     </div>
   );
 }

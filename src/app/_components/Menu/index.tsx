@@ -7,10 +7,9 @@ interface MenuProps {
 
 export function Menu({ type }: MenuProps) {
   return (
-    <div className="border-igSeparator dark:border-igSeparatorDark flex items-center justify-evenly border-t">
+    <div className="flex items-center justify-evenly border-t border-igSeparator dark:border-igSeparatorDark">
       <MenuItem href="/" type="normal" selectType={type} />
       <MenuItem href="/saved" type="saved" selectType={type} />
-      <MenuItem href="/portfolio" type="portfolio" selectType={type} />
     </div>
   );
 }

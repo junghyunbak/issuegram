@@ -1,17 +1,20 @@
 "use client";
 
-import { useFetchIssuesInfinity } from "@/hooks/useFetchIssues";
+import { GridIssues } from "@/app/_components/GridIssues";
 
-import { GridIssues } from "../GridIssues";
+import { useFetchIssuesInfinity } from "@/hooks/useFetchIssues";
 
 import Spinner from "@/assets/svgs/spinner.svg";
 
 import "./index.css";
 
-interface HomeIssuesLoaderProps {}
+interface SavedIssuesLoaderProps {
+  labels: string;
+}
 
-export function HomeIssuesLoader({}: HomeIssuesLoaderProps) {
-  const { issues, endRef, isLoading, isRefetching } = useFetchIssuesInfinity();
+export function SavedIssuesLoader({ labels }: SavedIssuesLoaderProps) {
+  const { issues, endRef, isLoading, isRefetching } =
+    useFetchIssuesInfinity(labels);
 
   return (
     <>

@@ -1,19 +1,25 @@
+import React from "react";
+
 import Instagram from "@/assets/svgs/instagram.svg";
 import InstagramText from "@/assets/svgs/instagram-text.svg";
 import NewPost from "@/assets/svgs/new-post.svg";
+
 import Link from "next/link";
-import React from "react";
-import { server } from "@/hooks";
+
 import config from "@/config";
+
 import { NavButton } from "./NavButton";
 import { ProfileIcon } from "./ProfileIcon";
 import { SeeMore } from "./SeeMore";
+
 import { HiddenMobileLayout } from "@/components/layouts/HiddenMobileLayout";
+
+import { getUserInfo } from "@/api";
 
 interface NavProps {}
 
 export async function Nav({}: NavProps) {
-  const userInfo = await server.useFetchUserInfo();
+  const { user }= await getUserInfo();
 
   return (
     <HiddenMobileLayout>
@@ -35,14 +41,14 @@ export async function Nav({}: NavProps) {
         <div className="flex flex-1 flex-col justify-between">
           <div>
             <NavButton
-              path={`${userInfo.html_url}/${config.github.repo}/issues/new`}
+              path={`${user.html_url}/${config.github.repo}/issues/new`}
               title="글쓰기"
             >
               <NewPost />
             </NavButton>
 
             <NavButton path="/" title="프로필">
-              <ProfileIcon url={userInfo.avatar_url} />
+              <ProfileIcon url={user.avatar_url} />
             </NavButton>
           </div>
 

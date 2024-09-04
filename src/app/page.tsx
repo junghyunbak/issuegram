@@ -1,11 +1,13 @@
+import { Metadata } from "next";
+
 import { Menu } from "./_components/Menu";
 import { Header } from "./_components/Header";
-import { server } from "@/hooks";
-import { Metadata } from "next";
 import { HomeIssuesLoader } from "./_components/HomeIssuesLoader";
 
+import { getUserInfo } from "@/api";
+
 export async function generateMetadata(): Promise<Metadata> {
-  const user = await server.useFetchUserInfo();
+  const { user } = await getUserInfo();
 
   return {
     title: `${user.name}(@${user.login}) • Issuegram 게시물`,

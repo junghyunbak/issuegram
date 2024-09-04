@@ -1,16 +1,19 @@
-import { Menu } from "../_components/Menu";
-import { Header } from "../_components/Header";
-import { server } from "@/hooks";
 import { type Metadata } from "next";
-import { filterIssues, getIssueLabels, getIssueThumbnail } from "@/utils";
-
 import Link from "next/link";
 
-import "./page.css";
+import { Menu } from "../_components/Menu";
+import { Header } from "../_components/Header";
+
 import { TextThumbnail } from "@/components/widgets/TextThumbnail";
 
+import { getIssueLabels, getIssueThumbnail } from "@/utils";
+
+import { getIssues, getUserInfo } from "@/api";
+
+import "./page.css";
+
 export async function generateMetadata(): Promise<Metadata> {
-  const user = await server.useFetchUserInfo();
+  const { user } = await getUserInfo();
 
   return {
     title: `${user.name}(@${user.login}) • Issuegram 저장됨`,
@@ -18,13 +21,11 @@ export async function generateMetadata(): Promise<Metadata> {
 }
 
 export default async function Saved() {
-  const issues = await server.useFetchIssues();
-
-  const filteredIssues = filterIssues(issues, "saved");
+  const { issues } = await getIssues();
 
   const labelToIssues = new Map<string, Issues>();
 
-  filteredIssues.forEach((issue) => {
+  issues.forEach((issue) => {
     const labels = getIssueLabels(issue);
 
     labels.forEach((label) => {
@@ -42,7 +43,7 @@ export default async function Saved() {
 
       <Menu type="saved" />
 
-      <ul className="pc:[&>li:nth-child(3n)]:pr-0 mobile:[&>li]:pr-0 mobileToTablet:[&>li:nth-child(2n)]:pr-0 mobile:px-4 flex flex-wrap [&>li]:pb-4 [&>li]:pr-4">
+      <ul className="flex flex-wrap mobile:px-4 mobileToTablet:[&>li:nth-child(2n)]:pr-0 pc:[&>li:nth-child(3n)]:pr-0 [&>li]:pb-4 [&>li]:pr-4 mobile:[&>li]:pr-0">
         {Array.from(labelToIssues.keys()).map((label) => {
           const [issue] = (labelToIssues.get(label) || []).sort((a, b) => {
             const aThumbnail = getIssueThumbnail(a);
@@ -59,7 +60,7 @@ export default async function Saved() {
 
           return (
             <li
-              className="mobileToTablet:w-1/2 mobile:w-full aspect-square w-1/3"
+              className="aspect-square w-1/3 mobile:w-full mobileToTablet:w-1/2"
               key={label}
             >
               <Link
