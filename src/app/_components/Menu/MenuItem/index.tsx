@@ -5,8 +5,8 @@ import Link from "next/link";
 import "./index.css";
 
 interface MenuItemProps {
-  type: LabelType;
-  selectType: LabelType;
+  type: MenuType;
+  selectType: MenuType;
   href: string;
 }
 

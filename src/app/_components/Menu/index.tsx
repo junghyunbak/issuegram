@@ -2,7 +2,7 @@ import React from "react";
 import { MenuItem } from "./MenuItem";
 
 interface MenuProps {
-  type: LabelType;
+  type: MenuType;
 }
 
 export function Menu({ type }: MenuProps) {

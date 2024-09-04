@@ -1,1 +1,1 @@
-type LabelType = "normal" | "saved";
+type MenuType = "normal" | "saved";
