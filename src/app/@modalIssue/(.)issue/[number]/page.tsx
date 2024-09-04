@@ -2,6 +2,7 @@ import { IssueBanner } from "@/app/issue/[number]/_components/IssueBanner";
 import { IssueHeader } from "@/app/issue/[number]/_components/IssueHeader";
 import { IssueFooter } from "@/app/issue/[number]/_components/IssueFooter";
 
+import { Error } from "@/components/widgets/Error";
 import { RouteModal } from "@/components/layouts/RouteModal";
 import { Markdown } from "@/components/widgets/Markdown";
 import { ShowMobileLayout } from "@/components/layouts/ShowMobileLayout";
@@ -19,6 +20,10 @@ export default async function ModalIssue({
   params: { number: string };
 }) {
   const { issue, nextIssue, prevIssue } = await getAnIssue(number);
+
+  if (!issue) {
+    return <Error />;
+  }
 
   const { comments } = await getIssueComments(number);
 

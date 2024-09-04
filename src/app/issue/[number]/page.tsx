@@ -8,6 +8,7 @@ import { IssueHeader } from "./_components/IssueHeader";
 import { IssueFooter } from "./_components/IssueFooter";
 import { IssuePageMobileNav } from "./_components/IssuePageMobileNav";
 
+import { Error } from "@/components/widgets/Error";
 import { Markdown } from "@/components/widgets/Markdown";
 import { CommentListLayout } from "@/components/layouts/CommentListLayout";
 import { ShowMobileLayout } from "@/components/layouts/ShowMobileLayout";
@@ -30,6 +31,10 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   const { issue } = await getAnIssue(number);
 
+  if (!issue) {
+    return {};
+  }
+
   return {
     title: `${issue.title} | Issuegram`,
   };
@@ -41,6 +46,10 @@ export default async function Issue({
   params: { number: string };
 }) {
   const { issue } = await getAnIssue(number);
+
+  if (!issue) {
+    return <Error />;
+  }
 
   const { comments } = await getIssueComments(number);
 
