@@ -1,1 +1,1 @@
-type LabelType = "normal" | "saved" | "portfolio";
+type LabelType = "normal" | "saved";
