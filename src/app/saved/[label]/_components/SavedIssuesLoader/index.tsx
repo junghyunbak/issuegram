@@ -18,7 +18,7 @@ export function SavedIssuesLoader({ labels }: SavedIssuesLoaderProps) {
 
   return (
     <>
-      <GridIssues issues={issues} />
+      <GridIssues issues={issues} labels={labels} />
 
       {(isLoading || isRefetching) && (
         <div className="mt-[40px] flex h-[48px] items-center justify-center">

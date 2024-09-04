@@ -16,12 +16,15 @@ interface GridIssuesProps {
    * next router를 사용하여 페이지 이동할 지 여부
    */
   linking?: boolean;
+
+  labels?: string;
 }
 
 export function GridIssues({
   issues,
   lineCount = 3,
   linking = true,
+  labels = "",
 }: GridIssuesProps) {
   const issuesRows: (Issues[number] | null)[][] = [];
 
@@ -44,6 +47,7 @@ export function GridIssues({
               issue={issue}
               linking={linking}
               lineCount={lineCount}
+              labels={labels}
             />
           ))}
         </div>

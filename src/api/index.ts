@@ -1,6 +1,8 @@
 import config from "@/config";
 
-export const getIssues = async (): Promise<{ issues: Issues }> => {
+export const getIssues = async (
+  labels: string = "",
+): Promise<{ issues: Issues }> => {
   let issues: Issues = [];
 
   let isLastPage: boolean;
@@ -12,6 +14,7 @@ export const getIssues = async (): Promise<{ issues: Issues }> => {
       creator: config.github.owner,
       per_page: `${100}`,
       page: `${page}`,
+      labels: decodeURI(labels),
     });
 
     const response = await fetch(
@@ -37,12 +40,12 @@ export const getIssues = async (): Promise<{ issues: Issues }> => {
   return { issues };
 };
 
-export const getAnIssue = async (number: string) => {
+export const getAnIssue = async (number: string, labels: string = "") => {
   const {
     data: { issue, prevIssue, nextIssue },
-  } = (await fetch(`http://localhost:${config.port}/api/issues/${number}`).then(
-    (value) => value.json(),
-  )) as ResponseTemplate<{
+  } = (await fetch(
+    `http://localhost:${config.port}/api/issues/${number}?labels=${labels}`,
+  ).then((value) => value.json())) as ResponseTemplate<{
     issue?: Issues[number];
     prevIssue?: Issues[number];
     nextIssue?: Issues[number];

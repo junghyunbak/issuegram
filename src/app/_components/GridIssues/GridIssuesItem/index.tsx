@@ -8,18 +8,20 @@ interface GridIssuesItemProps {
   issue: Issues[number] | null;
   lineCount: 3 | 4;
   linking: boolean;
+  labels: string;
 }
 
 export function GridIssuesItem({
   lineCount,
   issue,
   linking,
+  labels,
 }: GridIssuesItemProps) {
   return (
     <GridIssuesItemLayout lineCount={lineCount}>
       {issue && (
         <GridIssuesItemClickLayout
-          href={`/issue/${issue.number}`}
+          href={`/issue/${issue.number}/${labels}`}
           linking={linking}
         >
           <GridIssuesItemThumbnail issue={issue} />
@@ -39,7 +41,7 @@ function GridIssuesItemLayout({
   lineCount: 3 | 4;
 }) {
   return (
-    <div className="mobile:mr-[3px] mr-[4px] flex-1 last:mr-auto">
+    <div className="mr-[4px] flex-1 last:mr-auto mobile:mr-[3px]">
       <div
         className={[
           "relative",

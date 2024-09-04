@@ -1,6 +1,6 @@
-import { IssueBanner } from "@/app/issue/[number]/_components/IssueBanner";
-import { IssueHeader } from "@/app/issue/[number]/_components/IssueHeader";
-import { IssueFooter } from "@/app/issue/[number]/_components/IssueFooter";
+import { IssueBanner } from "@/app/issue/[...slug]/_components/IssueBanner";
+import { IssueHeader } from "@/app/issue/[...slug]/_components/IssueHeader";
+import { IssueFooter } from "@/app/issue/[...slug]/_components/IssueFooter";
 
 import { Error } from "@/components/widgets/Error";
 import { RouteModal } from "@/components/layouts/RouteModal";
@@ -15,11 +15,15 @@ import { IssueModalLayout } from "./_components/IssueModalLayout";
 import { getAnIssue, getIssueComments, getIssueReactions } from "@/api";
 
 export default async function ModalIssue({
-  params: { number },
+  params: { slug },
 }: {
-  params: { number: string };
+  params: { slug: string[] };
 }) {
-  const { issue, nextIssue, prevIssue } = await getAnIssue(number);
+  const number = slug[0];
+
+  const labels = slug[1] || "";
+
+  const { issue, nextIssue, prevIssue } = await getAnIssue(number, labels);
 
   if (!issue) {
     return <Error />;
@@ -34,7 +38,7 @@ export default async function ModalIssue({
       <div className="absolute left-[10px] z-30">
         {prevIssue && (
           <IssueModalRouteButton
-            href={`/issue/${prevIssue.number}`}
+            href={`/issue/${prevIssue.number}/${labels}`}
             direction="left"
           />
         )}
@@ -87,7 +91,7 @@ export default async function ModalIssue({
       <div className="absolute right-[10px] z-30">
         {nextIssue && (
           <IssueModalRouteButton
-            href={`/issue/${nextIssue.number}`}
+            href={`/issue/${nextIssue.number}/${labels}`}
             direction="right"
           />
         )}

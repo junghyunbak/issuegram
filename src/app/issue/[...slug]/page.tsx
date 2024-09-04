@@ -25,10 +25,12 @@ import {
 } from "@/api";
 
 export async function generateMetadata({
-  params: { number },
+  params: { slug },
 }: {
-  params: { number: string };
+  params: { slug: string[] };
 }): Promise<Metadata> {
+  const [number] = slug;
+
   const { issue } = await getAnIssue(number);
 
   if (!issue) {
@@ -41,10 +43,12 @@ export async function generateMetadata({
 }
 
 export default async function Issue({
-  params: { number },
+  params: { slug },
 }: {
-  params: { number: string };
+  params: { slug: string[] };
 }) {
+  const [number, labels] = slug;
+
   const { issue } = await getAnIssue(number);
 
   if (!issue) {
@@ -57,7 +61,7 @@ export default async function Issue({
 
   const { user } = await getUserInfo();
 
-  const { issues } = await getIssues();
+  const { issues } = await getIssues(labels);
 
   // [ ]: 현재 인덱스 계산법은 더 많은 게시글을 확인할 수 없다.
   const curIdx = issues.findIndex(
@@ -130,6 +134,7 @@ export default async function Issue({
         <GridIssues
           issues={issues.slice(startIdx, startIdx + 6)}
           linking={false}
+          labels={labels}
         />
       </div>
     </div>
