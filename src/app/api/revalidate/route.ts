@@ -47,6 +47,12 @@ export async function POST(request: NextRequest) {
       break;
     }
 
+    case "label": {
+      revalidateTag("issues");
+
+      break;
+    }
+
     case "push": {
       revalidateTag("intro-readme");
     }
