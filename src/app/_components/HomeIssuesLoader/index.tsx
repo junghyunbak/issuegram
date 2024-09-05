@@ -24,7 +24,7 @@ export function HomeIssuesLoader({}: HomeIssuesLoaderProps) {
         </div>
       )}
 
-      {isEnd && <div ref={endRef} />}
+      {!isEnd && <div ref={endRef} />}
     </>
   );
 }
