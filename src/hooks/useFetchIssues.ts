@@ -25,12 +25,21 @@ export const useFetchIssuesInfinity = (labels: string = "") => {
   });
 
   useEffect(() => {
+    /**
+     * fetching 이후에도 inView가 계속 true일 때를 연쇄적으로 처리해주기 위해
+     *
+     * 로딩 상태를 의존성으로 추가함.
+     */
+    if (isLoading || isRefetching) {
+      return;
+    }
+
     if (!inView) {
       return;
     }
 
     fetchNextPage();
-  }, [inView, fetchNextPage]);
+  }, [inView, fetchNextPage, isLoading, isRefetching]);
 
   const issues = !data
     ? []
