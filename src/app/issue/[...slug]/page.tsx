@@ -13,6 +13,7 @@ import { Markdown } from "@/components/widgets/Markdown";
 import { CommentListLayout } from "@/components/layouts/CommentListLayout";
 import { ShowMobileLayout } from "@/components/layouts/ShowMobileLayout";
 import { HiddenMobileLayout } from "@/components/layouts/HiddenMobileLayout";
+import { PageLayout } from "@/components/layouts/PageLayout";
 
 import { GridIssues } from "@/app/_components/GridIssues";
 
@@ -63,14 +64,13 @@ export default async function Issue({
 
   const { issues } = await getIssues(labels);
 
-  // [ ]: 현재 인덱스 계산법은 더 많은 게시글을 확인할 수 없다.
   const curIdx = issues.findIndex(
     ({ number: issueNumber }) => issueNumber === +number,
   );
   const startIdx = curIdx - 3 <= 0 ? 0 : curIdx - 3;
 
   return (
-    <div>
+    <PageLayout>
       <div className="sticky top-0 z-10 hidden bg-white mobile:block dark:bg-black">
         <IssuePageMobileNav />
       </div>
@@ -137,6 +137,6 @@ export default async function Issue({
           labels={labels}
         />
       </div>
-    </div>
+    </PageLayout>
   );
 }

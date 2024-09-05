@@ -5,6 +5,7 @@ import { Menu } from "../_components/Menu";
 import { Header } from "../_components/Header";
 
 import { TextThumbnail } from "@/components/widgets/TextThumbnail";
+import { PageLayout } from "@/components/layouts/PageLayout";
 
 import { getIssueLabels, getIssueThumbnail } from "@/utils";
 
@@ -38,7 +39,7 @@ export default async function Saved() {
   });
 
   return (
-    <div>
+    <PageLayout>
       <Header />
 
       <Menu type="saved" />
@@ -100,6 +101,6 @@ export default async function Saved() {
           );
         })}
       </ul>
-    </div>
+    </PageLayout>
   );
 }

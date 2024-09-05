@@ -4,6 +4,8 @@ import { Menu } from "./_components/Menu";
 import { Header } from "./_components/Header";
 import { HomeIssuesLoader } from "./_components/HomeIssuesLoader";
 
+import { PageLayout } from "@/components/layouts/PageLayout";
+
 import { getUserInfo } from "@/api";
 
 export async function generateMetadata(): Promise<Metadata> {
@@ -16,12 +18,12 @@ export async function generateMetadata(): Promise<Metadata> {
 
 export default async function Home() {
   return (
-    <div>
+    <PageLayout>
       <Header />
 
       <Menu type="normal" />
 
       <HomeIssuesLoader />
-    </div>
+    </PageLayout>
   );
 }

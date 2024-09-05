@@ -36,7 +36,7 @@ export default function RootLayout({
             <Nav />
 
             <div className="flex-1 overflow-y-scroll">
-              <div className="mx-auto w-full max-w-[935px] px-[20px] pt-[30px] mobile:p-0">
+              <div className="mx-auto w-full max-w-[935px] px-[20px] mobile:px-0">
                 <div className="min-h-screen">{children}</div>
 
                 <Footer />
