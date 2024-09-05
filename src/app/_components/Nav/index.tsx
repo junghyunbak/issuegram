@@ -1,7 +1,7 @@
 import React from "react";
 
+import Issuegram from "@/assets/svgs/Issuegram-text.svg";
 import Instagram from "@/assets/svgs/instagram.svg";
-import InstagramText from "@/assets/svgs/instagram-text.svg";
 import NewPost from "@/assets/svgs/new-post.svg";
 
 import Link from "next/link";
@@ -24,7 +24,7 @@ export async function Nav() {
       <div className="relative mb-[96px] [&>div]:transition-[opacity] [&>div]:duration-500">
         <div className="absolute mt-[13px] p-[12px] opacity-100 tablet:opacity-0">
           <Link href="/">
-            <InstagramText />
+            <Issuegram className="w-[103px]" />
           </Link>
         </div>
 
