@@ -1,8 +1,9 @@
-import config from "@/config";
 import { type NextRequest } from "next/server";
 
+import config from "@/config";
+
 export async function GET(request: NextRequest) {
-  const page = request.nextUrl.searchParams.get("page");
+  const page = +(request.nextUrl.searchParams.get("page") || 0);
 
   const labels = request.nextUrl.searchParams.get("labels") || "";
 
@@ -13,73 +14,12 @@ export async function GET(request: NextRequest) {
     );
   }
 
-  const commonParams: Record<string, string> = {
-    page: page,
-    creator: config.github.owner,
+  const { pinIssues } = await getPinIssues(page, labels);
+
+  const { unpinIssues, isLastPage } = await getUnpinIssuesWithPage(
+    page,
     labels,
-  };
-
-  /**
-   * 고정되지 않은(assignee: none) 이슈 데이터 로드
-   */
-  const getUnpinIssues = async () => {
-    const unpinSearchParams = new URLSearchParams({
-      ...commonParams,
-      per_page: `${9}`,
-      assignee: "none",
-    });
-
-    const response = await fetch(
-      `https://api.github.com/repos/${config.github.owner}/${config.github.repo}/issues?${unpinSearchParams.toString()}`,
-      {
-        headers: { Authorization: `Bearer ${config.github.accessToken}` },
-        next: {
-          tags: ["issues"],
-        },
-        cache: "force-cache",
-      },
-    );
-    const unpinIssues = (await response.json()) as Issues;
-
-    const isLastPage = !response.headers.get("link")?.includes('rel="next"');
-
-    return { unpinIssues, isLastPage };
-  };
-
-  /**
-   * 고정된 이슈 데이터 로드
-   *
-   * 단, 페이지가 1일 경우에만 유효한 데이터를 리턴
-   */
-  const getPinIssues = async () => {
-    if (page !== (1).toString()) {
-      return { pinIssues: [] };
-    }
-
-    const pinSearchParams = new URLSearchParams({
-      ...commonParams,
-      assignee: config.github.owner,
-    });
-
-    const response = await fetch(
-      `https://api.github.com/repos/${config.github.owner}/${config.github.repo}/issues?${pinSearchParams.toString()}`,
-      {
-        headers: { Authorization: `Bearer ${config.github.accessToken}` },
-        next: {
-          tags: ["issues"],
-        },
-        cache: "force-cache",
-      },
-    );
-
-    const pinIssues = (await response.json()) as Issues;
-
-    return { pinIssues };
-  };
-
-  const { unpinIssues, isLastPage } = await getUnpinIssues();
-
-  const { pinIssues } = await getPinIssues();
+  );
 
   const issues: Issues = [...pinIssues, ...unpinIssues];
 
@@ -87,4 +27,74 @@ export async function GET(request: NextRequest) {
     data: { items: issues, isLastPage },
     message: "OK",
   });
+}
+
+async function getUnpinIssuesWithPage(
+  page: number,
+  labels: string,
+): Promise<{ unpinIssues: Issues; isLastPage: boolean }> {
+  const unpinSearchParams = new URLSearchParams({
+    creator: config.github.owner,
+
+    assignee: "none",
+
+    per_page: `${9}`,
+    page: `${page}`,
+
+    labels,
+  });
+
+  const response = await fetch(
+    `https://api.github.com/repos/${config.github.owner}/${config.github.repo}/issues?${unpinSearchParams.toString()}`,
+    {
+      headers: { Authorization: `Bearer ${config.github.accessToken}` },
+      next: {
+        tags: ["issues"],
+      },
+      cache: "force-cache",
+    },
+  );
+  const unpinIssues = (await response.json()) as Issues;
+
+  const isLastPage = !response.headers.get("link")?.includes('rel="next"');
+
+  return { unpinIssues, isLastPage };
+}
+
+async function getPinIssues(
+  page: number,
+  labels: string,
+): Promise<{ pinIssues: Issues }> {
+  if (page !== 1) {
+    return { pinIssues: [] };
+  }
+
+  const pinSearchParams = new URLSearchParams({
+    creator: config.github.owner,
+
+    assignee: config.github.owner,
+
+    /**
+     * 고정 페이지는 많아봐야 10개 정도로 생각하기 때문에 `per_page=100`으로 설정한 후 요청을 한번만 보냄.
+     */
+    per_page: `${100}`,
+    page: `${page}`,
+
+    labels,
+  });
+
+  const response = await fetch(
+    `https://api.github.com/repos/${config.github.owner}/${config.github.repo}/issues?${pinSearchParams.toString()}`,
+    {
+      headers: { Authorization: `Bearer ${config.github.accessToken}` },
+      next: {
+        tags: ["issues"],
+      },
+      cache: "force-cache",
+    },
+  );
+
+  const pinIssues = (await response.json()) as Issues;
+
+  return { pinIssues };
 }
