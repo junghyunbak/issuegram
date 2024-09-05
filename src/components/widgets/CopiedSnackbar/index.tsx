@@ -1,13 +1,17 @@
 "use client";
 
-import useStore from "@/store";
 import { useEffect, useRef, useState } from "react";
+
+import useStore from "@/store";
+
+import { useShallow } from "zustand/react/shallow";
+
 import { AnimatePresence, motion } from "framer-motion";
 
 export function CopiedSnackbar() {
   const [isOpen, setIsOpen] = useState(false);
 
-  const [copiedSnackbar] = useStore((state) => [state.copiedSnackbar]);
+  const [copiedSnackbar] = useStore(useShallow((s) => [s.copiedSnackbar]));
 
   const prev = useRef<Symbol>(copiedSnackbar);
 

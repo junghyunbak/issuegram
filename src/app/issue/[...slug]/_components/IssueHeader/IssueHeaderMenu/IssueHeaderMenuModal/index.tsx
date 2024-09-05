@@ -2,8 +2,13 @@
 
 import type { Dispatch, SetStateAction } from "react";
 import { CopyToClipboard } from "react-copy-to-clipboard";
+
+import { useShallow } from "zustand/react/shallow";
+
 import config from "@/config";
+
 import useStore from "@/store";
+
 import "./index.css";
 
 interface IssueHeaderMenuModalProps {
@@ -15,10 +20,17 @@ export function IssueHeaderMenuModal({
   issue,
   setIsModalOpen,
 }: IssueHeaderMenuModalProps) {
-  const fireCopiedSnackbar = useStore((state) => state.fireCopiedSnackbar);
+  const [fireCopiedSnackbar] = useStore(
+    useShallow((s) => [s.fireCopiedSnackbar]),
+  );
 
   const handleDimmedClick = () => {
     setIsModalOpen(false);
+  };
+
+  const handleCopyButtonClick = () => {
+    setIsModalOpen(false);
+    fireCopiedSnackbar();
   };
 
   return (
@@ -54,10 +66,7 @@ export function IssueHeaderMenuModal({
             >
               <div
                 className="flex size-full items-center justify-center"
-                onClick={() => {
-                  setIsModalOpen(false);
-                  fireCopiedSnackbar();
-                }}
+                onClick={handleCopyButtonClick}
               >
                 <p>링크 복사</p>
               </div>

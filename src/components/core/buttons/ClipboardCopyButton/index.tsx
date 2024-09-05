@@ -1,8 +1,11 @@
 "use client";
 
-import useStore from "@/store";
 import React from "react";
 import { CopyToClipboard } from "react-copy-to-clipboard";
+
+import { useShallow } from "zustand/react/shallow";
+
+import useStore from "@/store";
 
 interface ClipboardCopyButtonProps {
   text: string;
@@ -13,7 +16,9 @@ export function ClipboardCopyButton({
   text,
   children,
 }: ClipboardCopyButtonProps) {
-  const fireCopiedSnackbar = useStore((state) => state.fireCopiedSnackbar);
+  const [fireCopiedSnackbar] = useStore(
+    useShallow((s) => [s.fireCopiedSnackbar]),
+  );
 
   return (
     <CopyToClipboard
