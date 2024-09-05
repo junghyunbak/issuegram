@@ -2,7 +2,7 @@
 
 import { useFetchIssuesInfinity } from "@/hooks/useFetchIssues";
 
-import { GridIssues } from "../GridIssues";
+import { GridIssues } from "@/components/widgets/GridIssues";
 
 import Spinner from "@/assets/svgs/spinner.svg";
 

@@ -1,8 +1,9 @@
-import { GridIssuesItemCounter } from "./GridIssuesItemCounter";
-import { GridIssuesItemThumbnail } from "./GridIssuesItemThumbnail";
-import { GridIssuesItemPin } from "./GridIssuesItemPin";
 import React from "react";
+
 import { GridIssuesItemClickLayout } from "./GridIssuesItemClickLayout";
+import { GridIssuesItemThumbnail } from "./GridIssuesItemThumbnail";
+import { GridIssuesItemCounter } from "./GridIssuesItemCounter";
+import { GridIssuesItemPin } from "./GridIssuesItemPin";
 
 interface GridIssuesItemProps {
   issue: Issues[number] | null;

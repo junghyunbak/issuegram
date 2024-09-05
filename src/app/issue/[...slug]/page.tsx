@@ -15,7 +15,7 @@ import { ShowMobileLayout } from "@/components/layouts/ShowMobileLayout";
 import { HiddenMobileLayout } from "@/components/layouts/HiddenMobileLayout";
 import { PageLayout } from "@/components/layouts/PageLayout";
 
-import { GridIssues } from "@/app/_components/GridIssues";
+import { GridIssues } from "@/components/widgets/GridIssues";
 
 import {
   getAnIssue,

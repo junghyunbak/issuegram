@@ -1,6 +1,6 @@
 "use client";
 
-import { GridIssues } from "@/app/_components/GridIssues";
+import { GridIssues } from "@/components/widgets/GridIssues";
 
 import { useFetchIssuesInfinity } from "@/hooks/useFetchIssues";
 
