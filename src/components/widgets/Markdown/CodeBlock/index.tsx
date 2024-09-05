@@ -1,5 +1,7 @@
 "use client";
 
+import { useContext, type CSSProperties } from "react";
+
 import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
 import {
   vs,
@@ -8,9 +10,7 @@ import {
 
 import { ClipboardCopyButton } from "@/components/core/buttons/ClipboardCopyButton";
 
-import useStore from "@/store";
-
-import { type CSSProperties } from "react";
+import { themeContext } from "@/app/_components/ThemeProvider";
 
 import "./index.css";
 
@@ -21,7 +21,9 @@ interface CodeBlockProps {
 }
 
 export function CodeBlock({ lineNumbers, lang, code }: CodeBlockProps) {
-  const [isDark] = useStore((state) => [state.isDark]);
+  const { theme } = useContext(themeContext);
+
+  const isDark = theme === "dark";
 
   return (
     <SyntaxHighlighter

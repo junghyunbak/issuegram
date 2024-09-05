@@ -1,9 +1,21 @@
-import { type Dispatch, type SetStateAction, forwardRef } from "react";
+"use client";
+
+import {
+  type Dispatch,
+  type SetStateAction,
+  forwardRef,
+  useContext,
+} from "react";
+
 import ArrowUp from "@/assets/svgs/arrow-up.svg";
-import { type ModalState } from "..";
 import Sun from "@/assets/svgs/sun.svg";
 import Moon from "@/assets/svgs/moon.svg";
-import useStore from "@/store";
+
+import { type ModalState } from "..";
+
+import { themeContext } from "@/app/_components/ThemeProvider";
+
+import Cookies from "js-cookie";
 
 interface DarkModeProps {
   modalState: ModalState;
@@ -12,24 +24,25 @@ interface DarkModeProps {
 
 const DarkMode = forwardRef<HTMLDivElement | null, DarkModeProps>(
   function _DarkMode({ modalState, setModalState }, ref) {
-    const [isDark, setIsDark] = useStore((state) => [
-      state.isDark,
-      state.setIsDark,
-    ]);
+    const { theme, setTheme } = useContext(themeContext);
+
+    const isDark = theme === "dark";
 
     const handleDarkModeToggleButtonClick = () => {
-      if (!isDark) {
-        setIsDark(true);
+      const html = document.documentElement;
 
-        window.localStorage.setItem("theme", "dark");
+      if (isDark) {
+        setTheme(null);
 
-        document.documentElement.classList.add("dark");
+        Cookies.remove("theme");
+
+        html.classList.remove("dark");
       } else {
-        setIsDark(false);
+        setTheme("dark");
 
-        window.localStorage.removeItem("theme");
+        Cookies.set("theme", "dark");
 
-        document.documentElement.classList.remove("dark");
+        html.classList.add("dark");
       }
     };
 

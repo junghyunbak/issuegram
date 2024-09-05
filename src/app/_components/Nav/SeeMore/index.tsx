@@ -1,16 +1,16 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+
 import { DarkMode } from "./DarkMode";
 import { MainMenu } from "./MainMenu";
-import useStore from "@/store";
+
 import Hamburger from "@/assets/svgs/hamburger.svg";
 
 export type ModalState = "closed" | "main" | "mode";
 
 export function SeeMore() {
   const [modalState, setModalState] = useState<ModalState>("closed");
-  const [setIsDark] = useStore((state) => [state.setIsDark]);
 
   const menuContainer = useRef<HTMLDivElement | null>(null);
   const mainMenu = useRef<HTMLDivElement | null>(null);
@@ -69,17 +69,6 @@ export function SeeMore() {
     };
   }, []);
 
-  /**
-   * localstorage에 저장된 테마에 따라 다크모드 설정
-   */
-  useEffect(() => {
-    if (window.localStorage.getItem("theme") === "dark") {
-      setIsDark(true);
-
-      document.documentElement.classList.add("dark");
-    }
-  }, []);
-
   const handleModalToggleButtonClick = () => {
     setModalState(modalState === "closed" ? "main" : "closed");
   };
@@ -95,7 +84,7 @@ export function SeeMore() {
           <Hamburger />
         </div>
 
-        <div className="tablet:hidden pl-[16px]">
+        <div className="pl-[16px] tablet:hidden">
           <p>더 보기</p>
         </div>
       </div>
@@ -103,7 +92,7 @@ export function SeeMore() {
       {modalState !== "closed" && (
         <div
           ref={menuContainer}
-          className="tablet:bottom-0 tablet:left-[48px] absolute bottom-[52px] left-0 z-10 h-10 w-[266px] overflow-x-hidden overflow-y-hidden rounded-2xl bg-white shadow-[0_4px_12px_rgba(0,0,0,0.15)] dark:bg-igBannerBackgroundDark"
+          className="absolute bottom-[52px] left-0 z-10 h-10 w-[266px] overflow-x-hidden overflow-y-hidden rounded-2xl bg-white shadow-[0_4px_12px_rgba(0,0,0,0.15)] tablet:bottom-0 tablet:left-[48px] dark:bg-igBannerBackgroundDark"
         >
           <MainMenu
             ref={mainMenu}

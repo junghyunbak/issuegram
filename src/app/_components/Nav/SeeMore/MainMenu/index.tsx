@@ -1,12 +1,23 @@
 "use client";
 
-import { Dispatch, FC, SVGProps, SetStateAction, forwardRef } from "react";
+import {
+  Dispatch,
+  FC,
+  SVGProps,
+  SetStateAction,
+  forwardRef,
+  useContext,
+} from "react";
+
+import { useRouter } from "next/navigation";
+
 import { ModalState } from "..";
-import useStore from "@/store";
+
 import Sun from "@/assets/svgs/sun.svg";
 import Moon from "@/assets/svgs/moon.svg";
 import Saved from "@/assets/svgs/saved.svg";
-import { useRouter } from "next/navigation";
+
+import { themeContext } from "@/app/_components/ThemeProvider";
 
 interface MainMenuProps {
   modalState: ModalState;
@@ -17,7 +28,9 @@ export const MainMenu = forwardRef<HTMLDivElement | null, MainMenuProps>(
   function _MainMenu({ modalState, setModalState }, ref) {
     const router = useRouter();
 
-    const [isDark] = useStore((state) => [state.isDark]);
+    const { theme } = useContext(themeContext);
+
+    const isDark = theme === "dark";
 
     const handleChangeDarkModeMenu = () => {
       setModalState("mode");
