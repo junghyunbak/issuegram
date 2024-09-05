@@ -6,6 +6,8 @@ import rehypeRaw from "rehype-raw";
 import rehypeSlug from "rehype-slug";
 import rehypeKatex from "rehype-katex";
 
+import "./index.css";
+
 interface HeaderIntroProps {
   name: string;
   content: string;

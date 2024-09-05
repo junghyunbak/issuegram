@@ -11,11 +11,9 @@ import { IssuePageMobileNav } from "./_components/IssuePageMobileNav";
 import { Error } from "@/components/widgets/Error";
 import { Markdown } from "@/components/widgets/Markdown";
 import { CommentListLayout } from "@/components/layouts/CommentListLayout";
-import { ShowMobileLayout } from "@/components/layouts/ShowMobileLayout";
-import { HiddenMobileLayout } from "@/components/layouts/HiddenMobileLayout";
 import { PageLayout } from "@/components/layouts/PageLayout";
-
 import { GridIssues } from "@/components/widgets/GridIssues";
+import { responsive } from "@/components/layouts/ResponsiveLayout";
 
 import {
   getAnIssue,
@@ -76,21 +74,18 @@ export default async function Issue({
       </div>
 
       <div className="mx-auto flex w-full max-w-[815px] border border-igSeparator mobile:border-0 dark:border-igSeparatorDark">
-        <HiddenMobileLayout>
+        <responsive.mobile.x.div>
           <IssueBanner issue={issue} isModal={false} />
-        </HiddenMobileLayout>
+        </responsive.mobile.x.div>
 
         <div className="flex aspect-square w-full flex-col overflow-x-hidden border-l border-igSeparator mobile:overflow-x-visible mobile:border-0 dark:border-igSeparatorDark">
           <IssueHeader issue={issue} />
 
           <div className="w-full flex-1 overflow-x-hidden overflow-y-scroll mobile:flex-none mobile:scrollbar-hide">
-            <ShowMobileLayout>
+            <responsive.mobile.div className="flex flex-col">
               <IssueBanner issue={issue} />
-            </ShowMobileLayout>
-
-            <ShowMobileLayout>
               <IssueFooter issue={issue} issueReactions={reactions} />
-            </ShowMobileLayout>
+            </responsive.mobile.div>
 
             <CommentListLayout>
               <Markdown markdown={issue.body || ""} />
@@ -113,9 +108,9 @@ export default async function Issue({
             </CommentListLayout>
           </div>
 
-          <HiddenMobileLayout>
+          <responsive.mobile.x.div>
             <IssueFooter issue={issue} issueReactions={reactions} />
-          </HiddenMobileLayout>
+          </responsive.mobile.x.div>
         </div>
       </div>
 

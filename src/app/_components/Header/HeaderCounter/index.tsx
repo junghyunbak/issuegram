@@ -1,5 +1,7 @@
 import Link from "next/link";
 
+import "./index.css";
+
 interface HeaderCounterProps {
   postCount: number;
   followerCount: number;

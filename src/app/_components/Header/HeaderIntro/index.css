@@ -1,0 +1,15 @@
+.intro-markdown {
+  @apply text-sm;
+
+  img {
+    @apply inline;
+  }
+
+  a {
+    @apply text-igLink dark:text-igLinkDark;
+
+    &::before {
+      content: "@";
+    }
+  }
+}

@@ -1,0 +1,20 @@
+.counter {
+  @apply mb-[20px] flex w-full gap-10 mobile:my-[12px] mobile:gap-0 mobile:text-sm;
+
+  li {
+    @apply flex justify-center mobile:flex-1;
+
+    p,
+    a {
+      @apply text-center mobile:text-igSecondaryText mobile:dark:text-igSecondaryTextDark [&_*]:mobile:block;
+
+      span {
+        @apply font-semibold text-igPrimaryText dark:text-igPrimaryTextDark;
+      }
+    }
+
+    a {
+      @apply cursor-pointer;
+    }
+  }
+}

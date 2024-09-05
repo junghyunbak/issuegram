@@ -15,6 +15,9 @@ const config: Config = {
       mobile: {
         max: "767px",
       },
+      "mobile-x": {
+        min: "768px",
+      },
       tablet: {
         max: "1023px",
       },

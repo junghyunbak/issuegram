@@ -7,12 +7,9 @@ import { HeaderCounter } from "./HeaderCounter";
 import { HeaderButton } from "./HeaderButton";
 import { HeaderProfile } from "./HeaderProfile";
 
-import { ShowMobileLayout } from "@/components/layouts/ShowMobileLayout";
-import { HiddenMobileLayout } from "@/components/layouts/HiddenMobileLayout";
+import { responsive } from "@/components/layouts/ResponsiveLayout";
 
 import { getUserInfo, getProfileReadme, getIssues } from "@/api";
-
-import "./index.css";
 
 export async function Header() {
   const { user } = await getUserInfo();
@@ -42,27 +39,23 @@ export async function Header() {
             <HeaderButton readme={readme} />
           </div>
 
-          <HiddenMobileLayout>
+          <responsive.mobile.x.div className="flex flex-col gap-[20px]">
             <HeaderCounter
               postCount={issues.length}
               followerCount={user.followers}
               followingCount={user.following}
             />
-          </HiddenMobileLayout>
 
-          <HiddenMobileLayout>
             <HeaderIntro name={user.name || ""} content={readmeContent} />
-          </HiddenMobileLayout>
+          </responsive.mobile.x.div>
         </div>
       </div>
 
-      <ShowMobileLayout>
+      <responsive.mobile.div className="flex flex-col">
         <div className="px-4 pb-5">
           <HeaderIntro name={user.name || ""} content={readmeContent} />
         </div>
-      </ShowMobileLayout>
 
-      <ShowMobileLayout>
         <div className="w-full border-t border-igSeparator dark:border-igSeparatorDark">
           <HeaderCounter
             postCount={issues.length}
@@ -70,7 +63,7 @@ export async function Header() {
             followingCount={user.following}
           />
         </div>
-      </ShowMobileLayout>
+      </responsive.mobile.div>
     </header>
   );
 }

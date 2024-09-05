@@ -5,9 +5,8 @@ import { IssueFooter } from "@/app/issue/[...slug]/_components/IssueFooter";
 import { Error } from "@/components/widgets/Error";
 import { RouteModal } from "@/components/layouts/RouteModal";
 import { Markdown } from "@/components/widgets/Markdown";
-import { ShowMobileLayout } from "@/components/layouts/ShowMobileLayout";
-import { HiddenMobileLayout } from "@/components/layouts/HiddenMobileLayout";
 import { CommentListLayout } from "@/components/layouts/CommentListLayout";
+import { responsive } from "@/components/layouts/ResponsiveLayout";
 
 import { IssueModalRouteButton } from "./_components/IssueModalRouteButton";
 import { IssueModalLayout } from "./_components/IssueModalLayout";
@@ -45,21 +44,18 @@ export default async function ModalIssue({
       </div>
 
       <IssueModalLayout>
-        <HiddenMobileLayout>
+        <responsive.mobile.x.div>
           <IssueBanner issue={issue} />
-        </HiddenMobileLayout>
+        </responsive.mobile.x.div>
 
         <div className="flex aspect-square w-[45dvw] flex-col border-l border-igSeparator mobile:aspect-auto mobile:w-[320px] mobile:border-0 dark:border-igSeparatorDark">
           <IssueHeader issue={issue} />
 
           <div className=" flex-1 overflow-x-hidden overflow-y-scroll scrollbar-hide mobile:h-[65dvh] mobile:flex-none">
-            <ShowMobileLayout>
+            <responsive.mobile.div className="flex flex-col">
               <IssueBanner issue={issue} />
-            </ShowMobileLayout>
-
-            <ShowMobileLayout>
               <IssueFooter issue={issue} issueReactions={reactions} />
-            </ShowMobileLayout>
+            </responsive.mobile.div>
 
             <CommentListLayout>
               <Markdown markdown={issue.body || ""} />
@@ -82,9 +78,9 @@ export default async function ModalIssue({
             </CommentListLayout>
           </div>
 
-          <HiddenMobileLayout>
+          <responsive.mobile.x.div>
             <IssueFooter issue={issue} issueReactions={reactions} />
-          </HiddenMobileLayout>
+          </responsive.mobile.x.div>
         </div>
       </IssueModalLayout>
 
