@@ -9,22 +9,22 @@ const config: Config = {
   darkMode: "selector",
   theme: {
     screens: {
-      /**
-       * 커스텀 스크린 코드
-       */
       mobile: {
         max: "767px",
       },
       "mobile-x": {
         min: "768px",
       },
+
       tablet: {
         max: "1023px",
       },
+
       mobileToTablet: {
         min: "768px",
         max: "1023px",
       },
+
       pc: {
         min: "1024px",
       },
