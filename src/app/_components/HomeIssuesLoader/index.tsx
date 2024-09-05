@@ -11,7 +11,8 @@ import "./index.css";
 interface HomeIssuesLoaderProps {}
 
 export function HomeIssuesLoader({}: HomeIssuesLoaderProps) {
-  const { issues, endRef, isLoading, isRefetching } = useFetchIssuesInfinity();
+  const { issues, endRef, isLoading, isRefetching, isEnd } =
+    useFetchIssuesInfinity();
 
   return (
     <>
@@ -23,7 +24,7 @@ export function HomeIssuesLoader({}: HomeIssuesLoaderProps) {
         </div>
       )}
 
-      <div ref={endRef} />
+      {isEnd && <div ref={endRef} />}
     </>
   );
 }

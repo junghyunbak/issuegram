@@ -13,7 +13,7 @@ interface SavedIssuesLoaderProps {
 }
 
 export function SavedIssuesLoader({ labels }: SavedIssuesLoaderProps) {
-  const { issues, endRef, isLoading, isRefetching } =
+  const { issues, endRef, isLoading, isRefetching, isEnd } =
     useFetchIssuesInfinity(labels);
 
   return (
@@ -26,7 +26,7 @@ export function SavedIssuesLoader({ labels }: SavedIssuesLoaderProps) {
         </div>
       )}
 
-      <div ref={endRef} />
+      {!isEnd && <div ref={endRef} />}
     </>
   );
 }
