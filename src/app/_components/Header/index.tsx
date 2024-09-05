@@ -31,11 +31,12 @@ export async function Header() {
           <HeaderProfile userInfo={user} />
         </div>
 
-        <div className="flex shrink grow-[2] basis-[30px] flex-col justify-center">
-          <div className="mb-[20px] flex items-center mobile:h-full mobile:flex-col mobile:place-items-start mobile:justify-evenly">
+        <div className="flex shrink grow-[2] basis-[30px] flex-col justify-center gap-[20px]">
+          <div className="flex items-center mobile:h-full mobile:flex-col mobile:place-items-start mobile:justify-evenly">
             <div className="mr-5">
               <span className="text-xl">{user.login}</span>
             </div>
+
             <HeaderButton readme={readme} />
           </div>
 

@@ -1,5 +1,5 @@
 .counter {
-  @apply mb-[20px] flex w-full gap-10 mobile:my-[12px] mobile:gap-0 mobile:text-sm;
+  @apply flex w-full gap-10 mobile:my-[12px] mobile:gap-0 mobile:text-sm;
 
   li {
     @apply flex justify-center mobile:flex-1;
