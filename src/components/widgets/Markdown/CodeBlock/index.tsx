@@ -5,8 +5,13 @@ import {
   vs,
   vscDarkPlus,
 } from "react-syntax-highlighter/dist/esm/styles/prism";
+
 import { ClipboardCopyButton } from "@/components/core/buttons/ClipboardCopyButton";
+
 import useStore from "@/store";
+
+import { type CSSProperties } from "react";
+
 import "./index.css";
 
 interface CodeBlockProps {
@@ -23,9 +28,7 @@ export function CodeBlock({ lineNumbers, lang, code }: CodeBlockProps) {
       showLineNumbers
       wrapLines
       lineProps={(lineNumber) => {
-        // [ ]: 스타일 타입 설정
-
-        const style: any = {
+        const style: CSSProperties = {
           display: "block",
           paddingLeft: "12.6px",
           paddingRight: "12.6px",
