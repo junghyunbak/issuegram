@@ -51,7 +51,11 @@ export default async function Issue({
   const { issue } = await getAnIssue(number);
 
   if (!issue) {
-    return <Error />;
+    return (
+      <PageLayout>
+        <Error />
+      </PageLayout>
+    );
   }
 
   const { comments } = await getIssueComments(number);

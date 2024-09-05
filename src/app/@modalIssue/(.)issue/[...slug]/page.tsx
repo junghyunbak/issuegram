@@ -2,7 +2,6 @@ import { IssueBanner } from "@/app/issue/[...slug]/_components/IssueBanner";
 import { IssueHeader } from "@/app/issue/[...slug]/_components/IssueHeader";
 import { IssueFooter } from "@/app/issue/[...slug]/_components/IssueFooter";
 
-import { Error } from "@/components/widgets/Error";
 import { RouteModal } from "@/components/layouts/RouteModal";
 import { Markdown } from "@/components/widgets/Markdown";
 import { CommentListLayout } from "@/components/layouts/CommentListLayout";
@@ -24,13 +23,13 @@ export default async function ModalIssue({
 
   const { issue, nextIssue, prevIssue } = await getAnIssue(number, labels);
 
-  if (!issue) {
-    return <Error />;
-  }
-
   const { comments } = await getIssueComments(number);
 
   const { reactions } = await getIssueReactions(number);
+
+  if (!issue) {
+    return null;
+  }
 
   return (
     <RouteModal>
