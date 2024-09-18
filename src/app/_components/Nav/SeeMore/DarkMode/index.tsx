@@ -15,8 +15,6 @@ import { type ModalState } from "..";
 
 import { themeContext } from "@/app/_components/ThemeProvider";
 
-import Cookies from "js-cookie";
-
 interface DarkModeProps {
   modalState: ModalState;
   setModalState: Dispatch<SetStateAction<ModalState>>;
@@ -34,13 +32,13 @@ const DarkMode = forwardRef<HTMLDivElement | null, DarkModeProps>(
       if (isDark) {
         setTheme(null);
 
-        Cookies.remove("theme");
+        localStorage.removeItem("theme");
 
         html.classList.remove("dark");
       } else {
         setTheme("dark");
 
-        Cookies.set("theme", "dark");
+        localStorage.setItem("theme", "dark");
 
         html.classList.add("dark");
       }

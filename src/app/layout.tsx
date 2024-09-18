@@ -1,7 +1,6 @@
 import React from "react";
 
 import type { Metadata } from "next";
-import { cookies } from "next/headers";
 
 import { Nav } from "./_components/Nav";
 import { Footer } from "./_components/Footer";
@@ -35,12 +34,10 @@ export default function RootLayout({
   modalFollowers,
   modalFollowing,
 }: RootLayoutProps) {
-  const theme = cookies().get("theme")?.value;
-
   return (
-    <html className={`size-full ${theme === "dark" ? "dark" : ""}`}>
+    <html className="size-full">
       <body className="body-dark size-full">
-        <ThemeProvider defaultTheme={theme === "dark" ? "dark" : null}>
+        <ThemeProvider>
           <QueryProvider>
             <div className="flex size-full">
               <Nav />
