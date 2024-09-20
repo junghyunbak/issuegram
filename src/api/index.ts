@@ -45,6 +45,12 @@ export const getAnIssue = async (number: string, labels: string = "") => {
     data: { issue, prevIssue, nextIssue },
   } = (await fetch(
     `http://localhost:${config.port}/api/issues/${number}?labels=${labels}`,
+    {
+      next: {
+        tags: ["issues"],
+      },
+      cache: "force-cache",
+    },
   ).then((value) => value.json())) as ResponseTemplate<{
     issue?: Issues[number];
     prevIssue?: Issues[number];
