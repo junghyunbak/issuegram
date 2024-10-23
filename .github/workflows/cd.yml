@@ -20,9 +20,6 @@ jobs:
       - name: 🐈yarn 설치
         run: npm i -g yarn
 
-      - name: 🐈yarn 업그레이드
-        run: yarn upgrade
-
       - name: 🐈yarn 캐시 디렉터리 경로 얻기
         id: yarn-cache-dir-path
         run: echo "dir=$(yarn cache dir)" >> $GITHUB_OUTPUT
