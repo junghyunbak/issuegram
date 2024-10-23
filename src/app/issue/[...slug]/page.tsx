@@ -23,6 +23,8 @@ import {
   getUserInfo,
 } from "@/api";
 
+export const dynamic = "force-static";
+
 export async function generateMetadata({
   params: { slug },
 }: {
